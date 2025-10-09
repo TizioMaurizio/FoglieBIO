@@ -7,136 +7,7 @@
   <meta name="description" content="FOGLIE BIO PLUS® — Infuso biologico di foglie d’olivo italiane.">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --olive-900:#2d3426;
-      --olive-800:#3b4633;
-      --olive-700:#4b5a41;
-      --olive-600:#5c6f50;
-      --olive-400:#9fb27b;
-      --olive-200:#dfe7c0;
-      --cream-100:#f4f1e6;
-      --accent:#c6cf7d;
-      --text:#eaf0d4;
-      --white:#ffffff;
-    }
-
-    /* Reset-ish */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      color:var(--text);
-      background:var(--olive-800);
-      line-height:1.5;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    button{font:inherit}
-
-    /* Container */
-    .container{max-width:1200px;margin-inline:auto;padding-inline:24px}
-
-    /* Header */
-    .site-header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(45,52,38,.9);
-      backdrop-filter:saturate(140%) blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      height:68px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:.75rem;font-weight:700;letter-spacing:.2px
-    }
-    .brand svg{width:28px;height:28px;flex:none}
-    .nav a{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:10px 12px;border-radius:10px;color:var(--text);
-      opacity:.9
-    }
-    .nav a:hover{background:rgba(255,255,255,.06);opacity:1}
-    .nav-primary{display:flex;gap:.25rem;align-items:center}
-    .badge{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:8px 10px;border-radius:10px;background:#1f261b;border:1px solid rgba(255,255,255,.08)
-    }
-    .badge svg{width:20px;height:20px}
-    .menu-toggle{display:none}
-
-    /* Hero */
-    .hero{
-      position:relative;min-height:78vh;display:grid;place-items:center;
-      color:var(--text);isolation:isolate;
-      background:var(--olive-800);
-    }
-    .hero::before{
-      /* Replace url(...) with your hero image */
-      content:"";
-      position:absolute;inset:0;z-index:-2;
-      background-image:url("assets/hero.jpg"); /* e.g. images/hero-bottle.jpg */
-      background-size:cover;background-position:center 35%;
-      filter:saturate(95%) contrast(105%);
-    }
-    .hero::after{
-      content:"";position:absolute;inset:0;z-index:-1;
-      background:linear-gradient(to bottom, rgba(43,50,37,.25), rgba(43,50,37,.65) 35%, rgba(43,50,37,.92) 100%);
-    }
-    .eyebrow{
-      text-transform:uppercase;letter-spacing:.18em;
-      font-weight:600;font-size:.85rem;opacity:.85;margin-bottom:12px
-    }
-    .hero h1{
-      font-weight:900;line-height:1.02;margin:0;
-      font-size:clamp(2.2rem, 4.5vw + .5rem, 4.6rem);
-      text-wrap:balance
-    }
-    .hero h1 .break{display:block}
-    .hero .cta{
-      margin-top:28px;display:flex;gap:12px;flex-wrap:wrap
-    }
-    .btn{
-      appearance:none;border:0;border-radius:14px;cursor:pointer;
-      padding:14px 22px;font-weight:700;letter-spacing:.2px
-    }
-    .btn-primary{background:var(--accent);color:#1e231a}
-    .btn-primary:hover{filter:brightness(.96)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--text)}
-    .btn-ghost:hover{background:rgba(255,255,255,.06)}
-
-    /* Section: About */
-    section{padding:72px 0}
-    .section{
-      background:linear-gradient(180deg, var(--olive-800), var(--olive-900));
-      border-top:1px solid rgba(255,255,255,.06)
-    }
-    .kicker{font-size:clamp(2rem, 3.2vw + .4rem, 3.2rem);font-weight:800;margin:0 0 18px}
-    .points{margin:22px 0 28px;display:grid;gap:14px}
-    .points p{margin:0;font-size:1.125rem;opacity:.96}
-    .points b{font-weight:700}
-    .chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-    .chip{
-      display:inline-flex;align-items:center;gap:.6rem;padding:12px 14px;border-radius:14px;
-      background:#2a3125;border:1px solid rgba(255,255,255,.08);font-weight:600
-    }
-
-    /* Footer */
-    footer{padding:36px 0;background:#22271e;color:#cfd6bd;font-size:.95rem;border-top:1px solid rgba(255,255,255,.06)}
-
-    /* Responsive nav */
-    @media (max-width: 900px){
-      .nav-primary{display:none}
-      .menu-toggle{display:inline-flex;align-items:center;gap:.5rem;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:transparent;color:var(--text)}
-      /* Simple “open” state for demo – in production wire up JS to toggle a class */
-      .nav.open .nav-primary{display:flex;position:absolute;inset-inline:12px;top:68px;flex-direction:column;background:#20261d;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden}
-      .nav.open .nav-primary a{padding:14px 16px}
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -179,55 +50,237 @@
     <div class="container" style="text-align:left">
       <div class="eyebrow">Benvenuti su FOGLIE BIO</div>
       <h1>
-        Scopri il Potere Preventivo
+        Scopri il Potere Curativo
         <span class="break">della Natura</span>
       </h1>
       <div class="cta">
         <a class="btn btn-primary" href="#scopri">Scopri di più</a>
-        <a class="btn btn-ghost" href="#acquista">Acquista</a>
+        <a class="btn btn-ghost" href="https://laruotabio.directsell.it/site/registration?tipologia=4">Acquista</a>
       </div>
     </div>
   </section>
 
   <!-- About / Value Props -->
-  <section id="scopri" class="section">
+  <section id="acquista" class="section">
     <div class="container">
-      <h2 class="kicker">Foglie BIO</h2>
+    <article class="about-foglie">
+      <header>
+        <h2>🌿 Scopri di più su <span class="highlight">FOGLIE BIO PLUS®</span></h2>
+      </header>
 
-      <div class="points">
-        <p>🌿 <b>FOGLIE BIO PLUS®</b> è un infuso biologico di foglie d’olivo italiane.</p>
-        <p>👨‍🌾 Nasce da una lunga esperienza agricola e da un’idea semplice: trasformare una tradizione mediterranea in una bevanda naturale.</p>
-        <p>🥂 Buona da bere, confezionata solo in vetro, senza zuccheri né aromi artificiali.</p>
-        <p>💚 Pensata per chi cerca autenticità, benessere quotidiano e rispetto per l’ambiente.</p>
-      </div>
+      <p>
+        L’olivo è da millenni simbolo di <strong>vita, forza e rinascita</strong>.
+        Nelle sue foglie si nasconde un concentrato di oltre <strong>30 molecole bioattive naturali</strong>, 
+        tra cui <em>oleuropeina</em>, <em>idrossitirosolo</em> e <em>rutina</em>, studiate da migliaia di ricerche scientifiche 
+        per i loro effetti benefici su <strong>cuore, metabolismo e sistema immunitario</strong>.
+      </p>
 
-      <div class="chips">
-        <a class="chip" href="#scopri">Scopri di più</a>
-        <a class="chip" href="#acquista">Acquista 🫒</a>
+      <p>
+        Con <strong>FOGLIE BIO PLUS®</strong>, queste sostanze vengono estratte in modo 
+        <strong>naturale e artigianale</strong> da foglie d’olivo biologiche italiane, 
+        senza solventi né additivi, mantenendo intatto tutto il potere vitale della pianta.
+      </p>
+
+      <p>
+        Ogni dose racchiude l’equivalente dei principi attivi di 
+        <strong>2 litri di olio extravergine d’oliva</strong>, ma 
+        <strong>senza calorie da grassi</strong>.  
+        Un gesto quotidiano di benessere che aiuta a 
+        <strong>rinforzare l’organismo</strong>, 
+        <strong>ridurre la stanchezza</strong> e 
+        <strong>migliorare la circolazione</strong>, favorendo un equilibrio naturale tra corpo e mente.
+      </p>
+
+      <div class="cta-box">
+        <p>
+          👉 <a href="#scopri" class="cta-link">Scopri la scienza e la storia dietro l’Albero della Vita</a>.
+          <br>
+          Lasciati guidare dalla forza dell’olivo e <strong>riscopri il tuo benessere naturale</strong>.
+        </p>
       </div>
-    </div>
+    </article>
+  </div>
   </section>
 
   <!-- Placeholder sections -->
   <section id="certificazione" class="section">
-    <div class="container">
-      <h2 class="kicker">Certificazione</h2>
-      <p style="max-width:70ch;opacity:.95">
-        Prodotto certificato biologico secondo il regolamento UE. Inserisci qui dettagli, numeri di certificato,
-        ente certificatore e processi di controllo qualità.
+  <div class="container">
+    <article class="certificazione-article">
+      <header class="section-header">
+        <h2>🌿 Certificazione Biologica</h2>
+        <p class="subtitle">Cosa significa e perché scegliere <strong>La Ruota Bio</strong></p>
+      </header>
+
+      <p>
+        La crescente consapevolezza riguardo alla salute e alla sostenibilità ha portato molti consumatori a informarsi sui prodotti biologici.
+        Ma cosa significa realmente essere certificati biologici? 
+        La certificazione è una <strong>garanzia di qualità, trasparenza e rispetto dell’ambiente</strong>.
       </p>
-    </div>
-  </section>
+
+      <h3>✅ Cosa vuol dire “biologico”</h3>
+      <p>
+        Essere certificati biologici significa rispettare standard rigorosi in tutte le fasi della produzione:
+      </p>
+      <ul>
+        <li>Coltivazione senza pesticidi chimici, fertilizzanti di sintesi o OGM.</li>
+        <li>Controlli indipendenti da parte di enti riconosciuti come <strong>ICEA</strong>.</li>
+        <li>Promozione di pratiche agricole sostenibili che preservano il suolo e la biodiversità.</li>
+      </ul>
+
+      <h3>🌱 Vantaggi per ambiente e consumatori</h3>
+      <p>
+        Scegliere prodotti biologici significa fare del bene non solo a sé stessi ma anche al pianeta:
+      </p>
+      <ul>
+        <li><strong>Riduzione dell’inquinamento</strong> e protezione delle acque e del suolo.</li>
+        <li><strong>Migliore salute del suolo</strong> e incremento della biodiversità.</li>
+        <li><strong>Alimenti più sani</strong>, privi di residui chimici nocivi.</li>
+      </ul>
+
+      <h3>🇪🇺 Standard europei</h3>
+      <p>
+        In Europa la produzione biologica è regolata da normative precise.  
+        Per ottenere e mantenere la certificazione, le aziende devono garantire:
+      </p>
+      <ul>
+        <li>Origine controllata delle sementi.</li>
+        <li>Metodi di coltivazione sostenibili.</li>
+        <li>Benessere animale e controlli periodici.</li>
+      </ul>
+
+      <h3>🏆 La Ruota Bio Srl: un esempio di eccellenza</h3>
+      <p>
+        <strong>La Ruota Bio Srl</strong> è certificata <strong>ICEA</strong> e offre una vasta gamma di prodotti biologici:
+      </p>
+      <ul>
+        <li>Cereali e legumi</li>
+        <li>Alimenti per la prima infanzia</li>
+        <li>Prodotti tracciabili dalla coltivazione alla tavola</li>
+      </ul>
+      <p>
+        Ogni prodotto può essere tracciato fino all’origine, offrendo <strong>massima trasparenza</strong> e fiducia.
+      </p>
+
+      <div class="cert-box">
+        <p>
+          🌿 <strong>Perché scegliere La Ruota Bio?</strong><br>
+          Significa sostenere pratiche agricole etiche e rispettose dell’ambiente, 
+          garantendosi alimenti genuini e di alta qualità.  
+          Non è solo un’etichetta: è un <strong>impegno concreto verso un futuro più sostenibile</strong>.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
 
   <section id="chi-siamo" class="section">
-    <div class="container">
-      <h2 class="kicker">Chi siamo</h2>
-      <p style="max-width:70ch;opacity:.95">
-        Una breve storia dell’azienda, i valori e il legame con il territorio. Puoi aggiungere una foto della
-        famiglia agricola o del frantoio.
+  <div class="container">
+    <article class="chi-siamo-article">
+      <header class="section-header">
+        <h2>👨‍🌾 Chi Siamo</h2>
+        <p class="subtitle">La nostra storia, la nostra passione, la tua salute</p>
+      </header>
+
+      <div class="chi-siamo-grid">
+        <div class="chi-siamo-text">
+          <p>
+            <strong>FOGLIE BIO PLUS®</strong> nasce dalla tradizione agricola italiana e dal desiderio di valorizzare 
+            l’incredibile potere naturale dell’olivo. Siamo un gruppo di agricoltori, ricercatori e appassionati di natura 
+            che credono profondamente in un’agricoltura <strong>etica, sostenibile e trasparente</strong>.
+          </p>
+
+          <p>
+            Da oltre vent’anni coltiviamo con metodi biologici, senza pesticidi né sostanze chimiche, rispettando i cicli 
+            naturali della terra. Ogni nostra decisione è guidata da un principio semplice: <em>offrire prodotti autentici 
+            e salutari, capaci di migliorare il benessere quotidiano delle persone</em>.
+          </p>
+
+          <p>
+            La nostra missione è riportare al centro del benessere un simbolo millenario del Mediterraneo: l’olivo. 
+            Con <strong>FOGLIE BIO PLUS®</strong> trasformiamo le sue foglie in un concentrato di salute e vitalità, 
+            frutto di <strong>ricerca scientifica</strong>, <strong>tradizione artigianale</strong> e <strong>passione italiana</strong>.
+          </p>
+        </div>
+
+        <div class="chi-siamo-image">
+          <img src="assets/team.jpg" alt="Il team di Foglie Bio Plus al lavoro nei campi" />
+        </div>
+      </div>
+
+      <div class="mission-box">
+        <h3>🌱 La nostra missione</h3>
+        <p>
+          Coltivare un futuro più sano e sostenibile significa unire tradizione e innovazione. 
+          Ogni prodotto che realizziamo nasce da un profondo rispetto per la natura e da un impegno costante 
+          verso la qualità, la salute e il pianeta.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+  <section id="scopri" class="section">
+  <div class="container">
+    <article class="infuso-article">
+      <header>
+        <h2>🌿 Scopri di più su <span class="highlight">FOGLIE BIO PLUS®</span> – L’infuso biologico di foglie d’olivo italiane</h2>
+      </header>
+
+      <p>
+        Le foglie d’olivo sono un vero tesoro della natura. Da secoli considerate un simbolo di vitalità e longevità, oggi la scienza conferma ciò che la tradizione già sapeva: nelle foglie dell’olivo si nascondono potenti principi attivi naturali con effetti straordinari sul benessere dell’organismo.
       </p>
-    </div>
-  </section>
+
+      <h3>🔬 La forza scientifica dell’albero della vita</h3>
+      <p>
+        L’infuso <strong>FOGLIE BIO PLUS®</strong> nasce dopo anni di ricerca e sperimentazione sulle foglie d’olivo biologiche italiane, coltivate senza pesticidi e raccolte a mano per preservarne la purezza.
+        Attraverso un processo artigianale di estrazione naturale, vengono conservate tutte le molecole benefiche — tra cui <strong>oleuropeina, idrossitirosolo, tirosolo e rutina</strong> — riconosciute per le loro proprietà antiossidanti, antinfiammatorie e depurative.
+      </p>
+      <p>
+        Ogni dose di 40 ml contiene l’equivalente dei principi attivi presenti in <strong>2 litri di olio extravergine d’oliva</strong>, ma senza calorie da grassi.
+        Un concentrato puro di energia vitale, perfetto per chi desidera rafforzare il sistema immunitario, ridurre la pressione arteriosa, regolare zuccheri e colesterolo, e contrastare stanchezza e invecchiamento cellulare.
+      </p>
+
+      <h3>💚 I benefici dell’infuso di foglie d’olivo</h3>
+      <p>
+        Numerosi studi scientifici – oltre <strong>16.000 pubblicazioni internazionali</strong> – hanno dimostrato i molteplici effetti positivi delle foglie d’olivo sulla salute:
+      </p>
+      <ul>
+        <li><strong>Supporto cardiovascolare</strong> – favorisce la regolarità della pressione e migliora la circolazione sanguigna.</li>
+        <li><strong>Azione antiossidante</strong> – protegge le cellule dallo stress ossidativo e dai radicali liberi.</li>
+        <li><strong>Effetto depurativo e drenante</strong> – aiuta l’organismo a eliminare tossine, grassi e zuccheri in eccesso.</li>
+        <li><strong>Sostegno metabolico</strong> – regola i livelli di glicemia e colesterolo.</li>
+        <li><strong>Effetto energizzante e antistress</strong> – migliora la concentrazione, la memoria e la vitalità.</li>
+        <li><strong>Protezione immunitaria naturale</strong> – contrasta virus, batteri e infiammazioni.</li>
+      </ul>
+      <p>
+        <strong>FOGLIE BIO PLUS®</strong> è ideale per chi cerca un integratore naturale per la salute del cuore, il benessere metabolico e la longevità cellulare.
+      </p>
+
+      <h3>🌱 Un progetto etico e 100% italiano</h3>
+      <p>
+        Ideato da <strong>Antonio Berti</strong>, agricoltore e ricercatore, <strong>FOGLIE BIO PLUS®</strong> nasce da una visione chiara: riportare l’olivo al centro del benessere naturale, unendo agricoltura biologica, scienza e rispetto per l’ambiente.
+        Ogni fase di produzione – dalla raccolta alla lavorazione – avviene in Italia, con metodi artigianali e confezionamento solo in vetro, per garantire qualità, sostenibilità e trasparenza.
+      </p>
+
+      <h3>🌞 Scopri il potere rigenerante dell’olivo</h3>
+      <p>
+        Con <strong>FOGLIE BIO PLUS®</strong> puoi integrare ogni giorno il meglio della dieta mediterranea in forma liquida e naturale.
+        Un alleato quotidiano per chi desidera prendersi cura di sé in modo semplice, efficace e completamente naturale.
+      </p>
+
+      <div class="cta-box">
+        <p>👉 <strong>Scopri come FOGLIE BIO PLUS® può aiutarti a ritrovare energia, equilibrio e benessere naturale.</strong><br>
+        Scienza, natura e passione italiana: il segreto dell’albero della vita in ogni sorso.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+
 
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">

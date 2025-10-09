@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foglie BIO PLUS</title>
+  <meta name="description" content="FOGLIE BIO PLUS® — Infuso biologico di foglie d’olivo italiane.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav" id="nav">
+      <a href="#" class="brand" aria-label="Foglie BIO PLUS - Home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="18" cy="42" r="6" fill="#c9d486"/>
+          <circle cx="32" cy="48" r="6" fill="#c9d486"/>
+          <path d="M10 18c18 6 28 16 38 34" stroke="#c9d486" stroke-width="4" stroke-linecap="round"/>
+          <path d="M38 10c-4 14-2 24 10 36" stroke="#c9d486" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+        </svg>
+        <span>Foglie BIO PLUS</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Apri menu" onclick="document.getElementById('nav').classList.toggle('open')">
+        ☰ Menu
+      </button>
+
+      <nav class="nav-primary" aria-label="Principale">
+        <a href="#home">Home</a>
+        <a href="#scopri">Scopri di più</a>
+        <a class="badge" href="#certificazione" aria-label="Certificazione biologica">
+          <svg viewBox="0 0 64 40" aria-hidden="true">
+            <rect width="64" height="40" rx="7" fill="#7ec354"/>
+            <path d="M52 10c-4 6-10 12-20 16 6-4 10-8 12-12-6 6-14 10-24 12 10-4 18-10 22-16-10 8-22 12-36 14 14-4 26-10 34-18z" fill="#fff"/>
+          </svg>
+          <span>Certificazione</span>
+        </a>
+        <a href="#chi-siamo">Chi siamo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container" style="text-align:left">
+      <div class="eyebrow">Benvenuti su FOGLIE BIO</div>
+      <h1>
+        Scopri il Potere Preventivo
+        <span class="break">della Natura</span>
+      </h1>
+      <div class="cta">
+        <a class="btn btn-primary" href="#scopri">Scopri di più</a>
+        <a class="btn btn-ghost" href="#acquista">Acquista</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="scopri" class="section">
+    <div class="container">
+      <h2 class="kicker">Foglie BIO</h2>
+
+      <div class="points">
+        <p>🌿 <b>FOGLIE BIO PLUS®</b> è un infuso biologico di foglie d’olivo italiane.</p>
+        <p>👨‍🌾 Nasce da una lunga esperienza agricola e da un’idea semplice: trasformare una tradizione mediterranea in una bevanda naturale.</p>
+        <p>🥂 Buona da bere, confezionata solo in vetro, senza zuccheri né aromi artificiali.</p>
+        <p>💚 Pensata per chi cerca autenticità, benessere quotidiano e rispetto per l’ambiente.</p>
+      </div>
+
+      <div class="chips">
+        <a class="chip" href="#scopri">Scopri di più</a>
+        <a class="chip" href="#acquista">Acquista 🫒</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificazione" class="section">
+    <div class="container">
+      <h2 class="kicker">Certificazione</h2>
+      <p style="max-width:70ch;opacity:.95">
+        Prodotto certificato biologico secondo il regolamento UE. Inserisci qui dettagli, numeri di certificato,
+        ente certificatore e processi di controllo qualità.
+      </p>
+    </div>
+  </section>
+
+  <section id="chi-siamo" class="section">
+    <div class="container">
+      <h2 class="kicker">Chi siamo</h2>
+      <p style="max-width:70ch;opacity:.95">
+        Una breve storia dell’azienda, i valori e il legame con il territorio. Puoi aggiungere una foto della
+        famiglia agricola o del frantoio.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p style="margin:0">© <span id="y"></span> Foglie BIO PLUS — Tutti i diritti riservati</p>
+      <p style="margin:0;opacity:.85"><a href="#privacy">Privacy &amp; Cookie</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
