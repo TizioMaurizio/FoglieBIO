@@ -1,0 +1,14 @@
+# Keep local material and previous hosting backups off GitHub.
+/work/
+/.vscode/
+/*.docx
+**/node_modules/
+**/dist/
+**/.next/
+**/.vinext/
+**/.wrangler/
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+**/coverage/
+**/npm-debug.log*
