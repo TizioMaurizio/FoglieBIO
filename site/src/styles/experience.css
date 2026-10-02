@@ -17,39 +17,6 @@
 .privacy-page section p { font-size: 15px; line-height: 1.85; margin: 12px 0; }
 .privacy-page section a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 @media(max-width:700px) { .privacy-page { padding: 30px 22px 60px; } .privacy-page .privacy-intro { font-size: 16px; } .privacy-notice { padding: 15px; } }
-@media (min-width: 701px) {
-  .hero .hero-foot {
-    position: absolute;
-    bottom: 35px;
-    left: 5%;
-    right: 5%;
-    margin-top: 0;
-  }
-}
-@media (max-width: 700px) {
-  .hero .hero-copy {
-    width: 100%;
-  }
-  .hero h1 .word-mask.accent {
-    font-size: 0.9em;
-  }
-}
-.hero-copy {
-  max-width: 1050px;
-  width: 65%;
-}
-.hero-art {
-  mix-blend-mode: multiply;
-}
-.hero-art img {
-  filter: none;
-}
-.hero h1 {
-  font-size: clamp(76px, 7.3vw, 132px);
-}
-.hero h1 .word-mask {
-  white-space: nowrap;
-}
 .wordmark {
   display: flex;
   align-items: center;
@@ -105,36 +72,6 @@
 .skip-link:focus {
   top: 12px;
 }
-.hero h1 .word-mask {
-  display: block;
-  overflow: hidden;
-  color: var(--ink);
-}
-.hero h1 .word-mask > span {
-  display: block;
-  animation: wordReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-  color: inherit;
-}
-.hero h1 .word-mask:nth-child(2) > span {
-  animation-delay: 0.12s;
-}
-.hero h1 .word-mask:nth-child(3) > span {
-  animation-delay: 0.24s;
-}
-.hero h1 .accent {
-  color: #6c7c5e;
-}
-.hero-art {
-  animation: fadeIn 1.2s ease both;
-}
-.hero-foot a {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-.hero-bottom p {
-  max-width: 270px;
-}
 .button svg {
   flex: none;
   transition: transform 0.2s;
@@ -142,10 +79,6 @@
 .button:hover svg,
 .text-link:hover svg {
   transform: translate(2px, -2px);
-}
-.bottle {
-  object-fit: contain;
-  mix-blend-mode: multiply;
 }
 .feature-strip {
   display: grid;
@@ -170,7 +103,7 @@
   letter-spacing: 1.4px;
 }
 .story-panel {
-  background: #293e2e;
+  background: var(--label-green);
   color: #f5f3e9;
   display: flex;
   flex-direction: column;
@@ -201,7 +134,7 @@
   gap: 15px;
 }
 .feature-panel {
-  background: #e5e8da;
+  background: var(--green-surface);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -225,7 +158,7 @@
   margin: 12px 0 10px;
 }
 .feature-content > svg {
-  color: #607548;
+  color: var(--label-green);
 }
 .feature-content p {
   font-size: 11px;
@@ -250,56 +183,8 @@
 .indicators .active {
   background: var(--olive);
 }
-.product-panel {
-  background: #eae7db;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.product-panel h2 {
-  font-size: 27px;
-  max-width: 60%;
-  position: relative;
-  z-index: 2;
-  margin: 33px 0 14px;
-}
-.product-panel p {
-  font-size: 10px;
-  color: #62685e;
-  position: relative;
-  z-index: 2;
-}
-.product-panel .bottle {
-  position: absolute;
-  right: -29px;
-  top: 33px;
-  width: 52%;
-  height: 275px;
-  transform: rotate(13deg);
-}
-.product-panel .panel-link {
-  margin-top: 35px;
-}
 .section-space {
   padding: 110px 7%;
-}
-.olive-story {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 11%;
-  align-items: center;
-}
-.olive-story h2 {
-  margin: 32px 0;
-}
-.olive-story h2 span {
-  color: #718162;
-}
-.olive-story p:not(.eyebrow) {
-  max-width: 400px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.9;
 }
 .text-link {
   border: 0;
@@ -311,57 +196,6 @@
   gap: 30px;
   padding: 0 0 7px;
   font-size: 12px;
-}
-.olive-story .text-link {
-  margin-top: 28px;
-}
-.botanical-panel {
-  background: #e8e9de;
-  padding: 26px;
-  position: relative;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  min-height: 520px;
-}
-.leaf-detail {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 390px;
-  background: #263323;
-}
-.leaf-detail img {
-  width: 300%;
-  max-width: none;
-  height: 150%;
-  object-fit: cover;
-  object-position: left;
-  position: absolute;
-  top: -18%;
-  left: 0;
-}
-.botanical-caption {
-  display: flex;
-  justify-content: space-between;
-  font-size: 8px;
-  letter-spacing: 1px;
-  margin-top: 12px;
-  color: #555f4c;
-  gap: 10px;
-}
-.botanical-caption span:last-child {
-  letter-spacing: 0;
-}
-.botanical-note {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin: 26px 0 0;
-}
-.botanical-note p {
-  font-size: 12px !important;
-  line-height: 1.6 !important;
 }
 .process-section {
   background: #eeeee5;
@@ -393,7 +227,7 @@
 }
 .step-number {
   font-size: 12px;
-  color: #647655;
+  color: var(--label-green);
 }
 .process-grid h3 {
   font-size: 30px;
@@ -409,7 +243,7 @@
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 9%;
-  background: #293e2e;
+  background: var(--label-green);
   color: #f2f1e8;
 }
 .founder h2 {
@@ -523,32 +357,6 @@
   gap: 8%;
   padding-top: 30px;
   align-items: center;
-}
-.purchase-visual {
-  background: #e7e8dc;
-  position: relative;
-  min-height: 730px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.purchase-visual > .eyebrow {
-  position: absolute;
-  left: 30px;
-  top: 30px;
-  font-size: 8px;
-}
-.purchase-visual .bottle {
-  width: 92%;
-  height: 660px;
-  filter: drop-shadow(14px 20px 9px #263b2615);
-}
-.purchase-caption {
-  position: absolute;
-  left: 30px;
-  bottom: 25px;
-  font-size: 9px;
-  letter-spacing: 1.5px;
 }
 .purchase-info h2 {
   font-size: clamp(60px, 6.2vw, 94px);
@@ -726,7 +534,7 @@ summary::-webkit-details-marker {
   line-height: 1.85;
 }
 .final-cta {
-  background: #293e2e;
+  background: var(--label-green);
   color: #f4f3eb;
   text-align: center;
   padding: 85px 6%;
@@ -759,7 +567,7 @@ summary::-webkit-details-marker {
 }
 footer {
   padding: 70px 7% 24px;
-  background: #e7e9dc;
+  background: var(--green-surface);
 }
 .footer-top {
   display: grid;
@@ -910,7 +718,7 @@ footer {
   gap: 13px;
   margin: 20px 0;
   padding: 14px;
-  background: #e6eadc;
+  background: var(--green-surface);
   font-size: 10px;
   line-height: 1.7;
 }
@@ -938,11 +746,6 @@ footer {
   align-items: center;
   gap: 22px;
   padding: 12px 0 20px;
-}
-.checkout-product > .bottle {
-  width: 100px;
-  height: 150px;
-  background: #e9eadd;
 }
 .checkout-product h3 {
   font-size: 24px;
@@ -1208,13 +1011,6 @@ footer {
   .nav {
     padding-inline: max(5%, calc((100vw - 1600px) / 2));
   }
-  .hero {
-    padding-inline: max(5%, calc((100vw - 1600px) / 2));
-  }
-  .hero-art {
-    right: 7%;
-    width: 36%;
-  }
 }
 @media (max-width: 1100px) {
   .nav nav {
@@ -1236,16 +1032,6 @@ footer {
   .section-space {
     padding: 80px 6%;
   }
-  .olive-story {
-    gap: 7%;
-  }
-  .leaf-detail {
-    height: 330px;
-  }
-  .botanical-panel {
-    min-height: 470px;
-    padding: 20px;
-  }
   .timeline article {
     grid-template-columns: 90px 1fr;
     gap: 15px;
@@ -1258,12 +1044,6 @@ footer {
   }
   .purchase {
     gap: 5%;
-  }
-  .purchase-visual {
-    min-height: 650px;
-  }
-  .purchase-visual .bottle {
-    height: 570px;
   }
   .purchase-option {
     padding: 12px;
@@ -1284,18 +1064,6 @@ footer {
   .footer-main .wordmark {
     font-size: 23px;
   }
-  .hero-copy {
-    max-width: 68%;
-  }
-  .hero h1 {
-    font-size: 8vw;
-  }
-  .hero-art {
-    width: 40%;
-  }
-  .hero-bottom p {
-    max-width: 245px;
-  }
 }
 @media (max-width: 800px) {
   .nav nav {
@@ -1304,51 +1072,9 @@ footer {
   .menu-button {
     display: flex;
   }
-  .hero {
-    min-height: 630px;
-  }
-  .hero-art {
-    height: 510px;
-    top: 45px;
-  }
   .feature-strip {
     margin: 0 3%;
     grid-template-columns: 1fr 1fr;
-  }
-  .product-panel {
-    grid-column: 1/-1;
-    min-height: 230px;
-  }
-  .product-panel .bottle {
-    right: 10%;
-    top: -20px;
-    width: 25%;
-    height: 300px;
-  }
-  .product-panel h2 {
-    margin: 25px 0 15px;
-    max-width: 65%;
-  }
-  .product-panel .panel-link {
-    max-width: 50%;
-    margin-top: 22px;
-  }
-  .olive-story {
-    gap: 5%;
-  }
-  .botanical-panel {
-    min-height: 400px;
-    padding: 15px;
-  }
-  .leaf-detail {
-    height: 290px;
-  }
-  .botanical-caption {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .botanical-note {
-    gap: 10px;
   }
   .section-heading {
     gap: 20px 7%;
@@ -1379,13 +1105,6 @@ footer {
   .purchase {
     gap: 4%;
     padding-inline: 4%;
-  }
-  .purchase-visual {
-    min-height: 640px;
-  }
-  .purchase-visual .bottle {
-    height: 550px;
-    width: 100%;
   }
   .product-facts {
     gap: 15px;
@@ -1442,45 +1161,6 @@ footer {
   .nav .icon-button {
     width: 34px;
   }
-  .hero {
-    min-height: 0;
-    padding-top: 27px;
-  }
-  .hero-copy {
-    max-width: none;
-  }
-  .hero h1 {
-    font-size: clamp(48px, 12vw, 76px);
-  }
-  .hero-art {
-    top: 0;
-    height: 330px;
-    width: 100%;
-    margin-top: 15px;
-  }
-  .hero-art img {
-    height: 110%;
-    top: -6%;
-    right: 11%;
-    width: 73%;
-  }
-  .hero-bottom {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 19px;
-  }
-  .hero-bottom p {
-    max-width: 270px;
-    font-size: 12px;
-  }
-  .hero-bottom .button {
-    padding: 15px 20px;
-    gap: 26px;
-  }
-  .hero-foot {
-    margin-top: 5px;
-  }
   .feature-strip {
     display: flex;
     flex-direction: column;
@@ -1527,52 +1207,14 @@ footer {
     margin-left: 57px;
     margin-top: 10px;
   }
-  .product-panel h2 {
-    max-width: 60%;
-    font-size: 29px;
-  }
-  .product-panel .bottle {
-    width: 48%;
-    right: -5px;
-    top: 20px;
-    height: 260px;
-  }
-  .product-panel .panel-link {
-    max-width: none;
-    width: 100%;
-  }
   .section-space {
     padding: 70px 6%;
   }
-  .olive-story,
   .founder,
   .purchase,
   .faq {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-  .olive-story h2 {
-    font-size: 52px;
-    margin: 25px 0;
-  }
-  .olive-story h2 br:nth-of-type(2) {
-    display: none;
-  }
-  .olive-story p:not(.eyebrow) {
-    font-size: 13px;
-  }
-  .botanical-panel {
-    min-height: 440px;
-    padding: 22px;
-  }
-  .leaf-detail {
-    height: 315px;
-  }
-  .botanical-caption {
-    flex-direction: row;
-  }
-  .botanical-note {
-    margin-top: 25px;
   }
   .section-heading {
     grid-template-columns: 1fr;
@@ -1662,23 +1304,6 @@ footer {
   .purchase {
     padding-top: 0;
     gap: 36px;
-  }
-  .purchase-visual {
-    min-height: 460px;
-  }
-  .purchase-visual .bottle {
-    height: 420px;
-    width: 85%;
-  }
-  .purchase-visual > .eyebrow {
-    left: 20px;
-    top: 20px;
-    font-size: 7px;
-  }
-  .purchase-caption {
-    left: 20px;
-    bottom: 17px;
-    font-size: 8px;
   }
   .purchase-info h2 {
     font-size: 72px;
@@ -1785,9 +1410,6 @@ footer {
   .checkout-product h3 {
     font-size: 23px;
   }
-  .checkout-product > .bottle {
-    width: 90px;
-  }
   .checkout-steps {
     font-size: 10px;
   }
@@ -1811,9 +1433,6 @@ footer {
   }
   .legal-modal {
     padding: 25px;
-  }
-  .hero h1 .accent {
-    color: #637453;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -29,13 +29,13 @@ export function Hero() {
         </div>
       </div>
       <div className="hero-art">
-        <div className="orbit" aria-hidden="true" />
+        <div className="bottle-backdrop" aria-hidden="true" />
         <p className="art-note">
           Olea europaea
           <br />
           <span>Dalle foglie, tutto ha inizio.</span>
         </p>
-        <Bottle priority />
+        <div className="bottle-stage"><Bottle priority /></div>
         <span className="vertical-note">ORIGINE DELLE FOGLIE · ITALIA</span>
       </div>
       <div className="hero-foot">

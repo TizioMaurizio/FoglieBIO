@@ -26,17 +26,16 @@ export function Purchase({
     <section id="prodotto" className="purchase section-space">
       <div className="purchase-visual">
         <span className="eyebrow">LA TERRA, IN UNA NUOVA FORMA</span>
-        <Bottle />
+        <div className="bottle-stage"><Bottle /></div>
         <span className="purchase-caption">
           FOGLIE D’OLIVO · ORIGINE ITALIA
         </span>
       </div>
       <div className="purchase-info">
         <p className="eyebrow">L’INFUSO DI FOGLIE D’OLIVO</p>
-        <h2>
-          Foglie
-          <br />
-          Bio Plus<sup>®</sup>
+        <h2 aria-label={product.name}>
+          <span>Foglie</span>
+          <span>Bio Plus<sup>®</sup></span>
         </h2>
         <p className="product-description">{product.description}</p>
         <div className="product-facts">

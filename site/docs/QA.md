@@ -31,3 +31,7 @@ Production release remains blocked by the business/content/legal items in the ot
 The editable-form scenarios above describe the earlier demonstration. The public demo now uses read-only fixtures; visitors no longer enter their own details. New tests check readonly/autocomplete attributes, policy links before fields, no newsletter marketing checkbox, rejection of non-fixture data, hosting disclosure and the composition anchor. The static build validates the standalone privacy page and its absence of scripts.
 
 Privacy update validation: TypeScript and ESLint passed; 20 tests passed. The built app was checked in Chrome: product-panel click reaches `#composizione`, all 9 checkout identity/address fields are read-only with autocomplete off, checkout completes without typing, newsletter simulation succeeds with its fixed address, and the standalone privacy page opens and fits a 390 px viewport. The emitted privacy HTML has no application scripts.
+
+## Layout review
+
+Checked 360, 390, 430, 768, 1024, 1440 and 1920 px in Chrome: no horizontal overflow; all headline masks fit their text; all bottle and bottle-photo transforms are `none`; the label is never displayed wider than its source. Visually reviewed desktop hero and the corrected leaf section, mobile hero, leaf section and purchase panel. Fixed the mobile product title joining “Foglie” and “Bio” when a line break was hidden. Checkout open/Escape close still works. Original photo bytes and privacy behavior are unchanged.

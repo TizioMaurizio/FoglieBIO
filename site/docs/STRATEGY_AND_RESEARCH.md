@@ -18,7 +18,7 @@ The strongest distinction available in our evidence is Antonio's personal transi
 
 ## Information architecture and visual system
 
-Hero → three perspectives → why leaves → supported origin/process → Antonio → botanical context → purchase and usage details → FAQ → final purchase invitation → newsletter/footer. Cream #F4F3EB, olive #293E2E, muted leaf greens; DM Sans headlines and Inter body/UI. Large hero lettering, circular linework and real bottle, warm editorial panels. Native details and dialog components keep controls understandable. Motion uses CSS and a three-state carousel with pause/manual controls and reduced-motion support.
+Hero → three perspectives → why leaves → supported origin/process → Antonio → botanical context → purchase and usage details → FAQ → final purchase invitation → newsletter/footer. Cream #F4F3EB, sticker green #5A783C, muted leaf greens; DM Sans headlines and Inter body/UI. Large hero lettering, an upright, closely framed real bottle, warm editorial panels. Native details and dialog components keep controls understandable. Motion uses CSS and a three-state carousel with pause/manual controls and reduced-motion support.
 
 ## Ads and video roadmap
 

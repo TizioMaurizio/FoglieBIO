@@ -12,8 +12,9 @@ export function Bottle({
   priority?: boolean;
 }) {
   return (
+    <span className={`bottle ${className}`}>
     <img
-      className={`bottle ${className}`}
+      className="bottle-photo"
       src={product.image}
       alt="Bottiglia originale di Foglie Bio Plus, infuso di foglie d’olivo italiane"
       width="1080"
@@ -21,6 +22,7 @@ export function Bottle({
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
     />
+    </span>
   );
 }
 export function QuantitySelector({

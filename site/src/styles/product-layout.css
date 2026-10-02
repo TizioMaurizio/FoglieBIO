@@ -1,0 +1,237 @@
+/* Upright product photography and one responsive layout for product sections. */
+.privacy-notice { color: var(--green-dark); }
+.bottle {
+  --bottle-height: 440px;
+  display: block;
+  position: relative;
+  flex: none;
+  width: calc(var(--bottle-height) * 581 / 1294);
+  height: var(--bottle-height);
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+.bottle-photo {
+  /* Reframe the original photograph; preserve every packaging pixel. */
+  position: absolute;
+  display: block;
+  width: 185.8864%;
+  height: auto;
+  max-width: none;
+  left: -46.8158%;
+  top: -6.9552%;
+  transform: none;
+}
+.bottle-stage {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.bottle-stage::before {
+  content: '';
+  position: absolute;
+  width: 72%;
+  height: 18px;
+  bottom: 4px;
+  background: #26331c24;
+  border-radius: 50%;
+  filter: blur(12px);
+  z-index: 0;
+}
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+  align-items: center;
+  gap: 28px 4%;
+  padding: 42px max(5%, calc((100vw - 1440px) / 2)) 26px;
+  overflow: hidden;
+}
+.hero-copy { position: relative; z-index: 1; min-width: 0; }
+.hero h1 {
+  font-size: clamp(65px, 7.5vw, 124px);
+  line-height: 1.04;
+  letter-spacing: -.065em;
+  margin: 30px 0 34px;
+}
+.word-mask { display: block; overflow: hidden; }
+.hero h1 .word-mask > span {
+  display: block;
+  white-space: nowrap;
+  animation: wordReveal .85s cubic-bezier(.16,1,.3,1) both;
+}
+.hero h1 .word-mask:nth-child(2) > span { animation-delay: .12s; }
+.hero h1 .word-mask:nth-child(3) > span { animation-delay: .24s; }
+.hero h1 .accent { color: var(--label-green); font-size: .84em; }
+.hero-bottom { display: flex; align-items: center; gap: 24px; }
+.hero-bottom p { font-size: 13px; line-height: 1.8; max-width: 260px; color: var(--muted); }
+.hero-art {
+  min-width: 0;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 42px 38px 24px;
+}
+.hero-art .bottle { --bottle-height: clamp(430px, 39vw, 590px); }
+.bottle-backdrop {
+  position: absolute;
+  inset: 65px 8% 34px;
+  background: var(--green-surface);
+  border-radius: 48% 48% 12px 12px;
+}
+.art-note { position: relative; text-align: center; font-size: 13px; margin-bottom: 20px; }
+.art-note span { display: block; font-size: 11px; color: var(--muted); }
+.vertical-note { writing-mode: vertical-rl; position: absolute; right: 0; top: 40%; font-size: 9px; letter-spacing: 1.6px; }
+.hero-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+}
+.hero-foot a { display: inline-flex; align-items: center; gap: 20px; }
+.feature-strip { align-items: stretch; }
+.feature-strip h2 { text-wrap: balance; }
+.feature-content p { font-size: 12px; }
+.story-panel { color: #fff; }
+.product-panel {
+  background: #eeeade;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 94px;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 12px;
+  row-gap: 18px;
+  min-height: 310px;
+}
+.product-panel > .eyebrow { grid-column: 1 / -1; }
+.product-panel > div { align-self: center; }
+.product-panel h2 { font-size: 27px; margin: 0 0 16px; }
+.product-panel p { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.product-panel .bottle { --bottle-height: 205px; grid-column: 2; grid-row: 2; align-self: center; justify-self: center; }
+.product-panel .panel-link { grid-column: 1 / -1; }
+.olive-story {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr);
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+.olive-story-copy h2 { font-size: clamp(42px, 4.2vw, 64px); line-height: 1.1; margin: 28px 0; max-width: 550px; text-wrap: balance; }
+.olive-story-copy h2 span { display: block; color: var(--label-green); margin-top: 12px; }
+.olive-story-copy > p:not(.eyebrow) { max-width: 460px; font-size: 15px; line-height: 1.85; color: var(--muted); }
+.olive-story-copy .text-link { margin-top: 28px; font-size: 13px; }
+.leaf-profile {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(140px, .95fr);
+  align-items: center;
+  gap: 30px;
+  background: var(--green-surface);
+  border: 1px solid #5a783c26;
+  padding: 36px;
+}
+.label-study { margin: 0; }
+.label-study img { display: block; width: 100%; max-width: 260px; height: auto; margin: auto; }
+.label-study figcaption { margin-top: 14px; font-size: 10px; text-align: center; color: var(--muted); }
+.leaf-profile-copy > .eyebrow { font-size: 9px; letter-spacing: 1.1px; }
+.leaf-profile-copy h3 { font-size: 25px; letter-spacing: -.035em; line-height: 1.18; margin: 16px 0 26px; }
+.leaf-profile-copy dl { margin: 0; }
+.leaf-profile-copy dl > div { padding: 13px 0; border-top: 1px solid #5a783c30; }
+.leaf-profile-copy dt { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.leaf-profile-copy dd { font-size: 13px; margin: 0; }
+.founder, .final-cta { background: var(--label-green); color: #fff; }
+.founder-heading > p:not(.eyebrow), .founder details p, .timeline p { color: #fff; font-size: 14px; }
+.timeline article > span, .founder h2 span, .final-cta > .fine-print, .final-cta > svg { color: #fff; }
+.timeline article { border-color: #ffffff45; }
+.process-grid p, .compound-grid p, .product-description { font-size: 14px; line-height: 1.8; }
+.purchase-visual {
+  position: relative;
+  min-height: 640px;
+  background: var(--green-surface);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 24px;
+  padding: 36px;
+}
+.purchase-visual > .eyebrow { text-align: center; font-size: 9px; }
+.purchase-visual .bottle { --bottle-height: 510px; }
+.purchase-caption { font-size: 10px; letter-spacing: 1.3px; text-align: center; }
+.purchase-info h2 { font-size: clamp(60px, 5.5vw, 88px); }
+.purchase-info h2 > span { display: block; }
+.checkout-product > .bottle { --bottle-height: 134px; margin-inline: 18px; }
+.checkout-product { align-items: center; }
+.light-button { color: var(--green-dark); }
+
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: minmax(0, 1.45fr) minmax(245px, 1fr); gap: 20px 3%; }
+  .hero h1 { font-size: clamp(60px, 7.7vw, 85px); }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .hero-art { padding: 24px 24px 20px; }
+  .hero-art .bottle { --bottle-height: 450px; }
+  .hero h1 .accent { font-size: .82em; }
+  .leaf-profile { grid-template-columns: minmax(125px, 1fr) minmax(115px, 1fr); gap: 20px; padding: 24px; }
+  .leaf-profile-copy h3 { font-size: 22px; }
+  .olive-story { gap: 5%; }
+  .product-panel { grid-template-columns: minmax(0, 1fr) 76px; column-gap: 6px; }
+  .product-panel .bottle { --bottle-height: 170px; }
+  .product-panel h2 { font-size: 23px; }
+  .purchase-visual { min-height: 620px; padding: 26px; }
+  .purchase-visual .bottle { --bottle-height: 480px; }
+}
+@media (min-width: 701px) and (max-width: 800px) {
+  .product-panel { grid-column: 1 / -1; grid-template-columns: 1fr 130px; min-height: 255px; }
+  .product-panel .bottle { --bottle-height: 210px; grid-row: 1 / 4; }
+  .product-panel > .eyebrow, .product-panel .panel-link { grid-column: 1; }
+  .product-panel h2 { font-size: 30px; }
+  .olive-story { grid-template-columns: 1fr; gap: 36px; }
+  .olive-story-copy { max-width: 600px; }
+  .leaf-profile { grid-template-columns: 220px 1fr; padding: 32px; gap: 40px; }
+  .leaf-profile-copy h3 { font-size: 30px; }
+}
+@media (max-width: 700px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding: 30px 6% 22px; gap: 20px; }
+  .hero h1 { font-size: clamp(48px, 12.5vw, 76px); margin: 25px 0; }
+  .hero h1 .accent { font-size: .85em; }
+  .hero-bottom { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+  .hero-bottom p { max-width: 320px; font-size: 13px; }
+  .hero-bottom .button { padding: 15px 20px; }
+  .hero-art { width: 100%; padding: 12px 35px 10px; }
+  .hero-art .bottle { --bottle-height: 300px; }
+  .art-note { margin-bottom: 14px; font-size: 11px; }
+  .art-note span { display: none; }
+  .vertical-note { font-size: 8px; right: 10px; }
+  .bottle-backdrop { inset: 34px 12% 6px; }
+  .hero-foot { font-size: 8px; margin: 0; padding-top: 17px; }
+  .hero-foot > a { display: none; }
+  .feature-strip > .product-panel { display: grid; grid-template-columns: minmax(0, 1fr) 100px; min-height: 280px; gap: 18px 12px; }
+  .product-panel .bottle { --bottle-height: 220px; }
+  .product-panel h2 { font-size: 27px; }
+  .olive-story { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .olive-story-copy h2 { font-size: clamp(39px, 10.6vw, 56px); margin: 24px 0; }
+  .olive-story-copy > p:not(.eyebrow) { font-size: 14px; }
+  .leaf-profile { grid-template-columns: minmax(110px, 1fr) minmax(125px, 1fr); padding: 20px; gap: 20px; }
+  .leaf-profile-copy > .eyebrow { font-size: 7px; letter-spacing: .8px; }
+  .leaf-profile-copy h3 { font-size: 21px; margin: 12px 0 18px; }
+  .leaf-profile-copy dd { font-size: 12px; }
+  .leaf-profile-copy dt { font-size: 9px; }
+  .leaf-profile-copy dl > div { padding: 10px 0; }
+  .label-study figcaption { font-size: 9px; }
+  .purchase-visual { min-height: 480px; padding: 25px 20px; gap: 20px; }
+  .purchase-visual .bottle { --bottle-height: 360px; }
+  .purchase-visual > .eyebrow { font-size: 8px; }
+  .purchase-caption { font-size: 8px; }
+  .purchase-info h2 { font-size: 64px; max-width: none; }
+  .checkout-product > .bottle { --bottle-height: 124px; margin-inline: 12px; }
+}
+@media (max-width: 380px) {
+  .leaf-profile { padding: 16px; gap: 14px; grid-template-columns: minmax(100px, .9fr) minmax(120px, 1fr); }
+  .leaf-profile-copy h3 { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .word-mask > span { animation: none; }
+}

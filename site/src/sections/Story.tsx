@@ -1,24 +1,17 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { ArrowUpRight, Leaf } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { product } from "../data/product";
 import { process, timeline } from "../data/content";
 import { trackEvent } from "../services/providers";
 export function OliveStory() {
   return (
     <section className="olive-story section-space" id="foglie">
-      <div>
+      <div className="olive-story-copy">
         <p className="eyebrow">UN ALBERO FAMILIARE. UN ALTRO SGUARDO.</p>
         <h2>
-          Tutti conoscono
-          <br />
-          il frutto.
-          <br />
-          <span>
-            Partiamo
-            <br />
-            dalle foglie.
-          </span>
+          Tutti conoscono il frutto.
+          <span>Partiamo dalle foglie.</span>
         </h2>
         <p>
           Dietro l’olivo che conosciamo c’è un mondo da osservare. È da questa
@@ -29,27 +22,25 @@ export function OliveStory() {
           Segui il percorso <ArrowUpRight size={19} />
         </a>
       </div>
-      <div className="botanical-panel">
-        <div className="leaf-detail">
+      <div className="leaf-profile">
+        <figure className="label-study">
           <img
             src={product.labelImage}
             width="448"
             height="521"
-            alt="Dettaglio della foglia d’olivo raffigurata sull’etichetta originale"
+            alt="Etichetta originale completa di Foglie Bio Plus"
             loading="lazy"
           />
-        </div>
-        <div className="botanical-caption">
-          <span>OLEA EUROPAEA</span>
-          <span>Dettaglio dell’etichetta originale</span>
-        </div>
-        <div className="botanical-note">
-          <Leaf size={24} strokeWidth={1} />
-          <p>
-            A volte, una nuova idea
-            <br />
-            comincia guardando più da vicino.
-          </p>
+          <figcaption>L’etichetta originale</figcaption>
+        </figure>
+        <div className="leaf-profile-copy">
+          <p className="eyebrow">LA MATERIA PRIMA</p>
+          <h3>Una foglia.<br />Un’origine precisa.</h3>
+          <dl>
+            <div><dt>Pianta</dt><dd>Olea europaea</dd></div>
+            <div><dt>Parte utilizzata</dt><dd>Le foglie</dd></div>
+            <div><dt>Origine delle foglie</dt><dd>Italia</dd></div>
+          </dl>
         </div>
       </div>
     </section>
