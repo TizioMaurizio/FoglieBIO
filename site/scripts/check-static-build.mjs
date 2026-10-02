@@ -11,6 +11,9 @@ assert.match(html, /rel="canonical" href="https:\/\/tiziomaurizio.github.io\/Fog
 assert.match(html, /https:\/\/tiziomaurizio.github.io\/FoglieBIO\/og.png/);
 assert.doesNotMatch(html, /chatgpt\.site|signin-with-chatgpt|<!--app-html-->|<!--app-head-->/);
 const assetPaths = [...html.matchAll(/(?:src|href)="(\/[^"#]+)"/g)].map(match => match[1]);
+for (const match of html.matchAll(/\bsrcset="([^"]+)"/gi)) {
+  assetPaths.push(...match[1].split(',').map(candidate => candidate.trim().split(/\s+/)[0]));
+}
 for (const url of new Set(assetPaths)) {
   assert.ok(url.startsWith('/FoglieBIO/'), `Asset escapes project base: ${url}`);
   const path = resolve(root, url.slice('/FoglieBIO/'.length));

@@ -1,0 +1,89 @@
+/* Documentary images from Antonio Berti's official website. */
+.farm-photograph {
+  margin: 44px 0 0;
+}
+.farm-photograph > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  object-position: 50% 65%;
+}
+.farm-photograph figcaption,
+.founder-portrait figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 15px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.farm-photograph figcaption { color: var(--muted); }
+.farm-photograph figcaption strong { color: var(--ink); font-weight: 500; }
+.farm-photograph figcaption a,
+.founder-portrait figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.farm-photograph figcaption svg,
+.founder-portrait figcaption svg { flex: none; }
+.founder {
+  grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
+  gap: 62px 8%;
+  align-items: center;
+}
+.founder-heading { grid-column: 2; grid-row: 1; }
+.founder-portrait {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  width: 100%;
+  max-width: 440px;
+  justify-self: center;
+}
+.founder-portrait > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.founder-portrait figcaption { color: #fff; font-size: 10px; }
+.founder-portrait figcaption > span { font-size: 13px; }
+.founder-source { margin-top: 20px; border-color: #ffffff80; }
+.founder .timeline {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px;
+}
+.founder .timeline article {
+  display: block;
+  border-top: 1px solid #ffffff45;
+  border-bottom: 0;
+  padding: 26px 0 0;
+}
+.founder .timeline article > span { display: block; margin-bottom: 20px; }
+.founder .timeline p { max-width: 340px; }
+@media(max-width:1100px) {
+  .founder { gap: 42px 6%; grid-template-columns: minmax(220px, .85fr) minmax(0, 1.15fr); }
+  .founder h2 { font-size: clamp(39px, 4.7vw, 56px); }
+  .founder-portrait figcaption { flex-wrap: wrap; gap: 6px; }
+  .founder .timeline { gap: 24px; }
+}
+@media(max-width:700px) {
+  .farm-photograph { margin-top: 30px; }
+  .farm-photograph > img { aspect-ratio: 4 / 3; object-position: 68% 60%; }
+  .farm-photograph figcaption { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .founder { grid-template-columns: minmax(0, 1fr); gap: 38px; }
+  .founder-heading, .founder-portrait { grid-column: auto; grid-row: auto; }
+  .founder h2 { font-size: clamp(38px, 10vw, 48px); }
+  .founder-portrait { max-width: 440px; }
+  .founder-portrait figcaption { justify-content: space-between; }
+  .founder .timeline { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .founder .timeline article { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 20px; }
+  .founder .timeline article > span { margin-bottom: 0; }
+}

@@ -15,11 +15,11 @@ No fake farm, founder, plant, lifestyle image or fictional bottle was created. T
 ## Next shoot, in priority order
 
 1. Current bottle front and reverse label: 2400+ px tall, soft side light, neutral background, exact colors and sharp text. Deliver transparent PNG/WebP plus original. Confirm packaging version. Replace hero/purchase asset after checking readability.
-2. Antonio portrait at his real farm: horizontal 2400 × 1600 and vertical 1600 × 2200, room for copy, relaxed eye contact. Replace timeline-side neutral editorial space; timeline stays.
+2. Additional portrait of Antonio at work in the field: a formal portrait from his official website is now used beside the founder story. A future work portrait would complement it.
 3. Antonio working: medium shot and hands, honest process. Use story and advertising.
 4. Hand collecting actual olive leaves: portrait and horizontal. Use the origin steps only if this is the real process.
-5. Macro olive leaf: 1600 × 1600 and wide 2400 × 1400. Replace label-derived macro.
-6. Wide farm/olive environment: 3000 × 1800 with quiet negative space. Possible future hero, with real location and season recorded.
+5. Macro olive leaf: 1600 × 1600 and wide 2400 × 1400. Could complement the full original label now displayed.
+6. Additional farm/olive environment photography: the farm panorama from Antonio’s homepage now appears in the origin section; an actual olive harvest view would add process detail.
 7. Fresh leaves after collection: detail and overhead. Origin section.
 8. Laboratory/preparation/processing and bottling: actual location, permissions, no staged invented technique. Origin and educational content.
 9. Bottle with serving glass: verify official dose first; vertical and wide. Future use section.
@@ -32,3 +32,18 @@ Capture horizontal, portrait and square whenever possible. Provide subject/locat
 The flat green on the original bottle sticker has modal RGB (90, 120, 60), **#5A783C**. It was sampled from `bottle.jpg` in two side-label regions: x300–322/y810–1000 and x792–815/y700–870. Lighting, JPEG edges and lettering create other shades; this value is a pixel-sampled brand match, not a claim about a printer’s physical ink specification. `--label-green` in `src/styles/globals.css` is the single primary token. White on this green has a calculated contrast ratio of 5.02:1; cream #F4F3EB on it is 4.51:1.
 
 The original image files are unmodified. `Bottle` uses a CSS frame corresponding to source coordinates x272–853/y90–1384, keeping the entire cap, bottle, label and base. No image rotation, reconstructed packaging or generated product photo is used. The previous 300% leaf enlargement was removed; the full label is displayed at up to 260 CSS pixels, below its 448-pixel native width. Layout rules for the hero, bottle, leaf profile and product panel are centralized in `src/styles/product-layout.css`.
+
+## Material from Antonio Berti’s official website — 2 October 2026
+
+Selected and imported at the user’s explicit request. Images are unchanged source JPEGs; responsive variants were downloaded from the source’s existing `srcset`, not generated or reconstructed. Copyright remains with the original owners. No photographer or open license was stated in the inspected page metadata. Source pages are linked visibly beside the photographs.
+
+| Current local asset | Exact source | Placement |
+|---|---|---|
+| `images/antonio-berti-800.jpg` | https://www.antonioberti.it/website/wp-content/uploads/2025/11/Antonio-Berti-800x1202.jpg | Founder portrait, original 800 × 1202, 147 KB |
+| `images/antonio-berti-500.jpg` | https://www.antonioberti.it/website/wp-content/uploads/2025/11/Antonio-Berti-500x751.jpg | Smaller portrait variant, 60 KB |
+| `images/azienda-antonio-1536.jpg` | https://www.antonioberti.it/website/wp-content/uploads/2025/06/antonioberti_home_slide-1536x864.jpg | Origin section farm panorama, 1536 × 864, 219 KB |
+| `images/azienda-antonio-800.jpg` | https://www.antonioberti.it/website/wp-content/uploads/2025/06/antonioberti_home_slide-800x450.jpg | Smaller farm variant, 70 KB |
+
+Portrait and panorama both appear on https://www.antonioberti.it/. Farm background is documented at https://www.antonioberti.it/a-roda-dea-sega-25-anni-di-agricoltura-bio-senza-compromessi/ and biography at https://www.antonioberti.it/la-mia-storia/. The farm image is not described as an olive grove or proof of a specific harvesting process. The waterwheel and vegetable-basket images were also inspected but not added, to keep the page focused. Family/school photographs were not reused.
+
+The requested green arch behind the hero bottle has been removed from both markup and CSS. The upright original bottle and subtle floor shadow remain.

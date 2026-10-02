@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { product } from "../data/product";
 import { process, timeline } from "../data/content";
+import { photography, antonioSources } from "../data/photography";
 import { trackEvent } from "../services/providers";
 export function OliveStory() {
   return (
@@ -57,10 +58,27 @@ export function FieldToBottle() {
           alla bottiglia.
         </h2>
         <p>
-          Il legame con l’agricoltura è il punto di partenza. Il percorso
-          prosegue in laboratorio, dove le foglie vengono lavorate.
+          A Roda Dea Sega è l’azienda agricola che Antonio ha fondato nel 1998.
+          Coltivazioni stagionali, cura del suolo e biodiversità sono parte
+          della sua storia. Da questo mondo nasce il progetto Foglie Bio Plus.
         </p>
       </div>
+      <figure className="farm-photograph">
+        <img
+          src={photography.farm.src}
+          srcSet={photography.farm.srcSet}
+          sizes="(max-width: 700px) 88vw, (max-width: 1700px) 86vw, 1450px"
+          width={photography.farm.width}
+          height={photography.farm.height}
+          alt={photography.farm.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          <span><strong>A Roda Dea Sega</strong> · Il mondo agricolo di Antonio</span>
+          <a href={antonioSources.farm} target="_blank" rel="noopener noreferrer">Scopri l’azienda sul sito di Antonio <ArrowUpRight size={14} /></a>
+        </figcaption>
+      </figure>
       <div className="process-grid">
         {process.map((step, i) => (
           <article key={step.title}>
@@ -104,8 +122,8 @@ export function FounderStory() {
           strada e dedicarsi alla terra.
         </p>
         <p>
-          Antonio sceglie l’agricoltura biologica e fa della curiosità un modo
-          di lavorare. L’interesse per le foglie d’olivo apre un nuovo percorso
+          Con A Roda Dea Sega, Antonio porta avanti un lavoro fatto di coltivazione,
+          sperimentazione e condivisione dei saperi agricoli. L’interesse per le foglie d’olivo apre un nuovo percorso
           di studio, prove e confronto. Da quel percorso nasce Foglie Bio Plus.
         </p>
         <details>
@@ -119,7 +137,21 @@ export function FounderStory() {
             lavoro degli anni precedenti diventa un prodotto: Foglie Bio Plus®.
           </p>
         </details>
+        <a className="text-link founder-source" href={antonioSources.story} target="_blank" rel="noopener noreferrer">La storia raccontata da Antonio <ArrowUpRight size={18} /></a>
       </div>
+      <figure className="founder-portrait">
+        <img
+          src={photography.portrait.src}
+          srcSet={photography.portrait.srcSet}
+          sizes="(max-width: 700px) 88vw, (max-width: 1100px) 40vw, 480px"
+          width={photography.portrait.width}
+          height={photography.portrait.height}
+          alt={photography.portrait.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption><span>Antonio Berti</span><a href={photography.portrait.source} target="_blank" rel="noopener noreferrer">Dal suo sito ufficiale <ArrowUpRight size={14} /></a></figcaption>
+      </figure>
       <div className="timeline">
         {timeline.map((item) => (
           <article key={item.year}>

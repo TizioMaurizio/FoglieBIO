@@ -35,3 +35,7 @@ Privacy update validation: TypeScript and ESLint passed; 20 tests passed. The bu
 ## Layout review
 
 Checked 360, 390, 430, 768, 1024, 1440 and 1920 px in Chrome: no horizontal overflow; all headline masks fit their text; all bottle and bottle-photo transforms are `none`; the label is never displayed wider than its source. Visually reviewed desktop hero and the corrected leaf section, mobile hero, leaf section and purchase panel. Fixed the mobile product title joining “Foglie” and “Bio” when a line break was hidden. Checkout open/Escape close still works. Original photo bytes and privacy behavior are unchanged.
+
+## Antonio photography update
+
+Verified local responsive farm/portrait assets load in Chrome, with no horizontal overflow at 360, 390, 430, 768, 1440 and 1920 px. The hero has zero `.bottle-backdrop` elements at every width. Desktop origin/founder layouts and mobile founder layout were visually reviewed. The build validates every `srcset` variant as well as ordinary image/CSS paths. Photograph pixels are unchanged; only CSS display framing is used.

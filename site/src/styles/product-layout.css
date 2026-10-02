@@ -75,12 +75,6 @@
   padding: 42px 38px 24px;
 }
 .hero-art .bottle { --bottle-height: clamp(430px, 39vw, 590px); }
-.bottle-backdrop {
-  position: absolute;
-  inset: 65px 8% 34px;
-  background: var(--green-surface);
-  border-radius: 48% 48% 12px 12px;
-}
 .art-note { position: relative; text-align: center; font-size: 13px; margin-bottom: 20px; }
 .art-note span { display: block; font-size: 11px; color: var(--muted); }
 .vertical-note { writing-mode: vertical-rl; position: absolute; right: 0; top: 40%; font-size: 9px; letter-spacing: 1.6px; }
@@ -206,8 +200,7 @@
   .art-note { margin-bottom: 14px; font-size: 11px; }
   .art-note span { display: none; }
   .vertical-note { font-size: 8px; right: 10px; }
-  .bottle-backdrop { inset: 34px 12% 6px; }
-  .hero-foot { font-size: 8px; margin: 0; padding-top: 17px; }
+.hero-foot { font-size: 8px; margin: 0; padding-top: 17px; }
   .hero-foot > a { display: none; }
   .feature-strip > .product-panel { display: grid; grid-template-columns: minmax(0, 1fr) 100px; min-height: 280px; gap: 18px 12px; }
   .product-panel .bottle { --bottle-height: 220px; }

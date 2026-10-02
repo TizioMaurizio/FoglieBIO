@@ -29,7 +29,6 @@ export function Hero() {
         </div>
       </div>
       <div className="hero-art">
-        <div className="bottle-backdrop" aria-hidden="true" />
         <p className="art-note">
           Olea europaea
           <br />
