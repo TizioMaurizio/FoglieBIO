@@ -46,6 +46,7 @@ export function Purchase({
             <Package size={16} /> {product.format}
           </span>
         </div>
+        <a className="product-organic-link" href="#biologico">Origine biologica e documentazione aziendale <ArrowUpRight size={16}/></a>
         <fieldset className="purchase-options">
           <legend>Confezione</legend>
           {options.map((option) => (

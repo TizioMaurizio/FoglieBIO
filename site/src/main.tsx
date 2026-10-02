@@ -4,6 +4,7 @@ import './styles/globals.css';
 import './styles/experience.css';
 import './styles/product-layout.css';
 import './styles/story-photography.css';
+import './styles/organic.css';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Contenitore della pagina non disponibile.');

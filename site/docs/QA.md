@@ -39,3 +39,7 @@ Checked 360, 390, 430, 768, 1024, 1440 and 1920 px in Chrome: no horizontal over
 ## Antonio photography update
 
 Verified local responsive farm/portrait assets load in Chrome, with no horizontal overflow at 360, 390, 430, 768, 1440 and 1920 px. The hero has zero `.bottle-backdrop` elements at every width. Desktop origin/founder layouts and mobile founder layout were visually reviewed. The build validates every `srcset` variant as well as ordinary image/CSS paths. Photograph pixels are unchanged; only CSS display framing is used.
+
+## Organic documentation highlight
+
+TypeScript, ESLint and 22 tests passed. The new evidence tests require the historical label, operator identity, displayed 2023–2026 dates and unverified product scope. Desktop certification panel and mobile hero highlight were visually inspected; no horizontal overflow at 360, 390, 768, 1024 and 1440 px. Hero, navigation and product links target `#biologico`; the certificate CTA uses the working PDF on La Ruota Bio’s certification page. The site does not use official certification logos or assert current product certification.

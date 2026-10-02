@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Bottle } from "../components/Primitives";
+import { OrganicHighlight } from './Organic';
 export function Hero() {
   return (
     <section className="hero" id="inizio">
@@ -27,6 +28,7 @@ export function Hero() {
             di studio.
           </p>
         </div>
+        <OrganicHighlight />
       </div>
       <div className="hero-art">
         <p className="art-note">

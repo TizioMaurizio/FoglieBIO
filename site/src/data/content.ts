@@ -9,6 +9,7 @@ export const brand = {
 };
 export const navigation = [
   { href: "#prodotto", label: "Il prodotto" },
+  { href: "#biologico", label: "Il biologico" },
   { href: "#storia", label: "La storia" },
   { href: "#origine", label: "Come nasce" },
   { href: "#faq", label: "FAQ" },

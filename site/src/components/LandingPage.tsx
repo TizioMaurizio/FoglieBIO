@@ -4,6 +4,7 @@ import { Navbar } from "./Navbar";
 import { CheckoutDrawer } from "./CheckoutDrawer";
 import { Hero } from "../sections/Hero";
 import { FeatureStrip } from "../sections/FeatureStrip";
+import { Organic } from '../sections/Organic';
 import {
   OliveStory,
   FieldToBottle,
@@ -89,6 +90,7 @@ export function LandingPage() {
       <main id="contenuto">
         <Hero />
         <FeatureStrip />
+        <Organic />
         <OliveStory />
         <FieldToBottle />
         <FounderStory />
