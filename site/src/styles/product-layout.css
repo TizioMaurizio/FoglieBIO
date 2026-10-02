@@ -8,7 +8,8 @@
   width: calc(var(--bottle-height) * 581 / 1294);
   height: var(--bottle-height);
   overflow: hidden;
-  mix-blend-mode: multiply;
+  /* Blend the white backdrop without multiplying/darkening the sticker green. */
+  mix-blend-mode: darken;
   z-index: 1;
 }
 .bottle-photo {
