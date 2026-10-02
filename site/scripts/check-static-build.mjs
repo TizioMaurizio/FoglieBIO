@@ -21,7 +21,7 @@ await stat(resolve(root, '.nojekyll'));
 for (const file of await readdir(resolve(root, 'assets'))) {
   if (!file.endsWith('.css')) continue;
   const css = await readFile(resolve(root, 'assets', file), 'utf8');
-  for (const match of css.matchAll(/url\(["']?([^\)"']+)/g)) {
+  for (const match of css.matchAll(/url\(["']?([^)"']+)/g)) {
     const url = match[1];
     if (url.startsWith('data:')) continue;
     assert.ok(url.startsWith('/FoglieBIO/'), `CSS asset escapes project base: ${url}`);
