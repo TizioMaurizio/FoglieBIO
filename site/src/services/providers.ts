@@ -1,5 +1,6 @@
 import { integrations } from "../config/integrations";
 import { product } from "../data/product";
+import { demoCustomer, demoEmail } from "../data/demo";
 import type {
   AnalyticsProvider,
   CheckoutInput,
@@ -31,6 +32,8 @@ export class MockPaymentProvider implements PaymentProvider {
       throw new Error("Prodotto non disponibile.");
     if (Object.keys(validateCustomer(input.customer)).length)
       throw new Error("Controlla i dati inseriti.");
+    if ((Object.keys(demoCustomer) as (keyof typeof demoCustomer)[]).some(key => input.customer[key] !== demoCustomer[key]))
+      throw new Error("La demo accetta solo i dati di esempio predefiniti.");
     if (!["card", "paypal", "apple", "google"].includes(input.method))
       throw new Error("Metodo non valido.");
     const preliminary = calculateTotals(
@@ -63,6 +66,8 @@ export class MockEmailProvider implements EmailProvider {
   async subscribe(email: string, consent: boolean) {
     if (!isEmail(email))
       throw new Error("Inserisci un indirizzo email valido.");
+    if (email !== demoEmail)
+      throw new Error("La demo accetta solo l’indirizzo email di esempio.");
     if (!consent) throw new Error("Conferma di aver letto l’informativa.");
     return { simulated: true }; // Do not retain, log or transmit the address.
   }

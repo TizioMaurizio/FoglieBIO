@@ -13,17 +13,8 @@ import {
 import { integrations } from "../src/config/integrations";
 import { product } from "../src/data/product";
 import type { Customer } from "../src/services/contracts";
-const customer: Customer = {
-  firstName: "Demo",
-  lastName: "Prova",
-  email: "demo@example.com",
-  phone: "0000000000",
-  address: "Via Esempio 1",
-  city: "Padova",
-  postalCode: "35100",
-  province: "PD",
-  country: "IT",
-};
+import { demoCustomer } from "../src/data/demo";
+const customer: Customer = { ...demoCustomer };
 afterEach(() => vi.restoreAllMocks());
 describe("Checkout totals and validation", () => {
   it("calculates money in integer cents for one and several bottles", () => {
@@ -71,6 +62,13 @@ describe("Checkout totals and validation", () => {
   });
 });
 describe("Service isolation", () => {
+  it('refuses visitor data even if a read-only field is tampered with', async () => {
+    const fetch = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Network prohibited'));
+    const payment = new MockPaymentProvider(new MockShippingProvider());
+    await expect(payment.createCheckout({ customer: { ...customer, email: 'visitor@example.org' }, method: 'card', quantity: 1, productId: product.id, optionId: 'single' })).rejects.toThrow('dati di esempio');
+    await expect(new MockEmailProvider().subscribe('visitor@example.org', true)).rejects.toThrow('email di esempio');
+    expect(fetch).not.toHaveBeenCalled();
+  });
   it("completes every demo payment method without a network call", async () => {
     const fetch = vi
       .spyOn(globalThis, "fetch")

@@ -1,4 +1,22 @@
 /* Editorial composition, interaction and responsive commerce. */
+.privacy-notice { display: flex; gap: 12px; padding: 18px; margin: 18px 0 25px; background: #e4eada; border: 1px solid #adbda0; color: var(--olive); }
+.privacy-notice > svg { flex: none; margin-top: 2px; }
+.privacy-notice h3 { font-family: var(--font-body); font-size: 14px; font-weight: 500; line-height: 1.5; margin: 0 0 7px; }
+.privacy-notice p { font-size: 12px; line-height: 1.7; margin: 0 0 8px; }
+.privacy-notice a { font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
+.privacy-notice .privacy-hosting-note { font-size: 11px; margin: 10px 0 0; }
+.newsletter .privacy-notice { margin-top: 0; }
+.form-grid input[readonly], .newsletter-input input[readonly] { color: #59664e; background: #edf0e5; cursor: default; }
+.footer-bottom a { padding: 8px 0; text-decoration: underline; }
+.privacy-page { max-width: 860px; padding: 60px 30px 90px; margin: auto; }
+.privacy-page > .eyebrow { margin-top: 50px; }
+.privacy-page h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.05; letter-spacing: -.045em; margin: 25px 0; }
+.privacy-page .privacy-intro { font-size: 18px; line-height: 1.8; }
+.privacy-page section { border-top: 1px solid var(--line); margin-top: 35px; padding-top: 28px; }
+.privacy-page h2 { font-size: 27px; letter-spacing: -.025em; margin-bottom: 18px; }
+.privacy-page section p { font-size: 15px; line-height: 1.85; margin: 12px 0; }
+.privacy-page section a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+@media(max-width:700px) { .privacy-page { padding: 30px 22px 60px; } .privacy-page .privacy-intro { font-size: 16px; } .privacy-notice { padding: 15px; } }
 @media (min-width: 701px) {
   .hero .hero-foot {
     position: absolute;

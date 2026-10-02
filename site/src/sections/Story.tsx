@@ -145,10 +145,10 @@ export function FounderStory() {
 }
 export function Composition() {
   return (
-    <section className="composition section-space">
+    <section id="composizione" className="composition section-space" aria-labelledby="composition-title">
       <p className="eyebrow">CONOSCERE LA MATERIA PRIMA</p>
       <div className="composition-heading">
-        <h2>
+        <h2 id="composition-title">
           Dentro una foglia,
           <br />
           un mondo da studiare.

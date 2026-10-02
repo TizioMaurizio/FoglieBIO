@@ -18,6 +18,13 @@ for (const url of new Set(assetPaths)) {
   assert.ok((await stat(path)).isFile(), `Missing asset: ${url}`);
 }
 await stat(resolve(root, '.nojekyll'));
+const privacy = await readFile(resolve(root, 'privacy.html'), 'utf8');
+assert.match(privacy, /Privacy e dati personali/);
+assert.match(privacy, /indirizzo IP/);
+assert.match(privacy, /https:\/\/www.laruotabio.it\/privacy-policy\//);
+assert.doesNotMatch(privacy, /<script/);
+assert.match(html, /href="#composizione"/);
+assert.match(html, /id="composizione"/);
 for (const file of await readdir(resolve(root, 'assets'))) {
   if (!file.endsWith('.css')) continue;
   const css = await readFile(resolve(root, 'assets', file), 'utf8');

@@ -48,3 +48,13 @@ Required inputs: ex-VAT revenue, VAT rate, product cost, packaging, shipping cha
 ## GitHub Pages hosting
 
 The frontend is served publicly at https://tiziomaurizio.github.io/FoglieBIO/ without authentication. GitHub Pages is static hosting: future live providers must use a separate backend or a hosted checkout. Never put payment/email secrets in frontend code or GitHub Pages assets. Publishing does not turn the existing mock providers into live services.
+
+## Public demo privacy update — 2 October 2026
+
+Checkout and newsletter are now sample-only: personal/contact inputs are prefilled and read-only; the public UI does not collect visitor details. MockPaymentProvider and MockEmailProvider reject non-fixture customer data. The `true` argument in the fixed newsletter demo call is internal simulation behavior, not recorded visitor consent and must never be reused by a live adapter. No live adapter exists; switching modes still fails closed.
+
+Before enabling live collection, confirm the controller and legal authority for this domain, purposes and legal bases, required/optional fields, processor contracts, recipients, retention schedules, transfers, data subject request contact and complaint route. Publish the appropriate Article 13 notice at collection time. Do not equate reading a privacy notice with marketing consent; use a separate optional marketing opt-in where needed. Contract/order processing must have its own appropriate basis. GitHub Pages technical request/IP processing must also be assessed; absence of data submission in forms is not a GDPR exemption.
+
+La Ruota Bio’s official policy (retrieved 2 October 2026; policy dated 28 September 2026): https://www.laruotabio.it/privacy-policy/. It identifies La Ruota Bio S.r.l., Via Sega 9, 35018 San Martino di Lupari (PD), P. IVA 05501560287, info@laruotabio.it and laruotabiosrl@legalmail.it. The user deferred final controller/legal validation for this new domain. The demo links to this policy as a reference rather than copying its operational claims into the new storefront.
+
+Sources: [EDPB transparency and rights](https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en), [EDPB lawful processing](https://www.edpb.europa.eu/sme/be-compliant/process-personal-data-lawfully_en), [GitHub Pages IP logging](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection), [GitHub privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).

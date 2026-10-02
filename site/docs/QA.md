@@ -25,3 +25,9 @@ Production release remains blocked by the business/content/legal items in the ot
 - Mobile menu/product navigation, checkout reopening with cleared fields, Escape close and restored purchase-button focus verified.
 - FAQ expansion and newsletter empty/valid demo submission verified in browser.
 - Reduced-motion rules reviewed in source; browser preference emulation was not available through this session's browser interface. Screen-reader hardware/software and Lighthouse scores were not measured.
+
+## Sample-only privacy regression checks
+
+The editable-form scenarios above describe the earlier demonstration. The public demo now uses read-only fixtures; visitors no longer enter their own details. New tests check readonly/autocomplete attributes, policy links before fields, no newsletter marketing checkbox, rejection of non-fixture data, hosting disclosure and the composition anchor. The static build validates the standalone privacy page and its absence of scripts.
+
+Privacy update validation: TypeScript and ESLint passed; 20 tests passed. The built app was checked in Chrome: product-panel click reaches `#composizione`, all 9 checkout identity/address fields are read-only with autocomplete off, checkout completes without typing, newsletter simulation succeeds with its fixed address, and the standalone privacy page opens and fits a 390 px viewport. The emitted privacy HTML has no application scripts.

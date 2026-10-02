@@ -89,13 +89,9 @@ export const faq = [
   },
 ];
 export const legal = {
-  privacy: {
-    title: "Privacy dell’anteprima",
-    text: "I dati inseriti nei moduli dimostrativi vengono usati solo nella memoria di questa pagina. Non vengono inviati, salvati o usati per contattarti. La chiusura del checkout cancella i dati del modulo. Non inserire dati personali reali. L’informativa completa per il negozio sarà predisposta prima dell’attivazione dei servizi.",
-  },
   cookies: {
     title: "Cookie e preferenze",
-    text: "Questa anteprima non utilizza strumenti pubblicitari o di analisi di terze parti e non memorizza preferenze nel browser. I caratteri e le immagini sono ospitati con il sito. Prima dell’attivazione di servizi esterni sarà integrata una gestione del consenso adeguata.",
+    text: "Il codice di questa anteprima non imposta cookie, non usa strumenti pubblicitari o di analisi e non salva preferenze nel browser. Font e immagini sono ospitati con il sito. GitHub Pages registra dati tecnici, incluso l’indirizzo IP, per la sicurezza del servizio: consulta l’informativa privacy dell’anteprima per i dettagli.",
   },
   terms: {
     title: "Condizioni dell’anteprima",

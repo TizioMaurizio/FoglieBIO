@@ -8,6 +8,8 @@ import {
   LockKeyhole,
 } from "lucide-react";
 import { Modal, Bottle, QuantitySelector } from "./Primitives";
+import { PrivacyNotice } from "./Privacy";
+import { demoCustomer } from "../data/demo";
 import { integrations } from "../config/integrations";
 import { product } from "../data/product";
 import { services, trackEvent } from "../services/providers";
@@ -64,17 +66,7 @@ const methods: { id: PaymentMethod; label: string }[] = [
   { id: "apple", label: "Apple Pay" },
   { id: "google", label: "Google Pay" },
 ];
-const emptyCustomer: Customer = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  address: "",
-  city: "",
-  postalCode: "",
-  province: "",
-  country: "IT",
-};
+
 
 export function CheckoutDrawer({
   quantity,
@@ -90,7 +82,7 @@ export function CheckoutDrawer({
   const [step, setStep] = useState<"details" | "payment" | "success">(
     "details",
   );
-  const [customer, setCustomer] = useState<Customer>({ ...emptyCustomer });
+  const customer = demoCustomer;
   const [errors, setErrors] = useState<Partial<Record<keyof Customer, string>>>(
     {},
   );
@@ -140,7 +132,6 @@ export function CheckoutDrawer({
         currency: product.currency,
         simulated: result.simulated,
       });
-      setCustomer({ ...emptyCustomer });
       setStep("success");
     } catch (e) {
       setError(
@@ -164,9 +155,10 @@ export function CheckoutDrawer({
         <p>
           <strong>Checkout dimostrativo</strong>
           <br />
-          Nessun addebito. Nessun ordine inviato. Usa dati di fantasia.
+          Nessun addebito. Nessun ordine inviato. Solo dati di esempio.
         </p>
       </div>
+      <PrivacyNotice id="checkout-privacy" />
       {step === "success" ? (
         <div className="checkout-success" role="status">
           <span className="success-mark">
@@ -186,7 +178,7 @@ export function CheckoutDrawer({
         <>
           <ol className="checkout-steps" aria-label="Fasi del checkout">
             <li aria-current={step === "details" ? "step" : undefined}>
-              01 · I tuoi dati
+              01 · Dati di esempio
             </li>
             <li aria-current={step === "payment" ? "step" : undefined}>
               02 · Pagamento demo
@@ -225,8 +217,8 @@ export function CheckoutDrawer({
             spedizione definitive sono da confermare.
           </p>
           {step === "details" ? (
-            <form ref={form} onSubmit={continueToPayment} noValidate>
-              <h3 className="form-title">Dati e indirizzo di spedizione</h3>
+            <form ref={form} onSubmit={continueToPayment} autoComplete="off" noValidate>
+              <h3 className="form-title">Dati e indirizzo di esempio</h3>
               <div className="form-grid">
                 {fields.map((field) => (
                   <label
@@ -239,7 +231,9 @@ export function CheckoutDrawer({
                       id={`checkout-${field.key}`}
                       name={field.key}
                       type={field.type || "text"}
-                      autoComplete={field.autoComplete}
+                      autoComplete="off"
+                      readOnly
+                      aria-label={field.label}
                       placeholder={field.placeholder}
                       inputMode={field.inputMode}
                       value={customer[field.key]}
@@ -255,14 +249,7 @@ export function CheckoutDrawer({
                       aria-describedby={
                         errors[field.key] ? `error-${field.key}` : undefined
                       }
-                      onChange={(e) => {
-                        setCustomer({
-                          ...customer,
-                          [field.key]: e.target.value,
-                        });
-                        if (errors[field.key])
-                          setErrors({ ...errors, [field.key]: undefined });
-                      }}
+
                     />
                     {errors[field.key] && (
                       <span className="field-error" id={`error-${field.key}`}>
@@ -273,22 +260,12 @@ export function CheckoutDrawer({
                 ))}
                 <label className="full-field" htmlFor="checkout-country">
                   Paese
-                  <select
-                    id="checkout-country"
-                    name="country"
-                    value={customer.country}
-                    onChange={(e) =>
-                      setCustomer({ ...customer, country: e.target.value })
-                    }
-                    autoComplete="country"
-                  >
-                    <option value="IT">Italia</option>
-                  </select>
+                  <input id="checkout-country" name="country" value="Italia" readOnly autoComplete="off" />
                 </label>
               </div>
               <p className="fine-print">
-                I dati restano solo in questa pagina e vengono cancellati alla
-                chiusura. Non saranno usati per ordini o contatti.
+                I dati mostrati sono fittizi e non modificabili. Puoi continuare
+                senza comunicare informazioni personali.
               </p>
               <button className="button full-button" type="submit">
                 Continua al pagamento demo <ArrowRight size={18} />
@@ -345,7 +322,7 @@ export function CheckoutDrawer({
                 className="text-link back-button"
                 onClick={() => setStep("details")}
               >
-                <ArrowLeft size={16} /> Torna ai tuoi dati
+                <ArrowLeft size={16} /> Torna ai dati di esempio
               </button>
             </div>
           )}

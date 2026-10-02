@@ -1,8 +1,13 @@
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { LandingPage } from './components/LandingPage';
 import { integrations } from './config/integrations';
 import { SITE_URL } from './config/site';
 import { productSchema, organizationSchema } from './data/seo';
+import { PrivacyPage } from './components/Privacy';
+
+export function renderPrivacy() {
+  return renderToStaticMarkup(<PrivacyPage />);
+}
 
 export function render() {
   const description = 'Scopri Foglie Bio Plus, l’infuso di foglie d’olivo italiane di La Ruota Bio. La storia di Antonio, l’origine e il prodotto.';

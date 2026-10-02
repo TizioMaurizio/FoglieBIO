@@ -4,7 +4,8 @@ import { ArrowUpRight, Plus, ArrowRight, Leaf } from "lucide-react";
 import { brand, faq, legal, navigation } from "../data/content";
 import { services, trackEvent } from "../services/providers";
 import { Modal } from "../components/Primitives";
-import { isEmail } from "../services/validation";
+import { demoEmail } from "../data/demo";
+import { PrivacyNotice, privacyPath } from "../components/Privacy";
 import type { Review } from "../services/contracts";
 export function Reviews({ reviews }: { reviews: Review[] }) {
   if (!reviews.length) return null;
@@ -96,8 +97,6 @@ export function FinalCTA({
 }
 export function Footer() {
   const [legalKey, setLegalKey] = useState<keyof typeof legal | null>(null);
-  const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -105,23 +104,14 @@ export function Footer() {
     event.preventDefault();
     setError("");
     setStatus("");
-    if (!isEmail(email)) {
-      setError("Inserisci un indirizzo email valido.");
-      return;
-    }
-    if (!consent) {
-      setError("Conferma di aver letto l’informativa dell’anteprima.");
-      return;
-    }
     setBusy(true);
     try {
-      await services.email.subscribe(email, consent);
+      // This fixed mock call is not visitor consent and must never be reused by a live adapter.
+      await services.email.subscribe(demoEmail, true);
       trackEvent("newsletter_signup", { simulated: true });
       setStatus(
         "Simulazione completata. Nessuna iscrizione effettuata e nessuna email inviata.",
       );
-      setEmail("");
-      setConsent(false);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Riprova tra poco.");
     } finally {
@@ -140,48 +130,27 @@ export function Footer() {
           </h2>
           <p>Novità, persone e curiosità dal mondo dell’olivo.</p>
         </div>
-        <form className="newsletter" noValidate onSubmit={subscribe}>
-          <label htmlFor="newsletter-email">Il tuo indirizzo email</label>
+        <form className="newsletter" autoComplete="off" noValidate onSubmit={subscribe}>
+          <PrivacyNotice id="newsletter-privacy" />
+          <label htmlFor="newsletter-email">Email di esempio · non modificabile</label>
           <div className="newsletter-input">
             <input
               id="newsletter-email"
               type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError("");
-              }}
-              autoComplete="email"
-              placeholder="La tua email"
-              required
-              aria-invalid={!!error}
+              value={demoEmail}
+              readOnly
+              autoComplete="off"
               aria-describedby="newsletter-feedback"
             />
             <button
               type="submit"
-              aria-label="Iscriviti alla newsletter demo"
+              aria-label="Prova la newsletter senza iscriverti"
               disabled={busy}
             >
               <ArrowRight size={23} />
             </button>
           </div>
-          <label className="consent">
-            <input
-              type="checkbox"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-            />
-            <span>
-              Ho letto l’
-              <button type="button" onClick={() => setLegalKey("privacy")}>
-                informativa dell’anteprima
-              </button>
-              .
-            </span>
-          </label>
-          <p className="fine-print">
-            Modulo dimostrativo. Nessuna iscrizione reale.
-          </p>
+          <p className="fine-print">Prova la newsletter con l’email di esempio. Nessuna iscrizione reale e nessun consenso marketing raccolto.</p>
           <div id="newsletter-feedback" aria-live="polite">
             {error && <p className="field-error">{error}</p>}
             {status && <p className="success-text">{status}</p>}
@@ -217,7 +186,7 @@ export function Footer() {
           {brand.address}
         </p>
         <div>
-          <button onClick={() => setLegalKey("privacy")}>Privacy</button>
+          <a href={privacyPath()}>Informativa privacy</a>
           <button onClick={() => setLegalKey("cookies")}>Cookie</button>
           <button onClick={() => setLegalKey("terms")}>Condizioni</button>
         </div>

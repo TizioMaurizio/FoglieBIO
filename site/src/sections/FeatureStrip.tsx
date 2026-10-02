@@ -90,7 +90,7 @@ export function FeatureStrip() {
           ))}
         </div>
       </section>
-      <a href="#prodotto" className="product-panel">
+      <a href="#composizione" className="product-panel">
         <span className="eyebrow">03 / FOGLIE BIO PLUS®</span>
         <div>
           <h2>
