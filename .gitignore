@@ -1,12 +1,9 @@
-# Keep local material and previous hosting backups off GitHub.
+# Keep local source documents and development tools off GitHub.
 /work/
 /.vscode/
 /*.docx
 **/node_modules/
 **/dist/
-**/.next/
-**/.vinext/
-**/.wrangler/
 **/*.tsbuildinfo
 **/.env
 **/.env.*

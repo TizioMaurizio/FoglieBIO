@@ -28,9 +28,9 @@ The build emits `dist/`. A build-time prerender step includes the page text, pro
 
 ## Git and deployment
 
-The repository is `TizioMaurizio/FoglieBIO`; the only active `.git` lives at the workspace root. Run Git commands from the root or `site/`, with the same result. The prior nested Git history is retained locally in ignored `work/site-git-backup`.
+The repository is `TizioMaurizio/FoglieBIO`; the only `.git` lives at the workspace root. Run Git commands from the root or `site/`, with the same result.
 
-Push to `main` to deploy through `.github/workflows/pages.yml`. The workflow installs locked dependencies, runs TypeScript/lint/tests, builds static HTML and uploads **only `site/dist`**. Repository Settings → Pages must use **GitHub Actions** as the build source. Existing root HTML/CSS and `Wix/` material remain historical source files and are not included in the deployment artifact.
+Push to `main` to deploy through `.github/workflows/pages.yml`. The workflow installs locked dependencies, runs TypeScript/lint/tests, builds static HTML and uploads **only `site/dist`**. Repository Settings → Pages must use **GitHub Actions** as the build source.
 
 ## Structure
 
