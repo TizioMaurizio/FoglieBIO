@@ -55,7 +55,13 @@
   letter-spacing: -.065em;
   margin: 30px 0 34px;
 }
-.word-mask { display: block; overflow: hidden; }
+.word-mask {
+  display: block;
+  overflow: hidden;
+  /* Allow font descenders below the tight line box without changing line spacing. */
+  padding-bottom: .2em;
+  margin-bottom: -.2em;
+}
 .hero h1 .word-mask > span {
   display: block;
   white-space: nowrap;
