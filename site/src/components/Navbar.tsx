@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
-import { Menu, ArrowUpRight, Leaf } from "lucide-react";
+import { Menu, ArrowUpRight } from "lucide-react";
 import { navigation } from "../data/content";
 import { Modal } from "./Primitives";
+import { BrandLogo } from './BrandLogo';
 
 export function Navbar({
   onPurchase,
@@ -21,7 +22,7 @@ export function Navbar({
           href="#inizio"
           aria-label="Foglie Bio Plus, inizio pagina"
         >
-          <Leaf size={23} strokeWidth={1.4} />
+          <BrandLogo decorative />
           <span>
             foglie bio plus<sup>®</sup>
             <small>UNA STORIA LA RUOTA BIO</small>

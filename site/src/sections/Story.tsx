@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { product } from "../data/product";
+import { brandAssets } from '../data/brandAssets';
 import { process, timeline } from "../data/content";
 import { photography, antonioSources } from "../data/photography";
 import { trackEvent } from "../services/providers";
@@ -26,13 +26,13 @@ export function OliveStory() {
       <div className="leaf-profile">
         <figure className="label-study">
           <img
-            src={product.labelImage}
-            width="448"
-            height="521"
-            alt="Etichetta originale completa di Foglie Bio Plus"
+            src={brandAssets.leaves}
+            width="640"
+            height="640"
+            alt="Illustrazione del marchio ispirata alle foglie d’olivo"
             loading="lazy"
           />
-          <figcaption>L’etichetta originale</figcaption>
+          <figcaption>Le foglie, al centro del progetto</figcaption>
         </figure>
         <div className="leaf-profile-copy">
           <p className="eyebrow">LA MATERIA PRIMA</p>
@@ -79,6 +79,7 @@ export function FieldToBottle() {
           <a href={antonioSources.farm} target="_blank" rel="noopener noreferrer">Scopri l’azienda sul sito di Antonio <ArrowUpRight size={14} /></a>
         </figcaption>
       </figure>
+      <img className="brand-process-illustration" src={brandAssets.process} width="720" height="240" alt="" aria-hidden="true" loading="lazy" />
       <div className="process-grid">
         {process.map((step, i) => (
           <article key={step.title}>

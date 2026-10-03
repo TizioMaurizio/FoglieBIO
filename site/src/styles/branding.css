@@ -1,0 +1,65 @@
+/* Supplied brand artwork; documentary photography and bottle remain unchanged. */
+:root { --brand-gold: #af873c; --brand-gold-soft: #d5bb7a; }
+.brand-logo { display: block; width: 68px; height: 68px; object-fit: contain; flex: none; }
+.nav .wordmark { font-size: 23px; gap: 12px; letter-spacing: -.8px; }
+.nav .wordmark small { font-size: 7px; letter-spacing: 1.6px; }
+.nav { border-bottom-color: #af873c40; }
+.footer-main .brand-logo { width: 88px; height: 88px; }
+.footer-main .wordmark { align-items: center; }
+.button { border-color: var(--brand-gold); }
+.button > svg { color: #e2c681; }
+.light-button > svg { color: var(--green-dark); }
+.hero-brand-branch { position: absolute; width: 175px; height: auto; top: 5px; right: -10px; pointer-events: none; z-index: 0; }
+.hero-art .art-note { z-index: 2; }
+.hero-foot { border-top-color: #af873c50; }
+.story-panel, .feature-panel, .product-panel { border-top: 2px solid var(--brand-gold-soft); }
+.label-study img { width: 100%; max-width: 290px; }
+.leaf-profile { background: #f1eee1; border-color: #af873c40; }
+.leaf-profile-copy dl > div { border-top-color: #af873c40; }
+.brand-process-illustration { display: block; width: min(380px, 70%); height: auto; margin: 34px auto 0; }
+.brand-process-illustration + .process-grid { margin-top: 26px; }
+.brand-divider { display: block; width: min(430px, 85%); height: auto; margin: 0 auto 18px; }
+.final-cta { padding-top: 50px; }
+.product-origin-emblem { width: 88px; height: 88px; object-fit: contain; position: absolute; right: 16px; bottom: 16px; }
+.purchase-caption { padding-inline: 40px; }
+.purchase-visual { border: 1px solid #af873c40; }
+.eu-organic-logo { display: block; width: 80px; height: auto; object-fit: contain; flex: none; border: 0; border-radius: 0; }
+.organic-highlight { border-color: #af873c66; background: #fffdf7; padding: 13px 16px; gap: 15px; }
+.organic-highlight .eu-organic-logo { width: 70px; }
+.organic-highlight strong { font-size: 13px; }
+.organic-highlight small { font-size: 11px; }
+.organic-product-card { border-color: #af873c55; border-top-color: var(--label-green); }
+.organic-product-card > .eu-organic-logo { width: 134px; margin-bottom: 24px; }
+.organic-product-card > .eyebrow { margin-bottom: 14px; }
+.product-organic-link { padding: 13px 15px; border: 1px solid #af873c55; background: #fffdf7; text-decoration: none; gap: 14px; font-size: 13px; }
+.product-organic-link .eu-organic-logo { width: 62px; }
+.product-organic-link small { font-size: 10px; }
+.product-organic-link > svg { margin-left: auto; }
+@media(max-width:1100px) {
+  .nav .wordmark { font-size: 19px; gap: 8px; }
+  .nav .brand-logo { width: 56px; height: 56px; }
+  .nav nav { gap: 13px; font-size: 11px; }
+  .hero-brand-branch { width: 125px; right: -8px; }
+  .product-origin-emblem { width: 70px; height: 70px; right: 9px; bottom: 12px; }
+  .purchase-caption { padding-inline: 35px; }
+}
+@media(max-width:700px) {
+  .nav .brand-logo { width: 44px; height: 44px; }
+  .nav .wordmark { font-size: 17px; gap: 7px; letter-spacing: -.7px; }
+  .nav .wordmark small { font-size: 5.5px; letter-spacing: .9px; }
+  .nav .wordmark sup { font-size: 9px; }
+  .hero-brand-branch { width: 100px; top: 12px; right: 1px; }
+  .organic-highlight { padding: 12px; gap: 12px; }
+  .organic-highlight .eu-organic-logo { width: 62px; }
+  .organic-highlight strong { font-size: 11px; }
+  .organic-highlight small { font-size: 10px; }
+  .organic-highlight > svg { width: 14px; }
+  .footer-main .brand-logo { width: 64px; height: 64px; }
+  .footer-main .wordmark { font-size: 22px; }
+  .product-origin-emblem { width: 68px; height: 68px; }
+  .purchase-caption { padding-inline: 25px; max-width: 240px; }
+}
+@media(max-width:375px) {
+  .nav .wordmark { font-size: 15px; }
+  .nav .brand-logo { width: 38px; height: 38px; }
+}

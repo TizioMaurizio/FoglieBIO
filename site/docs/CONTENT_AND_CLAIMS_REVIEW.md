@@ -59,3 +59,9 @@ Consequently, the site highlights the farm’s organic history since 1998, attri
 Italian certificate: https://www.laruotabio.it/wp-content/uploads/2023/05/E3480_LARUOTABIOSRL_214878_CO_ITBIO006.3800010161.2023.001_202303201506.pdf
 
 Annex: https://www.laruotabio.it/wp-content/uploads/2023/05/E3480_LARUOTABIOSRL_214878_CE_20032023_20032023_SchedaAzienda1507.pdf
+
+## Superseding owner confirmation — 3 October 2026
+
+The user explicitly confirmed “il bio è confermato” and instructed use of supplied branding assets. The storefront now presents Foglie Bio Plus as organic and displays the official EU organic logo. Evidence is recorded as `confirmed-by-owner` dated 2026-10-03 in `src/data/organic.ts`; this is not represented as an independent external verification. No renewed document, expiry date, current certification number or product control-body code is fabricated. The previous 2023–2026 operator certificate remains unchanged and historical in the research data; it is no longer used as the prominent product certification card or linked as proof of a renewed certificate.
+
+The user corrected the product/brand date to **2022**. Hero, promotional watermark and organic section use 2022. 1998 remains only in the separately sourced history of Antonio's agricultural career/farm. Supplied promotional artwork with 1998 is excluded from live use. The product certification field now reads “Biologico certificato” based on the user's confirmation.

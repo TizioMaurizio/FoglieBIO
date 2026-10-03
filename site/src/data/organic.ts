@@ -1,6 +1,10 @@
-// Evidence reviewed on 2026-10-02. The published certificate is historical;
-// it must not be used as a current certification claim for Foglie Bio Plus.
+// Product organic status confirmed explicitly by the user on 2026-10-03.
+// The prior operator PDF remains historical evidence; its scope/expiry are not changed.
 export const organic = {
+  productStatus: 'confirmed-by-owner' as const,
+  productConfirmationDate: '2026-10-03',
+  currentProductCertificateUrl: null as string | null,
+  productControlBodyCode: null as string | null,
   farmName: 'A Roda Dea Sega',
   farmSince: '1998',
   farmSource: 'https://www.antonioberti.it/a-roda-dea-sega-25-anni-di-agricoltura-bio-senza-compromessi/',

@@ -1,6 +1,8 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Bottle } from "../components/Primitives";
 import { OrganicHighlight } from './Organic';
+import { brand } from '../data/content';
+import { brandAssets } from '../data/brandAssets';
 export function Hero() {
   return (
     <section className="hero" id="inizio">
@@ -31,6 +33,7 @@ export function Hero() {
         <OrganicHighlight />
       </div>
       <div className="hero-art">
+        <img className="hero-brand-branch" src={brandAssets.branch} width="500" height="500" alt="" aria-hidden="true" />
         <p className="art-note">
           Olea europaea
           <br />
@@ -40,7 +43,7 @@ export function Hero() {
         <span className="vertical-note">ORIGINE DELLE FOGLIE · ITALIA</span>
       </div>
       <div className="hero-foot">
-        <span>COLTIVARE LA CURIOSITÀ, DAL 1998</span>
+        <span>FOGLIE BIO PLUS® · UN’IDEA ITALIANA, DAL {brand.foundedYear}</span>
         <a href="#foglie">
           Un’altra prospettiva sull’olivo <ArrowDown size={14} />
         </a>

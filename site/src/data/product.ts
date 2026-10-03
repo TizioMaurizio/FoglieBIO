@@ -24,7 +24,7 @@ export const product = {
   ingredients: null as string | null,
   dosage: null as string | null,
   storage: null as string | null,
-  certification: null as string | null,
+  certification: 'Biologico certificato',
   options: [
     {
       id: "single",

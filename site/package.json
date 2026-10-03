@@ -12,7 +12,8 @@
     "start": "vite preview",
     "test": "vitest run",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "assets:brand": "node scripts/prepare-brand-assets.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.49.0",
@@ -31,6 +32,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "16.4.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.59.3",

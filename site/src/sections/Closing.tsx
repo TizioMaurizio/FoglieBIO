@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
-import { ArrowUpRight, Plus, ArrowRight, Leaf } from "lucide-react";
+import { ArrowUpRight, Plus, ArrowRight } from "lucide-react";
 import { brand, faq, legal, navigation } from "../data/content";
 import { services, trackEvent } from "../services/providers";
 import { Modal } from "../components/Primitives";
 import { demoEmail } from "../data/demo";
 import { PrivacyNotice, privacyPath } from "../components/Privacy";
+import { BrandLogo } from '../components/BrandLogo';
+import { brandAssets } from '../data/brandAssets';
 import type { Review } from "../services/contracts";
 export function Reviews({ reviews }: { reviews: Review[] }) {
   if (!reviews.length) return null;
@@ -76,7 +78,7 @@ export function FinalCTA({
 }) {
   return (
     <section className="final-cta">
-      <Leaf size={34} strokeWidth={1} />
+      <img className="brand-divider" src={brandAssets.divider} width="1000" height="333" alt="" aria-hidden="true" loading="lazy" />
       <p className="eyebrow">UNA FOGLIA. UNA STORIA. UN’IDEA ITALIANA.</p>
       <h2>
         Conosci la storia.
@@ -159,7 +161,7 @@ export function Footer() {
       </div>
       <div className="footer-main">
         <a className="wordmark" href="#inizio">
-          <Leaf size={24} strokeWidth={1.4} />
+          <BrandLogo decorative />
           <span>
             foglie bio plus<sup>®</sup>
             <small>UNA STORIA LA RUOTA BIO</small>

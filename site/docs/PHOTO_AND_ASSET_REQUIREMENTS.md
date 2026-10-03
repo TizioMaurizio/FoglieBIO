@@ -1,6 +1,6 @@
 # Photography and assets
 
-No fake farm, founder, plant, lifestyle image or fictional bottle was created. The only generated asset is the abstract typographic social card, with no documentary content.
+No fake farm, founder, plant, lifestyle image or fictional bottle was created. The October 3 user-supplied brand illustrations and earlier typographic social card are used as graphic design, not documentary photographs.
 
 ## Usable now
 
@@ -47,3 +47,7 @@ Selected and imported at the user’s explicit request. Images are unchanged sou
 Portrait and panorama both appear on https://www.antonioberti.it/. Farm background is documented at https://www.antonioberti.it/a-roda-dea-sega-25-anni-di-agricoltura-bio-senza-compromessi/ and biography at https://www.antonioberti.it/la-mia-storia/. The farm image is not described as an olive grove or proof of a specific harvesting process. The waterwheel and vegetable-basket images were also inspected but not added, to keep the page focused. Family/school photographs were not reused.
 
 The requested green arch behind the hero bottle has been removed from both markup and CSS. The upright original bottle and subtle floor shadow remain.
+
+## Brand pack — 3 October 2026
+
+All 27 supplied original PNGs are organized in `design/brand/originals`, outside the deployed assets, with original-name/hash mapping in `design/brand/manifest.json`. Active web exports live in `public/brand` and are referenced by `src/data/brandAssets.ts`. The pack supplies the emblem, foliage illustrations, dividers, process symbols and origin ornament. Real farm, founder and bottle photographs remain unchanged. The product date is 2022; 1998 artwork is reference-only. See `design/brand/README.md` for the complete usage map and official EU organic logo source.

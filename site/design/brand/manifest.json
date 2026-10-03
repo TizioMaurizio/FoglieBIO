@@ -1,0 +1,419 @@
+{
+  "receivedOn": "2026-10-03",
+  "assets": [
+    {
+      "index": 1,
+      "filename": "8c359ba6-f3fe-4364-8b52-343bb3d77211.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "f9dafc64778978e3f0ae90538ac2be05653384cfae1439e589ef3aa5740c82a2",
+      "organizedPath": "originals/logos/foglie-bio-plus-emblema.png",
+      "use": "source-library"
+    },
+    {
+      "index": 2,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_30 AM-1.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "75b191ec98b26008b9df263e466a3d5953851eea2c429292df3f6ecfe89e1f0f",
+      "organizedPath": "originals/campaigns/hero-dalla-terra-orizzontale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 3,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_31 AM-2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "62714d5f620d415c54ed29814c5058a7fa2c63b9cff3598b320316d63a994ea7",
+      "organizedPath": "originals/campaigns/nuova-prospettiva-quadrato.png",
+      "use": "source-library"
+    },
+    {
+      "index": 4,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_32 AM-3.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "d72892b5d4d1945f8f3a8bb09a625df9601f3a2e9f9ed17da48ab5a48fba323b",
+      "organizedPath": "originals/campaigns/dalle-foglie-verticale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 5,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_33 AM-4.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "4cc22b671cb6ebeba2933e899964744f8c66eba5f083911e06d00f77e7ee7cf4",
+      "organizedPath": "originals/campaigns/dalla-terra-bottiglia-orizzontale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 6,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_34 AM-5.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "efd861a15c178149adebd1ea4088291f9384ba8a273747221c19b850122a3390",
+      "organizedPath": "originals/reference-only/antonio-1998-non-utilizzare.png",
+      "use": "reference-only"
+    },
+    {
+      "index": 7,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_36 AM-6.png",
+      "size": [
+        1122,
+        1402
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "19dc63b8122f03c5b1c19cdc1429357f6cf0081a8156a519a82f8c85ea942130",
+      "organizedPath": "originals/campaigns/prodotto-verticale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 8,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_37 AM-7.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "976bdfaefa0c7476504cae0d3e78b4fefa8372b1d87feed839b47a0f0dfce6ec",
+      "organizedPath": "originals/campaigns/origine-italia-quadrato.png",
+      "use": "source-library"
+    },
+    {
+      "index": 9,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_38 AM-8.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "3f946e8025e976e78023b146426efaa6789b0a9e241aefb3d6430896c14d57e7",
+      "organizedPath": "originals/campaigns/ambientazione-olivo-orizzontale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 10,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_39 AM-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "f9dafc64778978e3f0ae90538ac2be05653384cfae1439e589ef3aa5740c82a2",
+      "organizedPath": "originals/duplicates/foglie-bio-plus-emblema-copia.png",
+      "use": "source-library",
+      "duplicateOf": "originals/logos/foglie-bio-plus-emblema.png"
+    },
+    {
+      "index": 11,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_40 AM-2.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "9e2de889198d86129ebf9f6f9b733f6f2b1e948e367d694e4163e514045ee852",
+      "organizedPath": "originals/decorations/separatore-olivo.png",
+      "use": "source-library"
+    },
+    {
+      "index": 12,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_41 AM-3.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "321f110f01f59fd26be75a44f88986c3a3121e7ed463504c787d329b7b971871",
+      "organizedPath": "originals/badges/origine-italia.png",
+      "use": "source-library"
+    },
+    {
+      "index": 13,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_41 AM-4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "bc737e5753f6fa10192afaf091ea39292dbe6bab9d47c6c07e0a0498ba640d3a",
+      "organizedPath": "originals/lettering/autenticita-terre.png",
+      "use": "source-library"
+    },
+    {
+      "index": 14,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_42 AM-5.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "a0a75ef82db0d6959a6ba3037e9c482704d5b5edd8a769e17a91165147f9b7ab",
+      "organizedPath": "originals/icons/processo-con-testi.png",
+      "use": "source-library"
+    },
+    {
+      "index": 15,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_43 AM-6.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "10f7dd0d0c2afa799fd35db8c5e18501249c5026f4b3a7b648e87209fdd8a7ba",
+      "organizedPath": "originals/decorations/ramo-angolo-sinistro.png",
+      "use": "source-library"
+    },
+    {
+      "index": 16,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_44 AM-7.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "14e04ff1a2d774e799f7575b9062b6344bd1de209083e3eec89d76f869d29456",
+      "organizedPath": "originals/illustrations/foglie-rugiada.png",
+      "use": "source-library"
+    },
+    {
+      "index": 17,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_04_44 AM-8.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "112de09be2eb1d8991975b688734cfdaa604619d34161325e28eb5f44da4b902",
+      "organizedPath": "originals/buttons/scopri-prodotto.png",
+      "use": "source-library"
+    },
+    {
+      "index": 18,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_05 AM-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "1eb411dbf86b97f0b407dae145cc9433f09d917b6a4f260372d4be718b9bcdd4",
+      "organizedPath": "originals/decorations/ramo-angolo-destro.png",
+      "use": "source-library"
+    },
+    {
+      "index": 19,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_06 AM-2.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "f52850f5b160d8a7af3aac45a6b970ed42437a48f620f71bab0594da0482e2f6",
+      "organizedPath": "originals/decorations/ghirlanda-orizzontale.png",
+      "use": "source-library"
+    },
+    {
+      "index": 20,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_07 AM-3.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "46fc4a1a368c14008a7e4eee99cb3c8f7b9d838f5a08cfd39f8cab58db0e2d5f",
+      "organizedPath": "originals/patterns/foglie-olivo.png",
+      "use": "source-library"
+    },
+    {
+      "index": 21,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_07 AM-4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "573928fa0d1550fecfdc23dd470e9f04e5f295e97159381923ee0c0120ec3e83",
+      "organizedPath": "originals/frames/cornice-olivo.png",
+      "use": "source-library"
+    },
+    {
+      "index": 22,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_08 AM-5.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "484f17eaf9592d9c1f293130c6b6d6d3335cd58b47723a81e3fd7e734541ec2a",
+      "organizedPath": "originals/lettering/dalla-terra-storia.png",
+      "use": "source-library"
+    },
+    {
+      "index": 23,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_09 AM-6.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "8337e55a74cbeb5d77e5056ba4f329a91d15db294dc5ce497cd0cb02d641c01b",
+      "organizedPath": "originals/lettering/nuova-prospettiva.png",
+      "use": "source-library"
+    },
+    {
+      "index": 24,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_10 AM-7.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "968703eca4c152b752889e6ce5578362666529c79e6c9ff4240b3e41e118507d",
+      "organizedPath": "originals/icons/processo-simboli.png",
+      "use": "source-library"
+    },
+    {
+      "index": 25,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_10 AM-8.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "629277eb64f3c1e90945b45eca49ce1ca22d9267211ed33f0e5116ea101a42c8",
+      "organizedPath": "originals/reference-only/bollino-1998-non-utilizzare.png",
+      "use": "reference-only"
+    },
+    {
+      "index": 26,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_11 AM-9.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "dd66901ec05cf7dba2c8c77f5c08665b3fe571d3074ba6b9b8d3ddbcca405312",
+      "organizedPath": "originals/badges/foglie-olivo-italiane.png",
+      "use": "source-library"
+    },
+    {
+      "index": 27,
+      "filename": "ChatGPT Image Oct 3, 2026, 10_06_13 AM-10.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "4acc4a779fd82bf9be492ce0bb27064ca249890dabfd329233fcfd2486da0f0d",
+      "organizedPath": "originals/decorations/separatore-oro.png",
+      "use": "source-library"
+    }
+  ],
+  "productBrandYear": "2022",
+  "excludedYearArtwork": [
+    6,
+    25
+  ]
+}

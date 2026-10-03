@@ -1,5 +1,6 @@
 export const brand = {
   name: "Foglie Bio Plus®",
+  foundedYear: '2022',
   parent: "La Ruota Bio",
   email: "info@laruotabio.it",
   website: "https://www.laruotabio.it/",

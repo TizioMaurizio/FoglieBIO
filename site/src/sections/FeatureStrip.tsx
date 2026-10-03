@@ -44,7 +44,7 @@ export function FeatureStrip() {
           La storia di Antonio <ArrowUpRight size={20} />
         </span>
         <span className="panel-year" aria-hidden="true">
-          1998
+          2022
         </span>
       </a>
       <section

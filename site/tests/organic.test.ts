@@ -4,24 +4,36 @@ import { describe, expect, it } from 'vitest';
 import { Organic, OrganicHighlight } from '../src/sections/Organic';
 import { organic } from '../src/data/organic';
 import { product } from '../src/data/product';
+import { Hero } from '../src/sections/Hero';
+import { brand } from '../src/data/content';
 
-describe('Organic evidence scope', () => {
-  it('identifies the dated operator certificate without claiming current product certification', () => {
+describe('Confirmed organic branding', () => {
+  it('uses the owner confirmation without inventing a replacement certificate', () => {
     const html = renderToStaticMarkup(createElement(Organic));
-    expect(html).toContain('DOCUMENTO STORICO');
-    expect(html).toContain('La Ruota Bio S.r.l.');
-    expect(html).toContain('ICEA');
-    expect(html).toContain('20 marzo 2023 – 20 marzo 2026');
-    expect(html).toContain('copertura specifica di Foglie Bio Plus devono ancora essere verificati');
-    expect(html).toContain(organic.certificate.pdf);
-    expect(organic.certificate.productScopeVerified).toBe(false);
-    expect(product.certification).toBeNull();
+    expect(organic.productStatus).toBe('confirmed-by-owner');
+    expect(organic.productConfirmationDate).toBe('2026-10-03');
+    expect(product.certification).toBe('Biologico certificato');
+    expect(html).toContain('eu-organic-logo.jpg');
+    expect(html).toContain('Biologico certificato');
+    expect(html).not.toContain('DOCUMENTO STORICO');
+    expect(organic.certificate.status).toBe('historical');
+    expect(organic.certificate.validUntil).toBe('2026-03-20');
+    expect(organic.currentProductCertificateUrl).toBeNull();
+    expect(organic.productControlBodyCode).toBeNull();
   });
-  it('keeps the prominent claim about Antonio’s agricultural history', () => {
+  it('shows the official bio mark and 2022 in the product branding', () => {
     const html = renderToStaticMarkup(createElement(OrganicHighlight));
     expect(html).toContain('href="#biologico"');
-    expect(html).toContain('La storia dell’azienda di Antonio');
-    expect(html).toContain('1998');
-    expect(html).not.toContain('certificato bio');
+    expect(html).toContain('Logo biologico dell’Unione europea');
+    expect(html).toContain('2022');
+    expect(html).not.toContain('1998');
+    expect(brand.foundedYear).toBe('2022');
+  });
+  it('keeps the real upright bottle and uses supplied art as decoration only', () => {
+    const html = renderToStaticMarkup(createElement(Hero));
+    expect(html).toContain('images/bottle.jpg');
+    expect(html).toContain('brand/ramo-olivo.webp');
+    expect(html).not.toContain('1998');
+    expect(html).not.toContain('bottle-backdrop');
   });
 });

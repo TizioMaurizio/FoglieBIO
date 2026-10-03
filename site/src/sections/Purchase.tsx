@@ -4,6 +4,8 @@ import { Bottle, QuantitySelector } from "../components/Primitives";
 import { product } from "../data/product";
 import { integrations } from "../config/integrations";
 import { formatMoney } from "../services/validation";
+import { brandAssets } from '../data/brandAssets';
+import { OrganicLogo } from '../components/BrandLogo';
 export function Purchase({
   quantity,
   onQuantity,
@@ -27,6 +29,7 @@ export function Purchase({
       <div className="purchase-visual">
         <span className="eyebrow">LA TERRA, IN UNA NUOVA FORMA</span>
         <div className="bottle-stage"><Bottle /></div>
+        <img className="product-origin-emblem" src={brandAssets.origin} width="280" height="280" alt="Origine italiana delle foglie d’olivo" loading="lazy" />
         <span className="purchase-caption">
           FOGLIE D’OLIVO · ORIGINE ITALIA
         </span>
@@ -46,7 +49,7 @@ export function Purchase({
             <Package size={16} /> {product.format}
           </span>
         </div>
-        <a className="product-organic-link" href="#biologico">Origine biologica e documentazione aziendale <ArrowUpRight size={16}/></a>
+        <a className="product-organic-link" href="#biologico"><OrganicLogo /><span>Biologico certificato<br/><small>Foglie d’olivo italiane</small></span><ArrowUpRight size={16}/></a>
         <fieldset className="purchase-options">
           <legend>Confezione</legend>
           {options.map((option) => (

@@ -43,3 +43,7 @@ Verified local responsive farm/portrait assets load in Chrome, with no horizonta
 ## Organic documentation highlight
 
 TypeScript, ESLint and 22 tests passed. The new evidence tests require the historical label, operator identity, displayed 2023–2026 dates and unverified product scope. Desktop certification panel and mobile hero highlight were visually inspected; no horizontal overflow at 360, 390, 768, 1024 and 1440 px. Hero, navigation and product links target `#biologico`; the certificate CTA uses the working PDF on La Ruota Bio’s certification page. The site does not use official certification logos or assert current product certification.
+
+## Brand assets and confirmed organic status — 3 October 2026
+
+Verified 27 source PNGs retain their original SHA-256 hashes after organization. Eight optimized WebP exports plus favicon were generated from the supplied art; the official EU organic JPEG is copied unchanged. TypeScript, ESLint and 23 tests passed. Chrome checks at 360, 390, 430, 768, 1024, 1440 and 1920 px found no horizontal overflow, two brand-emblem placements, three organic-logo placements and upright bottle photos. Hero branding uses 2022. The leaf illustration is labelled as an illustration; the old 1998 marketing graphics are not deployed.

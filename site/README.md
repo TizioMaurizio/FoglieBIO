@@ -60,3 +60,7 @@ The public product price is unconfirmed. Only the drawer shows illustrative amou
 Live integration modes fail closed until adapters are implemented. GitHub Pages cannot hold server secrets or process payment webhooks: use a separate trusted backend or a hosted commerce checkout when real services are enabled. See [external integrations](docs/EXTERNAL_INTEGRATIONS.md), [content review](docs/CONTENT_AND_CLAIMS_REVIEW.md), [photography](docs/PHOTO_AND_ASSET_REQUIREMENTS.md) and [QA](docs/QA.md).
 
 The demonstration remains `noindex,nofollow` until final product, legal and commercial details are approved. Public access and search indexing are separate settings.
+
+## Branding assets
+
+Original supplied artwork is organized in `design/brand/originals/`, with filename/hash mapping and usage notes in `design/brand/`. Active optimized exports are in `public/brand/`; rebuild them with `npm run assets:brand`. The UI references `src/data/brandAssets.ts`. Product branding uses 2022. Organic product status was explicitly confirmed by the user on 3 October 2026; historical operator documents remain research-only.
