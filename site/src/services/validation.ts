@@ -39,7 +39,7 @@ export function calculateTotals(
     totalCents: subtotalCents + shippingCents,
   };
 }
-export const formatMoney = (cents: number) =>
-  new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" }).format(
+export const formatMoney = (cents: number, language: "it" | "en" = "it") =>
+  new Intl.NumberFormat(language === "en" ? "en-IE" : "it-IT", { style: "currency", currency: "EUR" }).format(
     cents / 100,
   );

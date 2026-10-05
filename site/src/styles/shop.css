@@ -1,0 +1,77 @@
+/* Focused bilingual storefront. Brand green and original photography are preserved. */
+.shop-preview-banner { background: var(--green-dark); color: #fff; text-align: center; padding: 10px 22px; font-size: 11px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.shop-preview-banner strong { letter-spacing: 1px; }
+.shop-nav { height: 90px; }
+.shop-nav .wordmark { display: flex; align-items: center; }
+.shop-language { display: flex; border: 1px solid var(--line); font-size: 12px; }
+.shop-language a { padding: 9px 12px; }
+.shop-language a[aria-current="page"] { background: var(--green-dark); color: white; }
+.shop-product { max-width: 1320px; padding: 38px 5% 60px; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 7%; align-items: start; }
+.shop-visual { position: sticky; top: 122px; min-width: 0; background: #eeeade; border: 1px solid #af873c40; padding: 30px 24px; overflow: hidden; text-align: center; }
+.shop-visual .eyebrow { position: relative; z-index: 2; margin-bottom: 20px; }
+.shop-visual .bottle { --bottle-height: clamp(360px, 40vw, 550px); }
+.shop-branch { position: absolute; width: 150px; height: auto; right: -18px; top: 54px; opacity: .8; }
+.shop-origin { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; margin-top: 24px; color: var(--green-dark); }
+.shop-purchase { min-width: 0; }
+.shop-purchase h1 { font-size: clamp(45px, 5.3vw, 76px); line-height: 1.05; letter-spacing: -.05em; margin: 14px 0 20px; }
+.shop-purchase h1 span { color: var(--label-green); }
+.shop-purchase h1 sup { font-size: .3em; vertical-align: top; }
+.shop-description { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 520px; }
+.shop-facts { display: flex; align-items: center; gap: 24px; margin: 22px 0; font-size: 12px; }
+.shop-facts > span { display: flex; align-items: center; gap: 9px; }
+.shop-facts img { width: 48px; height: auto; }
+.shop-packs { padding: 0; margin: 0; border: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.shop-packs legend { font-size: 18px; font-family: var(--font-heading); margin-bottom: 12px; }
+.shop-pack { position: relative; display: flex; flex-direction: column; padding: 18px 16px; border: 1px solid #b9c6ae; background: #fffdf7; cursor: pointer; min-width: 0; gap: 4px; }
+.shop-pack.selected { border: 2px solid var(--label-green); padding: 17px 15px; background: var(--green-surface); }
+.shop-pack input { position: absolute; right: 12px; top: 16px; accent-color: var(--green-dark); width: 16px; height: 16px; }
+.shop-pack-title { padding-right: 20px; font-size: 14px; }
+.shop-pack strong { font-size: 24px; font-weight: 500; color: var(--green-dark); }
+.shop-pack > span:not(.shop-pack-title) { color: var(--muted); font-size: 11px; }
+.shop-pack small { font-size: 10px; margin-top: 4px; }
+.shop-price-note { font-size: 11px; margin: 14px 0 20px; color: var(--muted); }
+.shop-summary { margin: 0; padding: 10px 0; border-block: 1px solid var(--line); }
+.shop-summary > div { display: flex; justify-content: space-between; gap: 15px; font-size: 12px; margin: 6px 0; }
+.shop-summary dd { margin: 0; }
+.shop-summary > div:last-child { font-size: 18px; color: var(--green-dark); padding-top: 6px; }
+.shop-buy { width: 100%; margin: 20px 0 12px; }
+.shop-one-off { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 12px; }
+.shop-one-off svg { flex: none; color: var(--green-dark); }
+.shop-information, .shop-faq { max-width: 1320px; padding: 50px 5%; margin: auto; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 7%; border-top: 1px solid var(--line); }
+.shop-information h2, .shop-faq h2 { font-size: clamp(28px,3vw,42px); margin: 12px 0 20px; line-height: 1.15; }
+.shop-information > div > p:last-child { font-size: 12px; max-width: 400px; color: var(--muted); }
+.shop-accordions details { border-bottom: 1px solid var(--line); }
+.shop-accordions summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px 0; cursor: pointer; font-size: 14px; }
+.shop-accordions summary svg { flex: none; }
+.shop-accordions details[open] summary svg { transform: rotate(45deg); }
+.shop-accordions p { padding: 0 0 22px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.shop-footer { padding: 38px 5%; background: var(--green-surface); display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 28px; border-top: 1px solid var(--line); font-size: 12px; }
+.shop-footer > div:first-child { display: flex; align-items: center; gap: 20px; }
+.shop-footer a { text-decoration: underline; text-underline-offset: 3px; }
+.shop-footer nav { display: flex; flex-direction: column; gap: 8px; }
+.shop-footer small { grid-column: 1/-1; }
+.shop-pack-select { display: grid; gap: 5px; font-size: 12px; margin-top: 14px; }
+.shop-pack-select select { padding: 8px; border: 1px solid var(--line); background: white; }
+.checkout-product .bottle { --bottle-height: 130px; }
+.policy-links { display: flex; flex-wrap: wrap; gap: 18px; margin: 26px 0; font-size: 13px; }
+@media(max-width:800px) {
+  .shop-nav .shop-nav-links { display: none; }
+  .shop-product { gap: 28px; padding-inline: 5%; }
+  .shop-visual { padding: 24px 12px; top: 105px; }
+  .shop-visual .bottle { --bottle-height: 340px; }
+  .shop-footer { grid-template-columns: 1fr 1fr; }
+  .shop-footer > div:first-child { grid-column: 1/-1; }
+}
+@media(max-width:600px) {
+  .shop-preview-banner { gap: 2px; padding: 8px 15px; font-size: 10px; }
+  .shop-nav { height: 74px; padding-inline: 5%; }
+  .shop-product, .shop-information, .shop-faq { grid-template-columns: 1fr; gap: 26px; }
+  .shop-product { padding-top: 20px; }
+  .shop-visual { position: relative; top: auto; padding: 20px; }
+  .shop-visual .bottle { --bottle-height: 300px; }
+  .shop-purchase h1 { font-size: 52px; }
+  .shop-information, .shop-faq { padding-block: 32px; }
+  .shop-footer { gap: 22px; font-size: 11px; }
+  .shop-footer > div:first-child { align-items: start; }
+  .shop-language a { padding: 8px 10px; }
+}

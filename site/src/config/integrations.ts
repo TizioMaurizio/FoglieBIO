@@ -1,9 +1,9 @@
 import { SITE_URL } from "./site";
 export type IntegrationMode = "mock" | "live";
 
-// Live modes deliberately fail closed until real server-backed adapters exist.
+// Only Stripe sandbox links are wired. Live services still fail closed.
 export const integrations = {
-  checkoutMode: "mock" as IntegrationMode,
+  checkoutMode: "stripe-test" as "stripe-test" | "live",
   analyticsMode: "mock" as IntegrationMode,
   newsletterMode: "mock" as IntegrationMode,
   shippingMode: "mock" as IntegrationMode,

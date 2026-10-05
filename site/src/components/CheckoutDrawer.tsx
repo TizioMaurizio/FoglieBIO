@@ -1,333 +1,36 @@
-"use client";
-import { useRef, useState } from "react";
-import {
-  ArrowRight,
-  ArrowLeft,
-  Check,
-  CreditCard,
-  LockKeyhole,
-} from "lucide-react";
-import { Modal, Bottle, QuantitySelector } from "./Primitives";
-import { PrivacyNotice } from "./Privacy";
-import { demoCustomer } from "../data/demo";
-import { integrations } from "../config/integrations";
-import { product } from "../data/product";
-import { services, trackEvent } from "../services/providers";
-import {
-  calculateTotals,
-  formatMoney,
-  validateCustomer,
-} from "../services/validation";
-import type { Customer, PaymentMethod } from "../services/contracts";
+import { useState } from "react";
+import { ArrowUpRight, ArrowLeft, LockKeyhole } from "lucide-react";
+import { Modal, Bottle } from "./Primitives";
+import { pagePath, shopCopy, type Language } from "../data/shopCopy";
+import { formatMoney } from "../services/validation";
+import { getStripeTestCheckoutUrl, getTestOffer, stripeTest } from "../services/stripeTest";
 
-const fields: {
-  key: keyof Customer;
-  label: string;
-  type?: string;
-  autoComplete: string;
-  placeholder?: string;
-  inputMode?: "numeric" | "tel" | "email";
-}[] = [
-  { key: "firstName", label: "Nome", autoComplete: "given-name" },
-  { key: "lastName", label: "Cognome", autoComplete: "family-name" },
-  {
-    key: "email",
-    label: "Email",
-    type: "email",
-    autoComplete: "email",
-    inputMode: "email",
-  },
-  {
-    key: "phone",
-    label: "Telefono",
-    type: "tel",
-    autoComplete: "tel",
-    inputMode: "tel",
-  },
-  { key: "address", label: "Indirizzo", autoComplete: "street-address" },
-  { key: "city", label: "Città", autoComplete: "address-level2" },
-  {
-    key: "postalCode",
-    label: "CAP",
-    autoComplete: "postal-code",
-    placeholder: "35018",
-    inputMode: "numeric",
-  },
-  {
-    key: "province",
-    label: "Provincia",
-    autoComplete: "address-level1",
-    placeholder: "PD",
-  },
-];
-const methods: { id: PaymentMethod; label: string }[] = [
-  { id: "card", label: "Carta" },
-  { id: "paypal", label: "PayPal" },
-  { id: "apple", label: "Apple Pay" },
-  { id: "google", label: "Google Pay" },
-];
-
-
-export function CheckoutDrawer({
-  quantity,
-  setQuantity,
-  optionId,
-  onClose,
-}: {
-  quantity: number;
-  setQuantity: (quantity: number) => void;
-  optionId: string;
-  onClose: () => void;
+export function CheckoutDrawer({ quantity, setQuantity, language = "it", onClose }: {
+  quantity: number; setQuantity: (quantity: number) => void; language?: Language; onClose: () => void;
 }) {
-  const [step, setStep] = useState<"details" | "payment" | "success">(
-    "details",
-  );
-  const customer = demoCustomer;
-  const [errors, setErrors] = useState<Partial<Record<keyof Customer, string>>>(
-    {},
-  );
-  const [method, setMethod] = useState<PaymentMethod>("card");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const form = useRef<HTMLFormElement>(null);
-  const busyRef = useRef(false);
-  const totals = calculateTotals(
-    integrations.demoUnitPriceCents,
-    quantity,
-    integrations.demoShippingCents,
-  );
-  const selectedOption = product.options.find((o) => o.id === optionId)!;
-  function continueToPayment(event: React.FormEvent) {
-    event.preventDefault();
-    const validation = validateCustomer(customer);
-    setErrors(validation);
-    if (Object.keys(validation).length) {
-      const field = Object.keys(validation)[0];
-      form.current
-        ?.querySelector<HTMLInputElement>(`[name="${field}"]`)
-        ?.focus();
-      return;
-    }
-    setStep("payment");
-  }
-  async function confirm() {
-    if (busyRef.current) return;
-    busyRef.current = true;
-    setBusy(true);
-    setError("");
-    try {
-      const session = await services.payment.createCheckout({
-        productId: product.id,
-        optionId,
-        quantity,
-        method,
-        customer,
-      });
-      const result = await services.payment.confirmPayment(session);
-      trackEvent("purchase", {
-        product_id: product.id,
-        product_name: product.name,
-        quantity,
-        price: integrations.demoUnitPriceCents / 100,
-        currency: product.currency,
-        simulated: result.simulated,
-      });
-      setStep("success");
-    } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : "Non è stato possibile completare la simulazione. Riprova.",
-      );
-    } finally {
-      busyRef.current = false;
-      setBusy(false);
-    }
-  }
-  return (
-    <Modal
-      title={step === "success" ? "Simulazione completata" : "Il tuo acquisto"}
-      onClose={onClose}
-      className="checkout"
-    >
-      <div className="demo-banner">
-        <LockKeyhole size={17} />
-        <p>
-          <strong>Checkout dimostrativo</strong>
-          <br />
-          Nessun addebito. Nessun ordine inviato. Solo dati di esempio.
-        </p>
-      </div>
-      <PrivacyNotice id="checkout-privacy" />
-      {step === "success" ? (
-        <div className="checkout-success" role="status">
-          <span className="success-mark">
-            <Check size={34} />
-          </span>
-          <h3>Il percorso è completo.</h3>
-          <p>Hai provato l’esperienza di acquisto di Foglie Bio Plus.</p>
-          <p>
-            <strong>Il pagamento non è attivo.</strong> Nessun importo è stato
-            addebitato, nessun ordine registrato e nessuna email inviata.
-          </p>
-          <button className="button" onClick={onClose}>
-            Torna alla scoperta <ArrowRight size={18} />
-          </button>
-        </div>
-      ) : (
-        <>
-          <ol className="checkout-steps" aria-label="Fasi del checkout">
-            <li aria-current={step === "details" ? "step" : undefined}>
-              01 · Dati di esempio
-            </li>
-            <li aria-current={step === "payment" ? "step" : undefined}>
-              02 · Pagamento demo
-            </li>
-          </ol>
-          <div className="checkout-product">
-            <Bottle />
-            <div>
-              <h3>{product.name}</h3>
-              <p>
-                {selectedOption.title} · {product.format}
-              </p>
-              <small>
-                {formatMoney(integrations.demoUnitPriceCents)} / bottiglia ·
-                esempio
-              </small>
-              <QuantitySelector value={quantity} onChange={setQuantity} />
-            </div>
-          </div>
-          <dl className="checkout-totals">
-            <div>
-              <dt>Subtotale</dt>
-              <dd>{formatMoney(totals.subtotalCents)}</dd>
-            </div>
-            <div>
-              <dt>Spedizione · esempio</dt>
-              <dd>{formatMoney(totals.shippingCents)}</dd>
-            </div>
-            <div className="total">
-              <dt>Totale demo</dt>
-              <dd>{formatMoney(totals.totalCents)}</dd>
-            </div>
-          </dl>
-          <p className="fine-print">
-            Importi illustrativi: prezzo, imposte applicabili e tariffe di
-            spedizione definitive sono da confermare.
-          </p>
-          {step === "details" ? (
-            <form ref={form} onSubmit={continueToPayment} autoComplete="off" noValidate>
-              <h3 className="form-title">Dati e indirizzo di esempio</h3>
-              <div className="form-grid">
-                {fields.map((field) => (
-                  <label
-                    className={field.key === "address" ? "full-field" : ""}
-                    key={field.key}
-                    htmlFor={`checkout-${field.key}`}
-                  >
-                    {field.label}
-                    <input
-                      id={`checkout-${field.key}`}
-                      name={field.key}
-                      type={field.type || "text"}
-                      autoComplete="off"
-                      readOnly
-                      aria-label={field.label}
-                      placeholder={field.placeholder}
-                      inputMode={field.inputMode}
-                      value={customer[field.key]}
-                      maxLength={
-                        field.key === "province"
-                          ? 2
-                          : field.key === "postalCode"
-                            ? 5
-                            : 150
-                      }
-                      required
-                      aria-invalid={!!errors[field.key]}
-                      aria-describedby={
-                        errors[field.key] ? `error-${field.key}` : undefined
-                      }
-
-                    />
-                    {errors[field.key] && (
-                      <span className="field-error" id={`error-${field.key}`}>
-                        {errors[field.key]}
-                      </span>
-                    )}
-                  </label>
-                ))}
-                <label className="full-field" htmlFor="checkout-country">
-                  Paese
-                  <input id="checkout-country" name="country" value="Italia" readOnly autoComplete="off" />
-                </label>
-              </div>
-              <p className="fine-print">
-                I dati mostrati sono fittizi e non modificabili. Puoi continuare
-                senza comunicare informazioni personali.
-              </p>
-              <button className="button full-button" type="submit">
-                Continua al pagamento demo <ArrowRight size={18} />
-              </button>
-            </form>
-          ) : (
-            <div className="payment-step">
-              <h3
-                className="form-title"
-                tabIndex={-1}
-                ref={(node) => {
-                  node?.focus();
-                }}
-              >
-                Scegli un metodo dimostrativo
-              </h3>
-              <fieldset className="payment-methods">
-                <legend className="sr-only">Metodo di pagamento</legend>
-                {methods.map((item) => (
-                  <label
-                    key={item.id}
-                    className={method === item.id ? "selected" : ""}
-                  >
-                    <input
-                      type="radio"
-                      name="payment-method"
-                      checked={method === item.id}
-                      onChange={() => setMethod(item.id)}
-                    />
-                    {item.id === "card" && <CreditCard size={18} />}
-                    <span>{item.label}</span>
-                  </label>
-                ))}
-              </fieldset>
-              <p className="payment-explanation">
-                {methods.find((m) => m.id === method)?.label} è mostrato solo
-                come esempio. Non inserire numeri di carta o credenziali: non è
-                previsto alcun collegamento al servizio.
-              </p>
-              {error && (
-                <p role="alert" className="field-error">
-                  {error}
-                </p>
-              )}
-              <button
-                className="button full-button"
-                disabled={busy}
-                onClick={confirm}
-              >
-                {busy ? "Simulazione in corso…" : "Concludi — Demo checkout"}{" "}
-                <ArrowRight size={18} />
-              </button>
-              <button
-                className="text-link back-button"
-                onClick={() => setStep("details")}
-              >
-                <ArrowLeft size={16} /> Torna ai dati di esempio
-              </button>
-            </div>
-          )}
-        </>
-      )}
-    </Modal>
-  );
+  const t = shopCopy[language];
+  const [opened, setOpened] = useState(false);
+  let checkoutUrl: string | undefined;
+  let offer: ReturnType<typeof getTestOffer> | undefined;
+  try { offer = getTestOffer(quantity); checkoutUrl = getStripeTestCheckoutUrl(quantity, language); } catch { /* Fail closed. */ }
+  const money = (amount: number) => formatMoney(amount, language);
+  return <Modal title={t.checkoutTitle} onClose={onClose} closeLabel={t.close} className="checkout">
+    <div className="demo-banner"><LockKeyhole size={17} aria-hidden="true" /><p><strong>{t.testBanner}</strong><br />{t.testNoOrder}</p></div>
+    <div className="checkout-product"><Bottle alt={t.bottleAlt} /><div><h3>Foglie Bio Plus®</h3><p>{quantity} × 1 L</p><label className="shop-pack-select">{t.changePack}<select value={quantity} onChange={event => { setQuantity(Number(event.target.value)); setOpened(false); }}>{stripeTest.offers.map(item => <option key={item.bottles} value={item.bottles}>{item.bottles} × 1 L</option>)}</select></label></div></div>
+    {offer && <dl className="checkout-totals"><div><dt>{t.packTotal}</dt><dd>{money(offer.amountCents)}</dd></div><div><dt>{t.shipping}</dt><dd>{money(stripeTest.shippingAmountCents)}</dd></div><div className="total"><dt>{t.total}</dt><dd>{money(offer.amountCents + stripeTest.shippingAmountCents)}</dd></div></dl>}
+    <p className="fine-print">{t.shippingNote}</p>
+    <aside className="privacy-notice" aria-labelledby="stripe-test-privacy"><LockKeyhole size={20} aria-hidden="true" /><div><h3 id="stripe-test-privacy">{t.safeTitle}</h3><p>{t.safeText}</p><a href={pagePath(language, "privacy")} target="_blank" rel="noopener noreferrer">{t.privacy} <span className="sr-only">{t.newTab}</span></a></div></aside>
+    <details className="stripe-test-guide" open><summary>{t.testData}</summary><dl>
+      <div><dt>Email</dt><dd><code>demo@example.com</code></dd></div>
+      <div><dt>{t.name}</dt><dd>{language === "it" ? "Cliente Test" : "Test Customer"}</dd></div>
+      <div><dt>{t.address}</dt><dd>Via Esempio 1, 35100 Padova (PD), {language === "it" ? "Italia" : "Italy"}</dd></div>
+      <div><dt>{t.phone}</dt><dd><code>+1 202 555 0100</code></dd></div>
+      <div><dt>{t.card}</dt><dd><code>4242 4242 4242 4242</code></dd></div>
+      <div><dt>{t.expiry}</dt><dd><code>12/34</code> / <code>123</code></dd></div>
+    </dl><p>{t.decline} <code>4000 0000 0000 0002</code>.</p></details>
+    <p className="payment-explanation">{t.fixedPack} {t.oneOff}</p>
+    {checkoutUrl ? <a className="button full-button" href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick={() => setOpened(true)}>{t.pay}<ArrowUpRight size={18} aria-hidden="true" /><span className="sr-only">{t.newTab}</span></a> : <p className="field-error" role="alert">{t.unavailable}</p>}
+    {opened && <p className="stripe-test-return" role="status">{t.returned}</p>}
+    <button className="text-link back-button" onClick={onClose}><ArrowLeft size={16} aria-hidden="true" />{t.back}</button>
+  </Modal>;
 }

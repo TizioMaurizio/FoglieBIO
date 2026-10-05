@@ -94,12 +94,11 @@ export class LocalReviewsProvider implements ReviewsProvider {
 function createServices() {
   if (
     [
-      integrations.checkoutMode,
       integrations.shippingMode,
       integrations.newsletterMode,
       integrations.analyticsMode,
       integrations.inventoryMode,
-    ].some((m) => m !== "mock") ||
+    ].some((m) => m !== "mock") || integrations.checkoutMode !== "stripe-test" ||
     integrations.reviewsMode !== "local"
   ) {
     throw new Error(
@@ -109,7 +108,6 @@ function createServices() {
   const shipping = new MockShippingProvider();
   return {
     shipping,
-    payment: new MockPaymentProvider(shipping),
     email: new MockEmailProvider(),
     analytics: new MockAnalyticsProvider(),
     inventory: new MockInventoryProvider(),

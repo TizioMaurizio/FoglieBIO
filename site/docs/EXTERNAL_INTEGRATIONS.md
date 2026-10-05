@@ -1,64 +1,26 @@
-# External integrations
+# Current external integrations
 
-All commerce is **MOCKED**. No live credential or provider is initialized. The interface is demonstrable; order fulfillment is not implemented. No contact form was added: the verified public contact address is available as a mailto link.
+The active site is a focused bilingual shop preview. Real customer sales are not enabled.
 
-| Feature                      | Status / current implementation                  | Future service                                  | Connection point                                                          | Required configuration                                                                   | UI impact                                                                              |
-| ---------------------------- | ------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Payment                      | MOCKED: MockPaymentProvider                      | Stripe / PayPal / commerce platform             | PaymentProvider in `src/services/contracts.ts`; factory in `providers.ts` | Backend secret keys, webhook secrets, public client IDs; approved product IDs and prices | Keep summary/forms; replace method mock with provider-owned secure widgets or redirect |
-| Shipping                     | MOCKED: MockShippingProvider                     | Fulfillment/carrier API                         | ShippingProvider.quote                                                    | Server credentials, origin, countries, VAT and rates                                     | Requote address/cart changes; no layout rebuild                                        |
-| Inventory                    | MOCKED: available, no scarcity text              | Commerce backend                                | InventoryProvider.getStatus                                               | Stock source, SKU mapping                                                                | Existing entry guard; enforce server-side at order time                                |
-| Newsletter                   | MOCKED: MockEmailProvider                        | Brevo / Klaviyo / Mailchimp                     | EmailProvider.subscribe                                                   | Backend API key, audience/list ID, approved consent text                                 | Add authoritative success, double opt-in flow, errors                                  |
-| Reviews                      | READY TO WIRE: LocalReviewsProvider returns []   | Verified review platform                        | ReviewsProvider.list and Reviews component                                | Account, product mapping, moderation policy                                              | Existing component hidden while empty                                                  |
-| Analytics                    | MOCKED: no-op MockAnalyticsProvider              | GA4 / Google Ads / Meta                         | AnalyticsProvider.trackEvent                                              | Provider IDs, CMP gate, server CAPI token only on backend                                | None to core layout                                                                    |
-| Consent                      | READY TO WIRE: no trackers or stored preferences | CMP                                             | Gate live analytics initialization centrally                              | Regional consent policy, approved privacy/cookie text                                    | Add real preference controls when tracking exists                                      |
-| Orders / emails              | BLOCKED BY BUSINESS DECISION                     | Backend, commerce platform, transactional email | Live payment webhook + idempotent order service                           | Tax, inventory, order model, approved templates, support                                 | Real confirmation/reference after server confirmation                                  |
-| Subscriptions / reorder      | BLOCKED BY BUSINESS DECISION; disabled           | Chosen commerce platform                        | PurchaseOption.kind + subscriptionsEnabled                                | Approved duration, quantity, price, cancellation and renewal terms                       | Activate structured options only after approval                                        |
-| Customer account / CRM / CMS | Not implemented                                  | Platform to be selected                         | Add adapters only when required                                           | NEEDS CREDENTIALS and data model                                                         | Optional future scope                                                                  |
+| Feature | Current state | Before live sales |
+| --- | --- | --- |
+| Checkout | 4 Stripe sandbox links: 1/3 bottles × IT/EN | Tax/shipping completion, account activation, live configuration |
+| Promotions | Antonio's EUR 42.50 base; 3 bottles at EUR 117.30 with immediate 8% saving | Final tax treatment, truthful price presentation; no loyalty stacking |
+| Europe + Switzerland | EU27 + CH shipping-address selector in all links | Country-specific product/label, VAT, Swiss import/clearance and carrier checks |
+| Shipping | Fictional EUR 5.90 test rate, localized names | Real pack/weight/country rates and delivery commitments |
+| Taxes/invoices | Unconfigured; no automatic tax or fiscal invoice | Accountant's classification, registrations/OSS and invoicing process |
+| Branding | Official logo; Foglie Bio green #5A783C | Confirm production business/support identity |
+| Language | IT/EN storefront, checkout messages and policy-preview pages | Approved product translations and locally required food-information languages |
+| Orders/stock | No real fulfillment or stock claim | Documented manual process or verified webhook/order system |
+| Newsletter, reviews, account, analytics | Removed from active storefront/not activated | Optional future scope |
+| Legal/privacy | Clearly labelled bilingual preview information | Approved commercial policies and actual processor/data flows |
 
-## Provider behavior and launch safeguards
+The storefront uses only public URLs and resource IDs. Stripe CLI authentication remains in the user's normal configuration outside Git; no frontend secret or Stripe SDK is needed. The active page does not call the old mock stock, newsletter, review or analytics services. Older source/research remains available but is not rendered.
 
-Modes are centralized in `src/config/integrations.ts`. Live selection fails closed until adapters are registered. Unknown public price, ingredients, dosage, storage and certification remain null. Mock rates are explicitly named `demoUnitPriceCents` and `demoShippingCents`. They must never be reused as production defaults. All totals use integer cents.
+For automated fulfillment, verify Stripe webhook signatures, check authoritative payment/amount data and make processing idempotent. A client page or URL cannot prove payment. A controlled manual Dashboard workflow is also an option for an initial release if the business can reliably process orders and stock.
 
-Production must validate SKU, enabled offer, quantity, price, country, tax, shipping and stock on a trusted backend. Stripe Checkout sessions should be created there; confirm fulfillment from a verified webhook with idempotency, not a client success page. PayPal orders should also be created and captured server-side with webhook reconciliation. Apple Pay/Google Pay availability must be checked through the selected payment provider. Live confirmation and legal consent semantics need adaptation; a flag alone is intentionally insufficient.
+No field claiming “one month per bottle” or guaranteed duration is added: monthly purchasing is a planning assumption. No recurring payments, campaign, reminders or email subscriptions were activated.
 
-Newsletter/contact credentials must remain server-side. Add abuse protection, server validation, consent evidence and the chosen opt-in policy before collecting addresses. Customer data must not enter analytics payloads or logs. In the demo, forms use volatile component state only and do not call fetch or storage APIs.
+The GitHub Pages workflow publishes the sandbox preview after a push to main. Its [usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) restrict ecommerce hosting, so choose a suitable production host/domain plan before accepting real sales.
 
-## Event map
-
-Prepared events: page_view, view_item (product enters viewport), select_product, add_to_cart, begin_checkout, purchase, newsletter_signup, faq_open, story_view, cta_click. Commerce payloads support product_id, product_name, quantity, price and currency EUR. Sources distinguish navigation, product and final CTA. Demo events carry `simulated: true` where applicable and the adapter does nothing.
-
-The live adapter **must discard simulated events**. Map product fields to GA4 `items` and Meta `content_ids`; generate one stable server order/event ID and deduplicate Pixel/CAPI. Emit real purchase only after confirmed payment; avoid firing once per render or return-page reload. Do not use health information for audience segmentation. Initialize analytics only after required CMP consent. Search Console requires domain verification. Merchant Center requires verified price, stock, shipping and complete commerce/legal data; the current no-offer demo is unsuitable for a product feed.
-
-## Economics model to populate later
-
-Required inputs: ex-VAT revenue, VAT rate, product cost, packaging, shipping charged and actual shipping, payment fees, discounts, returns, repeat purchase cadence. Contribution before marketing = ex-VAT revenue − variable costs; first-order break-even CAC equals that contribution. Define ROAS on the same revenue basis as the ad platform. AOV and LTV remain unknown; no inferred forecasts or one-month supply are shown.
-
-## Antonio / business checklist
-
-- Final VAT-inclusive retail price and approved offers.
-- Current full label, 1 L format confirmation, ingredient order/allergens, dosage, storage and shelf life after opening.
-- Actual packaging material; DOCX says glass but the photographed material is not independently verified.
-- Farm identity/location, processing lab/location, producer/distributor responsibilities.
-- Current organic certificate and whether this exact product/SKU is in scope.
-- Shipping rates/countries/times, stock process, tax and returns rules.
-- Confirm published company details and support address; approved privacy, cookies and sales conditions.
-- Payment/commerce/email providers; real reviews and consent to publish them.
-- Final legal review of label, landing and intended ad creative before live launch.
-
-## GitHub Pages hosting
-
-The frontend is served publicly at https://tiziomaurizio.github.io/FoglieBIO/ without authentication. GitHub Pages is static hosting: future live providers must use a separate backend or a hosted checkout. Never put payment/email secrets in frontend code or GitHub Pages assets. Publishing does not turn the existing mock providers into live services.
-
-## Public demo privacy update — 2 October 2026
-
-Checkout and newsletter are now sample-only: personal/contact inputs are prefilled and read-only; the public UI does not collect visitor details. MockPaymentProvider and MockEmailProvider reject non-fixture customer data. The `true` argument in the fixed newsletter demo call is internal simulation behavior, not recorded visitor consent and must never be reused by a live adapter. No live adapter exists; switching modes still fails closed.
-
-Before enabling live collection, confirm the controller and legal authority for this domain, purposes and legal bases, required/optional fields, processor contracts, recipients, retention schedules, transfers, data subject request contact and complaint route. Publish the appropriate Article 13 notice at collection time. Do not equate reading a privacy notice with marketing consent; use a separate optional marketing opt-in where needed. Contract/order processing must have its own appropriate basis. GitHub Pages technical request/IP processing must also be assessed; absence of data submission in forms is not a GDPR exemption.
-
-La Ruota Bio’s official policy (retrieved 2 October 2026; policy dated 28 September 2026): https://www.laruotabio.it/privacy-policy/. It identifies La Ruota Bio S.r.l., Via Sega 9, 35018 San Martino di Lupari (PD), P. IVA 05501560287, info@laruotabio.it and laruotabiosrl@legalmail.it. The user deferred final controller/legal validation for this new domain. The demo links to this policy as a reference rather than copying its operational claims into the new storefront.
-
-Sources: [EDPB transparency and rights](https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en), [EDPB lawful processing](https://www.edpb.europa.eu/sme/be-compliant/process-personal-data-lawfully_en), [GitHub Pages IP logging](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection), [GitHub privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
-
-Organic certification: the public operator document expires on 20 March 2026 and is shown as historical only. The live-launch checklist requires an updated certificate plus verified Foglie Bio Plus product/label scope. Do not promote `src/data/organic.ts` evidence into a current product certification claim without that review.
-
-Update 3 October 2026: organic status is now explicitly confirmed by the user and used in the UI; the earlier dated operator document stays historical. New product certificate/control-code metadata has not been supplied and is not inferred. Branding source files and optimized public assets are separate. Mock payments, newsletter privacy and all external integration modes remain unchanged.
+Detailed sources, test instructions and decisions: [checkout guide](STRIPE_TEST_CHECKOUT.md), [promotion plan](PROMOTION_PLAN.md), [owner vs autonomous checklist](ANTONIO_CALL_CHECKLIST.md), [product evidence](CONTENT_AND_CLAIMS_REVIEW.md).

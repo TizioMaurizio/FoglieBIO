@@ -864,6 +864,23 @@ footer {
   font-size: 12px;
   color: var(--muted);
 }
+.stripe-test-guide {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+}
+.stripe-test-guide summary { cursor: pointer; font-weight: 600; }
+.stripe-test-guide dl { margin: 14px 0; }
+.stripe-test-guide dl > div { display: grid; grid-template-columns: 125px minmax(0, 1fr); gap: 12px; margin: 9px 0; }
+.stripe-test-guide dt { color: var(--muted); }
+.stripe-test-guide dd { margin: 0; overflow-wrap: anywhere; }
+.stripe-test-guide code { font-size: 12px; white-space: normal; }
+.stripe-test-guide p { margin-bottom: 0; }
+.stripe-test-return { padding: 15px; background: var(--green-surface); font-size: 12px; line-height: 1.7; }
+@media (max-width: 400px) {
+  .stripe-test-guide dl > div { grid-template-columns: 1fr; gap: 3px; }
+}
 .back-button {
   margin-top: 23px;
 }

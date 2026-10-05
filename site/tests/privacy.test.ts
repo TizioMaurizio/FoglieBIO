@@ -2,40 +2,38 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, it, expect } from 'vitest';
 import { CheckoutDrawer } from '../src/components/CheckoutDrawer';
-import { Footer } from '../src/sections/Closing';
-import { FeatureStrip } from '../src/sections/FeatureStrip';
-import { Composition } from '../src/sections/Story';
+import { ShopFooter } from '../src/components/LandingPage';
 import { PrivacyPage } from '../src/components/Privacy';
 
-describe('Public demo privacy', () => {
-  it('presents the policy before checkout fields and makes personal fields read-only', () => {
-    const html = renderToStaticMarkup(createElement(CheckoutDrawer, { quantity: 1, setQuantity: () => {}, optionId: 'single', onClose: () => {} }));
-    const fields = [...html.matchAll(/<input\b[^>]*>/g)].map(match => match[0]);
-    expect(fields).toHaveLength(9);
-    fields.forEach(field => { expect(field).toContain('readOnly=""'); expect(field).toContain('autoComplete="off"'); });
-    expect(html.indexOf('privacy.html')).toBeLessThan(html.indexOf('<form'));
+describe('Preview privacy and selling essentials', () => {
+  it.each(['it','en'] as const)('discloses Stripe transmission before leaving the %s page', language => {
+    const html = renderToStaticMarkup(createElement(CheckoutDrawer,{quantity:1,setQuantity:()=>{},language,onClose:()=>{}}));
+    expect(html).not.toContain('<input');
+    expect(html).not.toContain('<form');
+    expect(html.indexOf('privacy.html')).toBeLessThan(html.indexOf('href="https://buy.stripe.com/test_'));
+    expect(html).toContain(language === 'it' ? 'trasmessi e conservati' : 'transmitted and stored');
     expect(html).toContain('demo@example.com');
   });
-  it('does not invite a visitor to supply a real newsletter address or marketing consent', () => {
-    const html = renderToStaticMarkup(createElement(Footer));
-    expect(html).toContain('readOnly=""');
-    expect(html).toContain('demo@example.com');
-    expect(html).not.toContain('type="checkbox"');
-    expect(html).toContain('Informativa privacy');
-    expect(html.indexOf('privacy.html')).toBeLessThan(html.indexOf('id="newsletter-email"'));
+  it.each(['it','en'] as const)('removes the newsletter while retaining legal and support links in %s', language => {
+    const html = renderToStaticMarkup(createElement(ShopFooter,{language}));
+    expect(html).not.toContain('<form');
+    expect(html).not.toContain('<input');
+    expect(html).not.toContain('newsletter');
+    expect(html).toContain('privacy.html');
+    expect(html).toContain('terms.html');
+    expect(html).toContain('cookies.html');
+    expect(html).toContain('info@laruotabio.it');
   });
-  it('discloses hosting data and separates demo information from the official policy', () => {
-    const html = renderToStaticMarkup(createElement(PrivacyPage));
-    expect(html).toContain('GitHub Pages');
-    expect(html).toContain('indirizzo IP');
-    expect(html).toContain('https://www.laruotabio.it/privacy-policy/');
-    expect(html).toContain('prima della raccolta di dati reali');
-  });
-  it('links the product introduction to the composition heading', () => {
-    const strip = renderToStaticMarkup(createElement(FeatureStrip));
-    const section = renderToStaticMarkup(createElement(Composition));
-    expect(strip).toContain('href="#composizione" class="product-panel"');
-    expect(section).toContain('id="composizione"');
-    expect(section).toContain('id="composition-title"');
+  it.each(['it','en'] as const)('provides all translated policy pages without pretending that real sales are active in %s', language => {
+    for(const page of ['privacy','terms','cookies'] as const) {
+      const html = renderToStaticMarkup(createElement(PrivacyPage,{language,page}));
+      expect(html).toContain('<h1>');
+      expect(html).toContain('https://stripe.com/privacy');
+      expect(html).toContain('https://www.laruotabio.it/privacy-policy/');
+      expect(html).not.toContain('<form');
+    }
+    const privacy = renderToStaticMarkup(createElement(PrivacyPage,{language}));
+    expect(privacy).toContain('GitHub Pages');
+    expect(privacy).toContain(language === 'it' ? 'indirizzo IP' : 'IP addresses');
   });
 });

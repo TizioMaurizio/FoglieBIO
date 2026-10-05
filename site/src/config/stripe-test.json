@@ -1,0 +1,83 @@
+{
+  "mode": "stripe-test",
+  "version": 3,
+  "approvalStatus": "antonio_pricing_preview",
+  "accountId": "acct_1UMmrrPxSGPkPPdA",
+  "currency": "eur",
+  "baseUnitAmountCents": 4250,
+  "shippingAmountCents": 590,
+  "allowedShippingCountries": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "CH"
+  ],
+  "shippingRateIds": {
+    "it": "shr_1UN851PxSGPkPPdAts1C8WGJ",
+    "en": "shr_1UN852PxSGPkPPdAKEhC38jJ"
+  },
+  "paymentMethods": [
+    "card",
+    "satispay"
+  ],
+  "offers": [
+    {
+      "bottles": 1,
+      "discountPercent": 0,
+      "amountCents": 4250,
+      "productId": "prod_VNtsl98nZ02Lvk",
+      "priceId": "price_1UN853PxSGPkPPdAYKM0lQrJ",
+      "links": {
+        "it": {
+          "url": "https://buy.stripe.com/test_cNifZjfgN1sA7fb5EVeME0k",
+          "id": "plink_1UN854PxSGPkPPdAb6TGapoi"
+        },
+        "en": {
+          "url": "https://buy.stripe.com/test_4gM14pecJ8V2czvaZfeME0l",
+          "id": "plink_1UN855PxSGPkPPdACrF4K8I8"
+        }
+      }
+    },
+    {
+      "bottles": 3,
+      "discountPercent": 8,
+      "amountCents": 11730,
+      "productId": "prod_VNtsjNHaMTej3Q",
+      "priceId": "price_1UN856PxSGPkPPdAZzByFbI5",
+      "links": {
+        "it": {
+          "url": "https://buy.stripe.com/test_dRm3cx8Spefm2YV2sJeME0m",
+          "id": "plink_1UN857PxSGPkPPdAvPR0lVUD"
+        },
+        "en": {
+          "url": "https://buy.stripe.com/test_fZu14p3y5dbi8jfc3jeME0n",
+          "id": "plink_1UN858PxSGPkPPdANYpTKJbo"
+        }
+      }
+    }
+  ]
+}

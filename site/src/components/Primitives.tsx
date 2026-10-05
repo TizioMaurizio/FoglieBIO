@@ -7,16 +7,18 @@ import { product } from "../data/product";
 export function Bottle({
   className = "",
   priority = false,
+  alt = "Bottiglia originale di Foglie Bio Plus, infuso di foglie d’olivo italiane",
 }: {
   className?: string;
   priority?: boolean;
+  alt?: string;
 }) {
   return (
     <span className={`bottle ${className}`}>
     <img
       className="bottle-photo"
       src={product.image}
-      alt="Bottiglia originale di Foglie Bio Plus, infuso di foglie d’olivo italiane"
+      alt={alt}
       width="1080"
       height="1488"
       loading={priority ? "eager" : "lazy"}
@@ -61,11 +63,13 @@ export function Modal({
   onClose,
   children,
   className = "",
+  closeLabel = "Chiudi",
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   className?: string;
+  closeLabel?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -96,7 +100,7 @@ export function Modal({
         <button
           className="icon-button"
           type="button"
-          aria-label="Chiudi"
+          aria-label={closeLabel}
           onClick={onClose}
         >
           <X size={24} />

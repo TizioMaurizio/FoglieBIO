@@ -1,66 +1,61 @@
-# Foglie Bio Plus
+# Foglie Bio Plus — focused shop preview
 
-Premium Italian landing page and demonstration storefront. React 19, TypeScript, Tailwind 4, Lucide and Vite. The deployment is a **static GitHub Pages site**, with no server, ChatGPT login, Cloudflare Worker or Sites dependency.
+React 19, TypeScript and Vite static storefront. Product, pack choice, essential product information, purchase FAQ, support and localized preview policies. The newsletter demo, long editorial story/timeline and unused reviews are no longer rendered. Original photography, organic branding and Foglie Bio green remain.
 
-Public URL: **https://tiziomaurizio.github.io/FoglieBIO/**
+## Run and verify
 
-## Run and build
-
-Node 22+ is required. From the Git repository root:
+Requires Node 22+:
 
 ```sh
-cd site
 npm ci
 npm run dev
-```
-
-The development URL includes `/FoglieBIO/`. The project base is configured in `vite.config.ts`; `assetUrl()` in `src/config/site.ts` keeps product photographs inside that base. Vite rewrites font/CSS paths. On the original Windows workstation, a temporary Node 22 runtime is available at `../work/node.exe` if the system Node is still version 20.
-
-```sh
 npm run typecheck
 npm run lint
 npm test
 npm run build
-npm run preview
+node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 --strictPort
 ```
 
-The build emits `dist/`. A build-time prerender step includes the page text, product/organization schema, Italian metadata, canonical URL and social tags in `index.html`. The browser hydrates the same React components. GitHub serves files only; no Node runtime or authentication is required. `check-static-build.mjs` verifies the base paths, built assets, prerendered content and absence of the previous authentication origin.
+Built preview routes:
 
-## Git and deployment
+- Italian: http://127.0.0.1:4173/FoglieBIO/
+- English: http://127.0.0.1:4173/FoglieBIO/en/
+- Privacy, terms and cookies: matching `privacy.html`, `terms.html`, `cookies.html` in both directories.
 
-The repository is `TizioMaurizio/FoglieBIO`; the only `.git` lives at the workspace root. Run Git commands from the root or `site/`, with the same result.
+The build prerenders both language pages with matching HTML language, metadata, canonical and hreflang links. Each policy page is standalone and script-free. All eight pages retain noindex/nofollow because commercial details remain unapproved. Language choice uses ordinary links, without cookies/local storage.
 
-Push to `main` to deploy through `.github/workflows/pages.yml`. The workflow installs locked dependencies, runs TypeScript/lint/tests, builds static HTML and uploads **only `site/dist`**. Repository Settings → Pages must use **GitHub Actions** as the build source.
+## Stripe sandbox and offer proposals
 
-## Structure
+Two choices implement Antonio's proposal: one bottle at EUR 42.50, or three bottles at EUR 117.30 (8% off, EUR 39.10 each). The saving applies immediately, including on the first order, without coupons, stacking or a EUR 50 gate. The original EUR 5.90 shipping fixture is explicitly fictional, not a delivery quote.
 
-| Location | Purpose |
-|---|---|
-| `index.html`, `src/main.tsx` | Static document and React hydration entry |
-| `src/entry-server.tsx`, `scripts/prerender.mjs` | Build-time rendering and metadata |
-| `src/styles/` | Editorial design, responsive behavior and motion |
-| `src/components/`, `src/sections/` | Reusable UI, storytelling and checkout |
-| `src/data/` | Product, brand, FAQ, history and schema |
-| `src/config/` | Public origin, asset base and integration modes |
-| `src/services/` | Typed mock providers, validation and integer totals |
-| `public/images/`, `public/fonts/` | Local original product photography and licensed fonts |
-| `public/og.png` | Typographic social card |
-| `tests/`, `docs/` | Commerce tests and launch documentation |
+`src/config/stripe-test.json` is the authoritative public sandbox manifest. Version 3 contains four links: each offer has Italian and English custom messages/shipping names. `getStripeTestCheckoutUrl()` enforces the test Stripe domain and appends the selected locale. Pack quantity is fixed on Stripe to prevent quantity changes from misapplying bulk pricing. Choose another pack on the site.
 
-## Demo checkout
+EU27 plus Switzerland address collection is configured, as selected by the user. Cards, eligible wallets and Satispay are available through Stripe. Country readiness, real VAT/OSS, Swiss imports/tax/clearance, shipping rates and live account verification remain open. English content does not establish product/label eligibility in each market. Prices are based in EUR; no CHF amount was invented.
 
-Click **Acquista** or **Acquista ora**, change quantity and continue with the prefilled, read-only example details. The demo never asks for the visitor’s real name, address, phone or email. Select a payment method and press **Concludi — Demo checkout**. The final screen confirms no payment, order or email occurred.
+No recurring billing, mailing list, marketing automation, account creation or analytics is active. One bottle purchased per month is an internal planning hypothesis, not product dosage or a claim of bottle duration.
 
-Newsletter simulation also uses a fixed `demo@example.com` address. Both mock providers reject customer details or email addresses different from the synthetic fixtures in `src/data/demo.ts`. No marketing consent is collected by the demo.
+Run `./scripts/verify-stripe-test.ps1` from PowerShell for read-only verification of the sandbox account, two product prices, four fixed-pack links, EU27 plus CH, localized shipping, methods and hosted confirmation. The historical network loyalty proposal is documented separately in the promotion plan; no customer-history programme is active.
 
-An explicit privacy notice appears before checkout and newsletter fields. The standalone, script-free [`privacy.html`](https://tiziomaurizio.github.io/FoglieBIO/privacy.html) explains demo behavior, GitHub Pages IP logging, links to the official La Ruota Bio policy and GDPR work needed before live collection. Its wording is not a certification of compliance. The product introduction link “Conosci il prodotto” targets `#composizione`.
+## Public repository and deployment
 
-The public product price is unconfirmed. Only the drawer shows illustrative amounts (€40 per bottle and €5.90 shipping). These are not approved commercial offers. Payment, shipping, stock and analytics remain mocked.
+Only public test URLs and resource IDs are committed as configuration; no secret keys, CLI credentials, customer exports or webhook secrets belong in the repo. The build checks for common credential patterns and non-test Stripe URLs. The frontend needs no Stripe SDK or backend credential.
 
-Live integration modes fail closed until adapters are implemented. GitHub Pages cannot hold server secrets or process payment webhooks: use a separate trusted backend or a hosted commerce checkout when real services are enabled. See [external integrations](docs/EXTERNAL_INTEGRATIONS.md), [content review](docs/CONTENT_AND_CLAIMS_REVIEW.md), [photography](docs/PHOTO_AND_ASSET_REQUIREMENTS.md) and [QA](docs/QA.md).
+The existing GitHub Pages workflow publishes this sandbox preview on a push to main; only dist is uploaded. Publishing the preview does not enable live payments. Select appropriate ecommerce hosting for the live shop, since GitHub Pages restricts commercial ecommerce hosting.
 
-The demonstration remains `noindex,nofollow` until final product, legal and commercial details are approved. Public access and search indexing are separate settings.
+## Maintained entry points
 
-## Branding assets
+| Path | Purpose |
+| --- | --- |
+| `src/components/LandingPage.tsx` | Focused store and footer |
+| `src/components/CheckoutDrawer.tsx` | Pack summary and safe test handoff |
+| `src/data/shopCopy.ts`, `policies.ts` | Full Italian/English copy |
+| `src/services/stripeTest.ts` | Fixed-pack and locale validation |
+| `src/config/stripe-test.json` | Public test resources |
+| `src/styles/shop.css` | Responsive storefront layout |
+| `scripts/prerender.mjs` | Both store pages and six policy pages |
+| `docs/PROMOTION_PLAN.md` | Proposed discount and repeat-purchase strategy |
+| `docs/ANTONIO_CALL_CHECKLIST.md` | Autonomous work vs owner approvals |
 
-Original supplied artwork is organized in `design/brand/originals/`, with filename/hash mapping and usage notes in `design/brand/`. Active optimized exports are in `public/brand/`; rebuild them with `npm run assets:brand`. The UI references `src/data/brandAssets.ts`. Product branding uses 2022. Organic product status was explicitly confirmed by the user on 3 October 2026; historical operator documents remain research-only.
+Earlier editorial components, research and mock-provider classes remain as unmounted source/reference material; they are not the active purchase flow. The active page imports no newsletter, review service, fake stock provider or analytics provider.
+
+See [test instructions](docs/STRIPE_TEST_CHECKOUT.md), [promotion plan](docs/PROMOTION_PLAN.md), [call checklist](docs/ANTONIO_CALL_CHECKLIST.md) and [product/content evidence](docs/CONTENT_AND_CLAIMS_REVIEW.md).

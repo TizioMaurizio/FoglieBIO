@@ -14,4 +14,4 @@ Use Node 22+. Push changes to `main` to trigger `.github/workflows/pages.yml`: v
 
 This repository contains the current site only. Its source, assets, tests and documentation live in `site/`.
 
-Payments, checkout, newsletter and shipping remain demonstrations. See the [integration plan](site/docs/EXTERNAL_INTEGRATIONS.md) before enabling real commerce.
+The focused shop preview supports Italian and English, with Antonio's single-bottle / three-bottle 8% offer and Stripe **sandbox** checkout for EU27 plus Switzerland. Newsletter, long editorial sections and unused reviews are removed from the active page. No real fulfillment is enabled. See the [test guide](site/docs/STRIPE_TEST_CHECKOUT.md), [promotion plan](site/docs/PROMOTION_PLAN.md) and [Antonio call checklist](site/docs/ANTONIO_CALL_CHECKLIST.md). The GitHub Pages workflow publishes the test preview after a push to main.

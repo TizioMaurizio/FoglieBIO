@@ -80,7 +80,7 @@ export function Purchase({
           </button>
         </div>
         <p className="demo-note">
-          Anteprima del negozio: puoi provare il checkout.
+          Anteprima del negozio: prova il pagamento su Stripe con dati fittizi.
           <br />
           Nessun ordine o pagamento reale.
         </p>
