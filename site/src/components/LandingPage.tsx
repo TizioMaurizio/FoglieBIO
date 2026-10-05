@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, Leaf, Package, Plus } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { Bottle } from "./Primitives";
 import { CheckoutDrawer } from "./CheckoutDrawer";
+import { PackSelector } from "./PackSelector";
 import { Navbar } from "./Navbar";
 import { Presentation, PresentationClosing } from "../sections/Presentation";
 import { brand } from "../data/content";
@@ -51,16 +52,7 @@ export function LandingPage({ language = "it" }: { language?: Language }) {
             <span><Package size={18} aria-hidden="true" /> 1 L</span>
             <span><img src={brandAssets.organic} width="62" height="41" alt={t.organicAlt} />{t.organic}</span>
           </div>
-          <fieldset className="shop-packs">
-            <legend>{t.choose}</legend>
-            {stripeTest.offers.map(item => <label className={"shop-pack" + (item.bottles === bottles ? " selected" : "")} key={item.bottles}>
-              <input type="radio" name="pack" value={item.bottles} checked={bottles === item.bottles} onChange={() => setBottles(item.bottles)} />
-              <span className="shop-pack-title">{item.bottles === 1 ? t.single : item.bottles + " " + t.bottles}</span>
-              <strong>{money(item.amountCents)}</strong>
-              <span>{money(item.amountCents / item.bottles)} {t.each}</span>
-              <small>{item.discountPercent > 0 ? t.proposal + " " + item.discountPercent + "%" : t.oneOff}</small>
-            </label>)}
-          </fieldset>
+          <PackSelector quantity={bottles} onChange={setBottles} language={language} />
           <p className="shop-price-note">{t.previewNote}{offer.discountPercent > 0 && " " + offer.discountPercent + "% " + t.reference + "."}</p>
           <dl className="shop-summary"><div><dt>{t.packTotal}</dt><dd>{money(offer.amountCents)}</dd></div><div><dt>{t.shipping}</dt><dd>{money(stripeTest.shippingAmountCents)}</dd></div><div><dt>{t.total}</dt><dd>{money(offer.amountCents + stripeTest.shippingAmountCents)}</dd></div></dl>
           <button className="button shop-buy" onClick={() => setCheckout(true)}>{t.continue}<ArrowUpRight size={20} aria-hidden="true" /></button>

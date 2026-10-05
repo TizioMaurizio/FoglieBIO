@@ -2,6 +2,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { CheckoutDrawer } from '../src/components/CheckoutDrawer';
+import { PackSelector } from '../src/components/PackSelector';
 import { LandingPage } from '../src/components/LandingPage';
 import { getStripeTestCheckoutUrl, getTestOffer, requireStripeTestUrl, stripeTest } from '../src/services/stripeTest';
 import { render } from '../src/entry-server';
@@ -48,13 +49,31 @@ describe('Antonio single/triple offer and EU + Switzerland checkout', () => {
     expect(html).toContain(language === 'it' ? '123,20' : '123.20');
     expect(html).toContain(language === 'it' ? 'senza rinnovo automatico' : 'No automatic renewal');
     expect(html).not.toContain('PayPal');
-    expect(html).not.toContain('<input');
+    expect([...html.matchAll(/type="radio"/g)]).toHaveLength(2);
+    expect(html).not.toContain('<select');
     expect(html).not.toContain('role="status"');
   });
   it('fails closed on an invalid pack rather than rendering a payment link', () => {
     const html = renderToStaticMarkup(createElement(CheckoutDrawer,{quantity:4,setQuantity:()=>{},onClose:()=>{}}));
     expect(html).toContain('role="alert"');
     expect(html).not.toContain('href="https://buy.stripe.com/');
+  });
+  it.each(['it','en'] as const)('makes the triple promotion visible even when one bottle is selected in %s', language => {
+    const html = renderToStaticMarkup(createElement(CheckoutDrawer,{quantity:1,setQuantity:()=>{},language,onClose:()=>{}}));
+    expect(html).toContain(language === 'it' ? '39,10' : '39.10');
+    expect(html).toContain(language === 'it' ? '10,20' : '10.20');
+    expect(html).toContain('−8%');
+    expect(html).toContain(language === 'it' ? 'anche sul primo ordine' : 'including your first order');
+    expect(html.indexOf('shop-pack-badge')).toBeLessThan(html.indexOf('checkout-totals'));
+    expect(html).toContain('href="' + getStripeTestCheckoutUrl(1,language) + '"');
+  });
+  it('keeps the page and drawer radio groups independent', () => {
+    const html = renderToStaticMarkup(createElement('div',null,
+      createElement(PackSelector,{quantity:1,onChange:()=>{},language:'it'}),
+      createElement(PackSelector,{quantity:1,onChange:()=>{},language:'it'})));
+    const names = [...html.matchAll(/<input\b[^>]*name="([^"]+)"/g)].map(match=>match[1]);
+    expect(names).toHaveLength(4);
+    expect(new Set(names).size).toBe(2);
   });
 });
 describe('Restored presentation and translated checkout', () => {

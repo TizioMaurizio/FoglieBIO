@@ -29,6 +29,11 @@
 .shop-pack strong { font-size: 24px; font-weight: 500; color: var(--green-dark); }
 .shop-pack > span:not(.shop-pack-title) { color: var(--muted); font-size: 11px; }
 .shop-pack small { font-size: 10px; margin-top: 4px; }
+.shop-pack .shop-pack-badge { align-self: flex-start; padding: 5px 8px; background: var(--green-dark); color: #fff; font-size: 11px; font-weight: 500; line-height: 1.5; }
+.shop-pack:focus-within { outline: 3px solid #9c7325; outline-offset: 3px; }
+.checkout .shop-packs { margin: 0 0 24px; }
+.checkout .shop-packs legend { font-size: 18px; }
+.checkout .checkout-product .eyebrow { margin-bottom: 7px; font-size: 9px; }
 .shop-price-note { font-size: 11px; margin: 14px 0 20px; color: var(--muted); }
 .shop-summary { margin: 0; padding: 10px 0; border-block: 1px solid var(--line); }
 .shop-summary > div { display: flex; justify-content: space-between; gap: 15px; font-size: 12px; margin: 6px 0; }
@@ -50,8 +55,6 @@
 .shop-footer a { text-decoration: underline; text-underline-offset: 3px; }
 .shop-footer nav { display: flex; flex-direction: column; gap: 8px; }
 .shop-footer small { grid-column: 1/-1; }
-.shop-pack-select { display: grid; gap: 5px; font-size: 12px; margin-top: 14px; }
-.shop-pack-select select { padding: 8px; border: 1px solid var(--line); background: white; }
 .checkout-product .bottle { --bottle-height: 130px; }
 .policy-links { display: flex; flex-wrap: wrap; gap: 18px; margin: 26px 0; font-size: 13px; }
 .presentation-nav .wordmark { display: flex; align-items: center; }

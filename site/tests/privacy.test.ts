@@ -8,7 +8,9 @@ import { PrivacyPage } from '../src/components/Privacy';
 describe('Preview privacy and selling essentials', () => {
   it.each(['it','en'] as const)('discloses Stripe transmission before leaving the %s page', language => {
     const html = renderToStaticMarkup(createElement(CheckoutDrawer,{quantity:1,setQuantity:()=>{},language,onClose:()=>{}}));
-    expect(html).not.toContain('<input');
+    const inputs = [...html.matchAll(/<input\b[^>]*>/g)].map(match => match[0]);
+    expect(inputs).toHaveLength(2);
+    inputs.forEach(input => expect(input).toContain('type="radio"'));
     expect(html).not.toContain('<form');
     expect(html.indexOf('privacy.html')).toBeLessThan(html.indexOf('href="https://buy.stripe.com/test_'));
     expect(html).toContain(language === 'it' ? 'trasmessi e conservati' : 'transmitted and stored');
