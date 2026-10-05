@@ -14,7 +14,7 @@ export function render(language: Language = "it") {
   const schema = JSON.stringify([{...productSchema, description:t.description}, organizationSchema]).replace(/</g, "\\u003c");
   return {
     html: renderToString(<LandingPage language={language} />),
-    title: language === "it" ? "Foglie Bio Plus® — Scegli la tua confezione" : "Foglie Bio Plus® — Choose your pack",
+    title: language === "it" ? "Foglie Bio Plus® — Dalla terra. Dalle foglie." : "Foglie Bio Plus® — From the soil. From the leaves.",
     head: '<meta name="description" content="' + t.description + '" />' +
       '<meta name="robots" content="' + (integrations.indexable ? "index,follow" : "noindex,nofollow") + '" />' +
       '<link rel="canonical" href="' + canonical + '" />' +

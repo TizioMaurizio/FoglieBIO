@@ -10,8 +10,15 @@ import {
 } from "lucide-react";
 import { features } from "../data/content";
 import { Bottle } from "../components/Primitives";
+import type { Language } from "../data/shopCopy";
 const icons = [Leaf, FlaskConical, Sprout];
-export function FeatureStrip() {
+const englishFeatures = [
+  { title: "Olive leaves.\nItalian origin.", text: "Our starting point is the raw ingredient." },
+  { title: "Curiosity,\ncultivated over time.", text: "Years of study and experimentation." },
+  { title: "One product.\nA story of people.", text: "Antonio and La Ruota Bio’s project." }
+];
+export function FeatureStrip({ language = "it" }: { language?: Language }) {
+  const items = language === "en" ? englishFeatures : features;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -31,17 +38,17 @@ export function FeatureStrip() {
   return (
     <section
       className="feature-strip"
-      aria-label="Tre prospettive su Foglie Bio Plus"
+      aria-label={language === "it" ? "Tre prospettive su Foglie Bio Plus" : "Three perspectives on Foglie Bio Plus"}
     >
       <a className="story-panel" href="#storia">
-        <span className="eyebrow">01 / UNA SCELTA DI VITA</span>
+        <span className="eyebrow">{language === "it" ? "01 / UNA SCELTA DI VITA" : "01 / A LIFE CHOICE"}</span>
         <h2>
-          Prima di una bottiglia,
+          {language === "it" ? "Prima di una bottiglia," : "Before a bottle,"}
           <br />
-          c’è una persona.
+          {language === "it" ? "c’è una persona." : "there is a person."}
         </h2>
         <span className="panel-link">
-          La storia di Antonio <ArrowUpRight size={20} />
+          {language === "it" ? "La storia di Antonio" : "Antonio’s story"} <ArrowUpRight size={20} />
         </span>
         <span className="panel-year" aria-hidden="true">
           2022
@@ -49,8 +56,8 @@ export function FeatureStrip() {
       </a>
       <section
         className="feature-panel"
-        aria-label="Caratteristiche del progetto"
-        aria-roledescription="carosello"
+        aria-label={language === "it" ? "Caratteristiche del progetto" : "Project features"}
+        aria-roledescription={language === "it" ? "carosello" : "carousel"}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onFocusCapture={() => setHovered(true)}
@@ -59,13 +66,13 @@ export function FeatureStrip() {
         }}
       >
         <div className="feature-top">
-          <span className="eyebrow">02 / IL NOSTRO PUNTO DI PARTENZA</span>
+          <span className="eyebrow">{language === "it" ? "02 / IL NOSTRO PUNTO DI PARTENZA" : "02 / OUR STARTING POINT"}</span>
           <button
             className="icon-button"
             aria-label={
               paused
-                ? "Riprendi le caratteristiche"
-                : "Pausa le caratteristiche"
+                ? (language === "it" ? "Riprendi le caratteristiche" : "Resume features")
+                : (language === "it" ? "Pausa le caratteristiche" : "Pause features")
             }
             onClick={() => setPaused(!paused)}
           >
@@ -74,14 +81,14 @@ export function FeatureStrip() {
         </div>
         <div className="feature-content" key={index}>
           <Icon size={34} strokeWidth={1.2} />
-          <h2>{features[index].title}</h2>
-          <p>{features[index].text}</p>
+          <h2>{items[index].title}</h2>
+          <p>{items[index].text}</p>
         </div>
         <div className="indicators">
-          {features.map((feature, i) => (
+          {items.map((feature, i) => (
             <button
               key={feature.title}
-              aria-label={`Caratteristica ${i + 1}: ${feature.title}`}
+              aria-label={(language === "it" ? "Caratteristica " : "Feature ") + (i + 1) + ": " + feature.title}
               aria-pressed={i === index}
               onClick={() => setIndex(i)}
             >
@@ -94,19 +101,19 @@ export function FeatureStrip() {
         <span className="eyebrow">03 / FOGLIE BIO PLUS®</span>
         <div>
           <h2>
-            L’olivo,
+            {language === "it" ? "L’olivo," : "The olive tree,"}
             <br />
-            in una nuova forma.
+            {language === "it" ? "in una nuova forma." : "in a new form."}
           </h2>
           <p>
-            Infuso di foglie d’olivo
+            {language === "it" ? "Infuso di foglie d’olivo" : "Olive-leaf infusion"}
             <br />
-            Formato da 1 litro
+            {language === "it" ? "Formato da 1 litro" : "1-litre bottle"}
           </p>
         </div>
-        <Bottle />
+        <Bottle alt={language === "it" ? "Bottiglia originale di Foglie Bio Plus" : "Original bottle of Foglie Bio Plus"} />
         <span className="panel-link">
-          Conosci il prodotto <ArrowUpRight size={20} />
+          {language === "it" ? "Conosci il prodotto" : "Discover the product"} <ArrowUpRight size={20} />
         </span>
       </a>
     </section>

@@ -4,44 +4,55 @@ import { Menu, ArrowUpRight } from "lucide-react";
 import { navigation } from "../data/content";
 import { Modal } from "./Primitives";
 import { BrandLogo } from './BrandLogo';
+import { pagePath, type Language } from '../data/shopCopy';
 
 export function Navbar({
   onPurchase,
+  language = "it",
 }: {
   onPurchase: (source: string) => void;
+  language?: Language;
 }) {
   const [open, setOpen] = useState(false);
+  const items = language === "it" ? navigation : [
+    {href:"#prodotto",label:"The product"}, {href:"#biologico",label:"Organic"},
+    {href:"#storia",label:"The story"}, {href:"#origine",label:"Its origins"}, {href:"#faq",label:"FAQ"}
+  ];
   return (
     <>
       <a className="skip-link" href="#contenuto">
-        Vai al contenuto
+        {language === "it" ? "Vai al contenuto" : "Skip to content"}
       </a>
-      <header className="nav">
+      <header className="nav presentation-nav">
         <a
           className="wordmark"
           href="#inizio"
-          aria-label="Foglie Bio Plus, inizio pagina"
+          aria-label={language === "it" ? "Foglie Bio Plus, inizio pagina" : "Foglie Bio Plus, top of page"}
         >
           <BrandLogo decorative />
           <span>
             foglie bio plus<sup>®</sup>
-            <small>UNA STORIA LA RUOTA BIO</small>
+            <small>{language === "it" ? "UNA STORIA LA RUOTA BIO" : "A LA RUOTA BIO STORY"}</small>
           </span>
         </a>
-        <nav aria-label="Navigazione principale">
-          {navigation.map((item) => (
+        <nav aria-label={language === "it" ? "Navigazione principale" : "Main navigation"}>
+          {items.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
         </nav>
         <div className="nav-actions">
+          <div className="shop-language" role="group" aria-label={language === "it" ? "Lingua" : "Language"}>
+            <a href={pagePath("it")} hrefLang="it" lang="it" aria-current={language === "it" ? "page" : undefined}>IT</a>
+            <a href={pagePath("en")} hrefLang="en" lang="en" aria-current={language === "en" ? "page" : undefined}>EN</a>
+          </div>
           <button className="button" onClick={() => onPurchase("navigation")}>
-            Acquista <ArrowUpRight size={16} />
+            {language === "it" ? "Acquista" : "Buy"} <ArrowUpRight size={16} />
           </button>
           <button
             className="icon-button menu-button"
-            aria-label="Apri menu"
+            aria-label={language === "it" ? "Apri menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(true)}
           >
@@ -51,12 +62,13 @@ export function Navbar({
       </header>
       {open && (
         <Modal
-          title="Esplora"
+          title={language === "it" ? "Esplora" : "Explore"}
+          closeLabel={language === "it" ? "Chiudi" : "Close"}
           className="mobile-menu"
           onClose={() => setOpen(false)}
         >
-          <nav aria-label="Navigazione mobile">
-            {navigation.map((item) => (
+          <nav aria-label={language === "it" ? "Navigazione mobile" : "Mobile navigation"}>
+            {items.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -68,9 +80,9 @@ export function Navbar({
             ))}
           </nav>
           <p>
-            Foglie d’olivo italiane.
+            {language === "it" ? "Foglie d’olivo italiane." : "Italian olive leaves."}
             <br />
-            Una storia La Ruota Bio.
+            {language === "it" ? "Una storia La Ruota Bio." : "A La Ruota Bio story."}
           </p>
         </Modal>
       )}

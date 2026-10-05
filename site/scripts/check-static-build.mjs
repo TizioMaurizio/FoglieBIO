@@ -18,7 +18,11 @@ for (const page of pages) {
     assert.match(html,/id="composizione"/);
     assert.match(html,/id="faq"/);
     assert.match(html,/hreflang="en"/);
-    assert.doesNotMatch(html,/class="newsletter"|id="newsletter-email"|class="timeline"/);
+    assert.doesNotMatch(html,/class="newsletter"|id="newsletter-email"/);
+    for(const section of ['inizio','biologico','foglie','origine','storia','composizione']) assert.ok(html.includes('id="' + section + '"'), 'Missing restored section: ' + section);
+    assert.match(html,/class="timeline"/);
+    assert.match(html,/images\/antonio-berti-800\.jpg/);
+    assert.match(html,/images\/azienda-antonio-1536\.jpg/);
   } else assert.doesNotMatch(html,/<script/);
   for(const match of html.matchAll(/(?:src|href)="(\/[^"#]*)"/g)) assetPaths.add(match[1]);
   for(const match of html.matchAll(/\bsrcset="([^"]+)"/gi)) for(const candidate of match[1].split(',')) assetPaths.add(candidate.trim().split(/\s+/)[0]);

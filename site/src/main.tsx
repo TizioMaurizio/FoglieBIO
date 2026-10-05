@@ -3,6 +3,8 @@ import { LandingPage } from './components/LandingPage';
 import './styles/globals.css';
 import './styles/experience.css';
 import './styles/product-layout.css';
+import './styles/story-photography.css';
+import './styles/organic.css';
 import './styles/branding.css';
 import './styles/shop.css';
 

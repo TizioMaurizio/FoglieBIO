@@ -57,7 +57,7 @@ describe('Antonio single/triple offer and EU + Switzerland checkout', () => {
     expect(html).not.toContain('href="https://buy.stripe.com/');
   });
 });
-describe('Sales-focused translated pages', () => {
+describe('Restored presentation and translated checkout', () => {
   it.each(['it','en'] as const)('renders complete %s navigation and matching checkout offers', language => {
     const html = renderToStaticMarkup(createElement(LandingPage,{language}));
     expect([...html.matchAll(/type="radio"/g)]).toHaveLength(2);
@@ -67,8 +67,22 @@ describe('Sales-focused translated pages', () => {
     expect(html).toContain('id="composizione"');
     expect(html).toContain('id="faq"');
     expect(html).toContain('brand/eu-organic-logo.jpg');
-    expect(html).not.toMatch(/class="newsletter"|id="newsletter-email"|class="timeline"|class="founder/);
-    expect(html).not.toContain('1998');
+    expect(html).not.toMatch(/class="newsletter"|id="newsletter-email"/);
+    for(const id of ['inizio','biologico','foglie','origine','storia','composizione','prodotto','scheda-prodotto','faq']) {
+      expect(html.split('id="' + id + '"')).toHaveLength(2);
+    }
+    expect(html).toContain('class="timeline"');
+    expect(html).toContain('class="founder section-space"');
+    expect(html).toContain('images/antonio-berti-800.jpg');
+    expect(html).toContain('images/azienda-antonio-1536.jpg');
+    expect(html).toContain('class="compound-grid"');
+    expect(html).toContain('1998');
+    expect(html).toContain('2013');
+    expect(html).toContain('2022');
+    expect([...html.matchAll(/<h1[ >]/g)]).toHaveLength(1);
+    expect(html.indexOf('id="storia"')).toBeLessThan(html.indexOf('id="prodotto"'));
+    expect(html).toContain(language === 'it' ? 'Dalla terra.' : 'From the soil.');
+    expect(html).toContain(language === 'it' ? 'Oleuropeina' : 'Oleuropein');
     expect(html).not.toContain('month supply');
     expect(html).not.toContain('mesi di trattamento');
     if(language === 'en') {

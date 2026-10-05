@@ -3,6 +3,8 @@ import { ArrowUpRight, Check, Leaf, Package, Plus } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { Bottle } from "./Primitives";
 import { CheckoutDrawer } from "./CheckoutDrawer";
+import { Navbar } from "./Navbar";
+import { Presentation, PresentationClosing } from "../sections/Presentation";
 import { brand } from "../data/content";
 import { brandAssets } from "../data/brandAssets";
 import { pagePath, shopCopy, type Language } from "../data/shopCopy";
@@ -30,21 +32,10 @@ export function LandingPage({ language = "it" }: { language?: Language }) {
   const offer = getTestOffer(bottles);
   const money = (amount: number) => formatMoney(amount, language);
   return <>
-    <a className="skip-link" href="#contenuto">{t.skip}</a>
     <div className="shop-preview-banner"><strong>{t.preview}</strong><span>{t.previewNote}</span></div>
-    <header className="nav shop-nav">
-      <a className="wordmark" href={pagePath(language)} aria-label={"Foglie Bio Plus — " + t.home}>
-        <BrandLogo decorative /><span>foglie bio plus<sup>®</sup><small>LA RUOTA BIO</small></span>
-      </a>
-      <nav className="shop-nav-links" aria-label={language === "it" ? "Navigazione" : "Navigation"}>
-        <a href="#prodotto">{t.product}</a><a href="#composizione">{t.details}</a><a href="#faq">{t.faq}</a>
-      </nav>
-      <div className="shop-language" aria-label={t.language}>
-        <a href={pagePath("it")} hrefLang="it" lang="it" aria-current={language === "it" ? "page" : undefined}>IT</a>
-        <a href={pagePath("en")} hrefLang="en" lang="en" aria-current={language === "en" ? "page" : undefined}>EN</a>
-      </div>
-    </header>
+    <Navbar language={language} onPurchase={() => setCheckout(true)} />
     <main id="contenuto">
+      <Presentation language={language} />
       <section className="shop-product" id="prodotto" aria-labelledby="product-title">
         <div className="shop-visual">
           <img className="shop-branch" src={brandAssets.branch} alt="" aria-hidden="true" width="500" height="500" />
@@ -54,7 +45,7 @@ export function LandingPage({ language = "it" }: { language?: Language }) {
         </div>
         <div className="shop-purchase">
           <p className="eyebrow">LA RUOTA BIO</p>
-          <h1 id="product-title">Foglie Bio <span>Plus<sup>®</sup></span></h1>
+          <h2 id="product-title">Foglie Bio <span>Plus<sup>®</sup></span></h2>
           <p className="shop-description">{t.description}</p>
           <div className="shop-facts">
             <span><Package size={18} aria-hidden="true" /> 1 L</span>
@@ -77,7 +68,7 @@ export function LandingPage({ language = "it" }: { language?: Language }) {
           <p className="fine-print">{t.shippingNote}</p>
         </div>
       </section>
-      <section className="shop-information" id="composizione" aria-labelledby="details-title">
+      <section className="shop-information" id="scheda-prodotto" aria-labelledby="details-title">
         <div><p className="eyebrow">FOGLIE BIO PLUS</p><h2 id="details-title">{t.productDetails}</h2><p>{t.warning}</p></div>
         <div className="shop-accordions">
           <details><summary>{t.composition}<Plus size={18} aria-hidden="true" /></summary><p>{t.compositionText}</p></details>
@@ -89,6 +80,7 @@ export function LandingPage({ language = "it" }: { language?: Language }) {
         <h2 id="faq-title">{t.faqTitle}</h2>
         <div className="shop-accordions">{t.faqs.map(item => <details key={item.q}><summary>{item.q}<Plus size={18} aria-hidden="true" /></summary><p>{item.a}</p></details>)}</div>
       </section>
+      <PresentationClosing language={language} onPurchase={() => setCheckout(true)} />
     </main>
     <ShopFooter language={language} />
     {checkout && <CheckoutDrawer quantity={bottles} setQuantity={setBottles} language={language} onClose={() => setCheckout(false)} />}

@@ -4,7 +4,7 @@
 
 ## Già preparato
 
-- Sito essenziale: prodotto, confezioni, informazioni necessarie, FAQ acquisto, assistenza e pagine legali dell’anteprima. Rimossi dalla pagina newsletter dimostrativa, lunga storia/timeline, sezioni editoriali e recensioni non disponibili.
+- Ripristinata la presentazione originale: hero, biologico, foglie, origine/lavorazione, fotografie, storia di Antonio, timeline e composizione, anche in inglese. Restano le offerte aggiornate, FAQ, assistenza e pagine legali dell’anteprima. La newsletter dimostrativa rimane rimossa.
 - Versione italiana e inglese, incluse privacy, condizioni dell’anteprima, cookie e messaggi di checkout.
 - Applicata la proposta di Antonio: una bottiglia a EUR 42,50; tre a EUR 117,30 con 8% immediato, cioè EUR 39,10 a bottiglia. Rimossa la precedente scala 2/4/6 con 5/10/15%.
 - Quattro link Stripe sandbox: 2 offerte × 2 lingue, con indirizzi nei 27 paesi UE e in Svizzera. Colori Foglie Bio e metodi carte/wallet/Satispay secondo disponibilità.

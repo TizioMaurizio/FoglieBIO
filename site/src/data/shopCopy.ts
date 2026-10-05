@@ -20,6 +20,9 @@ export const shopCopy = {
     originTitle: "Un progetto La Ruota Bio", originText: "Foglie Bio Plus nasce nel 2022 dal progetto di Antonio Berti. Le foglie sono raccolte presso l’azienda agricola partner italiana di La Ruota Bio e lavorate in laboratorio.",
     faqTitle: "Acquisto, pagamento e consegna", support: "Per informazioni sul prodotto", privacy: "Informativa privacy", terms: "Condizioni dell’anteprima", cookies: "Cookie",
     faqs: [
+      {q:"Che cos’è Foglie Bio Plus?",a:"È un integratore alimentare a base di foglie d’olivo, presentato in forma di infuso. Nasce dal progetto di Antonio Berti e La Ruota Bio."},
+      {q:"Da dove provengono le foglie?",a:"Le foglie sono italiane e provengono dall’azienda agricola partner di La Ruota Bio. L’origine italiana è riportata anche sull’etichetta del prodotto."},
+      {q:"Come si utilizza e si conserva?",a:"Segui le indicazioni e le avvertenze riportate sull’etichetta della confezione. La scheda con dosaggio e conservazione sarà disponibile dopo la conferma della documentazione aggiornata. Non attribuiamo una durata standard alla bottiglia."},
       {q:"Posso riacquistarlo ogni mese?",a:"Puoi scegliere un acquisto singolo ogni volta che desideri. Non sono previsti rinnovi o addebiti automatici. La frequenza d’acquisto non è un’indicazione di dosaggio."},
       {q:"Come funziona lo sconto?",a:"Una bottiglia costa 42,50 €. La confezione da tre riceve subito l’8% di sconto, anche al primo acquisto: 117,30 € in totale, cioè 39,10 € per bottiglia. Non serve un codice e non si sommano altri sconti. Il checkout è ancora di prova."},
       {q:"In quali paesi è disponibile il checkout?",a:"L’anteprima accetta indirizzi nei 27 paesi dell’Unione europea e in Svizzera. Non è ancora una promessa di consegna. La Svizzera è fuori dall’UE: tariffe, eventuali imposte e costi di importazione richiedono una verifica specifica prima delle vendite."},
@@ -48,6 +51,9 @@ export const shopCopy = {
     originTitle: "A La Ruota Bio project", originText: "Foglie Bio Plus began in 2022 as a project by Antonio Berti. The leaves are collected at La Ruota Bio’s partner farm in Italy and processed in a laboratory.",
     faqTitle: "Buying, payment and delivery", support: "For product enquiries", privacy: "Privacy notice", terms: "Preview terms", cookies: "Cookies",
     faqs: [
+      {q:"What is Foglie Bio Plus?",a:"It is an olive-leaf food supplement presented as an infusion, created through the project by Antonio Berti and La Ruota Bio."},
+      {q:"Where do the leaves come from?",a:"The leaves come from La Ruota Bio’s partner farm in Italy. Their Italian origin is also stated on the product label."},
+      {q:"How should it be used and stored?",a:"Follow the instructions and warnings on the bottle label. Dosage and storage details will be available once the updated specification is confirmed. We do not state a standard duration for one bottle."},
       {q:"Can I buy it again each month?",a:"You can make a one-time purchase whenever you choose. There are no automatic renewals or recurring charges. Purchasing frequency is not dosage advice."},
       {q:"How does the discount work?",a:"One bottle costs €42.50. The three-bottle pack receives 8% off immediately, including on your first purchase: €117.30 in total, or €39.10 per bottle. No code is needed and discounts do not stack. Checkout is still in test mode."},
       {q:"Which countries does checkout cover?",a:"The preview accepts addresses in all 27 European Union countries and Switzerland. This is not yet a delivery commitment. Switzerland is outside the EU: delivery rates and any import taxes or handling charges need a separate review before sales begin."},

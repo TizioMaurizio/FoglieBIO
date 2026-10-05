@@ -1,6 +1,6 @@
 # Current external integrations
 
-The active site is a focused bilingual shop preview. Real customer sales are not enabled.
+The active site combines the restored original product presentation with the bilingual shop preview. Real customer sales are not enabled.
 
 | Feature | Current state | Before live sales |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ The active site is a focused bilingual shop preview. Real customer sales are not
 | Newsletter, reviews, account, analytics | Removed from active storefront/not activated | Optional future scope |
 | Legal/privacy | Clearly labelled bilingual preview information | Approved commercial policies and actual processor/data flows |
 
-The storefront uses only public URLs and resource IDs. Stripe CLI authentication remains in the user's normal configuration outside Git; no frontend secret or Stripe SDK is needed. The active page does not call the old mock stock, newsletter, review or analytics services. Older source/research remains available but is not rendered.
+The storefront uses only public URLs and resource IDs. Stripe CLI authentication remains in the user's normal configuration outside Git; no frontend secret or Stripe SDK is needed. The original hero, organic, farm, founder, timeline and composition sections are active again in Italian and English. Story events remain no-ops; no analytics service is enabled. The old mock purchase, stock, newsletter and reviews flows remain unused.
 
 For automated fulfillment, verify Stripe webhook signatures, check authoritative payment/amount data and make processing idempotent. A client page or URL cannot prove payment. A controlled manual Dashboard workflow is also an option for an initial release if the business can reliably process orders and stock.
 

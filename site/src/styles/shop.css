@@ -1,4 +1,4 @@
-/* Focused bilingual storefront. Brand green and original photography are preserved. */
+/* Bilingual purchasing controls alongside the restored original presentation. */
 .shop-preview-banner { background: var(--green-dark); color: #fff; text-align: center; padding: 10px 22px; font-size: 11px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .shop-preview-banner strong { letter-spacing: 1px; }
 .shop-nav { height: 90px; }
@@ -13,9 +13,9 @@
 .shop-branch { position: absolute; width: 150px; height: auto; right: -18px; top: 54px; opacity: .8; }
 .shop-origin { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; margin-top: 24px; color: var(--green-dark); }
 .shop-purchase { min-width: 0; }
-.shop-purchase h1 { font-size: clamp(45px, 5.3vw, 76px); line-height: 1.05; letter-spacing: -.05em; margin: 14px 0 20px; }
-.shop-purchase h1 span { color: var(--label-green); }
-.shop-purchase h1 sup { font-size: .3em; vertical-align: top; }
+.shop-purchase h2 { font-size: clamp(45px, 5.3vw, 76px); line-height: 1.05; letter-spacing: -.05em; margin: 14px 0 20px; }
+.shop-purchase h2 span { color: var(--label-green); }
+.shop-purchase h2 sup { font-size: .3em; vertical-align: top; }
 .shop-description { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 520px; }
 .shop-facts { display: flex; align-items: center; gap: 24px; margin: 22px 0; font-size: 12px; }
 .shop-facts > span { display: flex; align-items: center; gap: 9px; }
@@ -54,6 +54,18 @@
 .shop-pack-select select { padding: 8px; border: 1px solid var(--line); background: white; }
 .checkout-product .bottle { --bottle-height: 130px; }
 .policy-links { display: flex; flex-wrap: wrap; gap: 18px; margin: 26px 0; font-size: 13px; }
+.presentation-nav .wordmark { display: flex; align-items: center; }
+.hero[lang="en"] h1 { font-size: clamp(54px, 6.2vw, 104px); }
+@media(max-width:700px) {
+  .presentation-nav .nav-actions { gap: 8px; }
+  .presentation-nav .nav-actions > .button { padding: 10px; gap: 0; font-size: 11px; }
+  .presentation-nav .nav-actions > .button svg { display: none; }
+  .presentation-nav .shop-language a { padding: 7px 8px; }
+  .presentation-nav .wordmark { font-size: 15px; gap: 5px; }
+  .presentation-nav .brand-logo { width: 36px; height: 36px; }
+  .presentation-nav .menu-button { width: 28px; height: 28px; }
+  .hero[lang="en"] h1 { font-size: clamp(36px, 9vw, 62px); }
+}
 @media(max-width:800px) {
   .shop-nav .shop-nav-links { display: none; }
   .shop-product { gap: 28px; padding-inline: 5%; }
@@ -69,7 +81,7 @@
   .shop-product { padding-top: 20px; }
   .shop-visual { position: relative; top: auto; padding: 20px; }
   .shop-visual .bottle { --bottle-height: 300px; }
-  .shop-purchase h1 { font-size: 52px; }
+  .shop-purchase h2 { font-size: 52px; }
   .shop-information, .shop-faq { padding-block: 32px; }
   .shop-footer { gap: 22px; font-size: 11px; }
   .shop-footer > div:first-child { align-items: start; }

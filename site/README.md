@@ -1,6 +1,6 @@
-# Foglie Bio Plus — focused shop preview
+# Foglie Bio Plus — product presentation and shop preview
 
-React 19, TypeScript and Vite static storefront. Product, pack choice, essential product information, purchase FAQ, support and localized preview policies. The newsletter demo, long editorial story/timeline and unused reviews are no longer rendered. Original photography, organic branding and Foglie Bio green remain.
+React 19, TypeScript and Vite static site. The original hero, feature panels, organic section, olive-leaf information, farm/process story, Antonio's portrait/timeline and composition section are restored, including English equivalents. They lead into the updated pack choice, product details, FAQ, support and localized preview policies. The newsletter demo remains removed. Original photography, organic branding and Foglie Bio green are preserved.
 
 ## Run and verify
 
@@ -46,7 +46,8 @@ The existing GitHub Pages workflow publishes this sandbox preview on a push to m
 
 | Path | Purpose |
 | --- | --- |
-| `src/components/LandingPage.tsx` | Focused store and footer |
+| `src/components/LandingPage.tsx` | Original presentation, current offers and footer |
+| `src/sections/Presentation.tsx`, `EnglishPresentation.tsx` | Original section sequence and English counterparts |
 | `src/components/CheckoutDrawer.tsx` | Pack summary and safe test handoff |
 | `src/data/shopCopy.ts`, `policies.ts` | Full Italian/English copy |
 | `src/services/stripeTest.ts` | Fixed-pack and locale validation |
@@ -56,6 +57,6 @@ The existing GitHub Pages workflow publishes this sandbox preview on a push to m
 | `docs/PROMOTION_PLAN.md` | Proposed discount and repeat-purchase strategy |
 | `docs/ANTONIO_CALL_CHECKLIST.md` | Autonomous work vs owner approvals |
 
-Earlier editorial components, research and mock-provider classes remain as unmounted source/reference material; they are not the active purchase flow. The active page imports no newsletter, review service, fake stock provider or analytics provider.
+Original Italian presentation components are active again. Their existing no-op story/carousel behavior remains; no tracking service is enabled. English counterparts preserve the same sections, images and factual scope. Legacy newsletter and mock purchase components remain unmounted; the real preview purchase path uses only the current Stripe sandbox links.
 
 See [test instructions](docs/STRIPE_TEST_CHECKOUT.md), [promotion plan](docs/PROMOTION_PLAN.md), [call checklist](docs/ANTONIO_CALL_CHECKLIST.md) and [product/content evidence](docs/CONTENT_AND_CLAIMS_REVIEW.md).
