@@ -42,6 +42,8 @@ Only public test URLs and resource IDs are committed as configuration; no secret
 
 The existing GitHub Pages workflow publishes this sandbox preview on a push to main; only dist is uploaded. Publishing the preview does not enable live payments. Select appropriate ecommerce hosting for the live shop, since GitHub Pages restricts commercial ecommerce hosting.
 
+The same preview can be packaged for the existing WordPress hosting at `www.laruotabio.it/foglie-bio-plus/`, preserving La Ruota Bio's homepage. See [WordPress deployment and rollback](wordpress/README.md). Build-time asset/page bases and site URL preserve the default GitHub Pages target while supporting dedicated IT/EN product routes.
+
 ## Maintained entry points
 
 | Path | Purpose |

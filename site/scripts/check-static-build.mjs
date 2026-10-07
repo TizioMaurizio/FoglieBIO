@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 const root = resolve('dist');
-const base = '/FoglieBIO/';
+const base = process.env.VITE_ASSET_BASE || '/FoglieBIO/';
+const pageBase = process.env.VITE_PAGE_BASE || base;
 const manifest = JSON.parse(await readFile('src/config/stripe-test.json','utf8'));
 const pages = ['index.html','privacy.html','terms.html','cookies.html','en/index.html','en/privacy.html','en/terms.html','en/cookies.html'];
 const assetPaths = new Set();
@@ -28,6 +29,13 @@ for (const page of pages) {
   for(const match of html.matchAll(/\bsrcset="([^"]+)"/gi)) for(const candidate of match[1].split(',')) assetPaths.add(candidate.trim().split(/\s+/)[0]);
 }
 for(const url of assetPaths) {
+  if (pageBase !== base && url.startsWith(pageBase)) {
+    const page = url.slice(pageBase.length);
+    if (['', 'en/', 'privacy.html', 'terms.html', 'cookies.html', 'en/privacy.html', 'en/terms.html', 'en/cookies.html'].includes(page)) {
+      await stat(resolve(root, page.endsWith('/') || !page ? page + 'index.html' : page));
+      continue;
+    }
+  }
   assert.ok(url.startsWith(base),'Path escapes project base: ' + url);
   const path = resolve(root,url.slice(base.length));
   assert.ok(path === root || path.startsWith(root+sep));

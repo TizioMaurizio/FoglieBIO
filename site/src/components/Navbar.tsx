@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Menu, ArrowUpRight } from "lucide-react";
-import { navigation } from "../data/content";
+import { brand, navigation } from "../data/content";
+import { assetUrl } from "../config/site";
 import { Modal } from "./Primitives";
 import { BrandLogo } from './BrandLogo';
 import { pagePath, type Language } from '../data/shopCopy';
@@ -42,6 +43,10 @@ export function Navbar({
             </a>
           ))}
         </nav>
+        <a className="parent-site-link" href={brand.website} aria-label={language === "it" ? "Vai al sito La Ruota Bio" : "Visit the La Ruota Bio website"}>
+          <img src={assetUrl("brand/la-ruota-bio.jpg")} alt="" width="300" height="139" />
+          <ArrowUpRight size={16} aria-hidden="true" />
+        </a>
         <div className="nav-actions">
           <div className="shop-language" role="group" aria-label={language === "it" ? "Lingua" : "Language"}>
             <a href={pagePath("it")} hrefLang="it" lang="it" aria-current={language === "it" ? "page" : undefined}>IT</a>

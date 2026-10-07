@@ -1,7 +1,7 @@
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { LandingPage } from "./components/LandingPage";
 import { integrations } from "./config/integrations";
-import { SITE_URL } from "./config/site";
+import { SITE_URL, assetUrl } from "./config/site";
 import { productSchema, organizationSchema } from "./data/seo";
 import { PrivacyPage } from "./components/Privacy";
 import { shopCopy, type Language, type PolicyPage } from "./data/shopCopy";
@@ -23,7 +23,7 @@ export function render(language: Language = "it") {
       '<link rel="alternate" hreflang="x-default" href="' + SITE_URL + '" />' +
       '<meta property="og:type" content="website" /><meta property="og:locale" content="' + (language === "it" ? "it_IT" : "en_GB") + '" />' +
       '<meta property="og:title" content="Foglie Bio Plus®" /><meta property="og:description" content="' + t.description + '" />' +
-      '<meta property="og:url" content="' + canonical + '" /><meta property="og:image" content="' + SITE_URL + 'og.png" />' +
+      '<meta property="og:url" content="' + canonical + '" /><meta property="og:image" content="' + new URL(assetUrl('og.png'), SITE_URL).href + '" />' +
       '<meta name="twitter:card" content="summary_large_image" /><script type="application/ld+json">' + schema + '</script>'
   };
 }

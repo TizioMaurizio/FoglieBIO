@@ -1,8 +1,8 @@
-import { assetUrl } from "../config/site";
+import { PAGE_BASE } from "../config/site";
 export type Language = "it" | "en";
 export type PolicyPage = "privacy" | "terms" | "cookies";
 export function pagePath(language: Language, page?: PolicyPage) {
-  return assetUrl((language === "en" ? "en/" : "") + (page ? page + ".html" : ""));
+  return PAGE_BASE + (language === "en" ? "en/" : "") + (page ? page + ".html" : "");
 }
 export const shopCopy = {
   it: {

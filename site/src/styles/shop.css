@@ -58,8 +58,18 @@
 .checkout-product .bottle { --bottle-height: 130px; }
 .policy-links { display: flex; flex-wrap: wrap; gap: 18px; margin: 26px 0; font-size: 13px; }
 .presentation-nav .wordmark { display: flex; align-items: center; }
+.presentation-nav { gap: 16px; }
+.parent-site-link { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px; flex: none; border: 1px solid var(--brand-gold); border-radius: 2px; background: #fff; color: var(--green-dark); }
+.parent-site-link img { display: block; width: 78px; height: auto; }
+.parent-site-link:hover { border-color: var(--green-dark); background: #fffdf7; }
+@media(max-width:1150px) {
+  .presentation-nav > nav { display: none; }
+  .presentation-nav .menu-button { display: flex; }
+}
 .hero[lang="en"] h1 { font-size: clamp(54px, 6.2vw, 104px); }
 @media(max-width:700px) {
+  .presentation-nav { display: grid; grid-template-columns: minmax(0,1fr) auto; height: auto; padding-block: 10px; gap: 8px 16px; }
+  .presentation-nav .nav-actions { grid-column: 1/-1; justify-content: flex-end; }
   .presentation-nav .nav-actions { gap: 8px; }
   .presentation-nav .nav-actions > .button { padding: 10px; gap: 0; font-size: 11px; }
   .presentation-nav .nav-actions > .button svg { display: none; }
