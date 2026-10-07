@@ -100,11 +100,15 @@ class DeploymentTests(unittest.TestCase):
 
         def request(path, data=None, content_type=None):
             calls.append((path, data))
-            if data is None:
+            if path.startswith("/wp-admin/options-general.php"):
                 return "var updraft_credentialtest_nonce = 'test';"
+            if "subaction=get_log" in path:
+                self.assertIsNone(data, "UpdraftPlus log arguments must be sent with GET")
+                self.assertIn("action_data=123456abcdef", path)
+                return '{"nonce":"123456abcdef","log":"The backup succeeded and is now complete"}'
             if data["subaction"] == "backupnow":
                 return '{"nonce":"123456abcdef"}'
-            return '{"nonce":"123456abcdef","log":"The backup succeeded and is now complete"}'
+            return '{"history":{"123":{"nonce":"123456abcdef","plugins":["plugins.zip"],"always_keep":true}}}'
 
         with patch.object(client, "request", side_effect=request), patch("sys.stdout", io.StringIO()):
             self.assertEqual(client.backup(10), "123456abcdef")
@@ -112,6 +116,20 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(params["onlythisfileentity"], "plugins")
         self.assertEqual(params["always_keep"], 1)
         self.assertEqual(params["backupnow_nocloud"], 1)
+
+    def test_resume_checks_existing_backup_without_starting_another(self):
+        client = deploy.Client()
+        with patch.object(client, "request", side_effect=["var updraft_credentialtest_nonce = 'test';", '{"nonce":"123456abcdef","log":"The backup succeeded and is now complete"}', '{"history":{"123":{"nonce":"123456abcdef","plugins":["plugins.zip"],"always_keep":true}}}']) as request, patch("sys.stdout", io.StringIO()):
+            self.assertEqual(client.backup(10, "123456abcdef"), "123456abcdef")
+        self.assertIn("subaction=get_log", request.call_args_list[1].args[0])
+        self.assertIsNone(request.call_args_list[1].kwargs.get("data"))
+        self.assertFalse(any("backupnow" in str(call) for call in request.call_args_list))
+
+    def test_success_log_without_protected_archive_is_rejected(self):
+        client = deploy.Client()
+        with patch.object(client, "request", side_effect=["var updraft_credentialtest_nonce = 'test';", '{"nonce":"123456abcdef","log":"The backup succeeded and is now complete"}', '{"history":{}}']), patch("sys.stdout", io.StringIO()):
+            with self.assertRaisesRegex(RuntimeError, "protected plugins archive"):
+                client.backup(10, "123456abcdef")
 
     def test_backup_failure_prevents_upload(self):
         with tempfile.TemporaryDirectory() as directory:

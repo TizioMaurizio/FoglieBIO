@@ -37,6 +37,8 @@ python3 scripts/deploy-wordpress.py --package /absolute/path/preview.zip --prefl
 python3 scripts/deploy-wordpress.py --package /absolute/path/preview.zip --verify-only
 # Deploy a saved package, including a previous version for rollback:
 python3 scripts/deploy-wordpress.py --package /absolute/path/previous-preview.zip
+# Resume after a backup-status interruption without rebuilding or creating another backup:
+python3 scripts/deploy-wordpress.py --reuse-build --resume-backup BACKUP_JOB_ID
 ```
 
 An existing ZIP needs only Python 3. If backup, authentication, activation, cache clearing or verification fails, the script stops and reports the stage; after an upload failure, inspect the site and restore the protected plugin snapshot through UpdraftPlus if needed. It does not automatically restore an older site after a failed verification. WordPress core, themes, database, other plugins and DNS are not deployed by the script. It currently accepts only the dedicated sandbox preview.

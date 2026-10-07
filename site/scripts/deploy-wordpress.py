@@ -99,7 +99,7 @@ class Client:
             raise RuntimeError("Login/upload access was not established. Complete any authentication challenge in WordPress directly.")
         return forms[0]
 
-    def backup(self, timeout):
+    def backup(self, timeout, existing_job=None):
         html = self.request("/wp-admin/options-general.php?page=updraftplus")
         match = re.search(r"var\s+updraft_credentialtest_nonce\s*=\s*['\"]([^'\"]+)", html)
         if not match:
@@ -107,16 +107,25 @@ class Client:
         nonce = match.group(1)
 
         def command(action, **parameters):
-            response = json.loads(self.request("/wp-admin/admin-ajax.php", {"action": "updraft_ajax", "subaction": action, "nonce": nonce, **parameters}))
+            data = {"action": "updraft_ajax", "subaction": action, "nonce": nonce, **parameters}
+            # UpdraftPlus dispatches get_log parameters from $_GET, not $_POST.
+            if action == "get_log":
+                raw = self.request("/wp-admin/admin-ajax.php?" + urllib.parse.urlencode(data))
+            else:
+                raw = self.request("/wp-admin/admin-ajax.php", data)
+            response = json.loads(raw)
             if not isinstance(response, dict) or response.get("error") or response.get("fatal_error"):
-                raise RuntimeError("UpdraftPlus did not accept the backup operation.")
+                raise RuntimeError("UpdraftPlus did not accept the backup operation: " + action)
             return response
 
-        response = command("backupnow", backupnow_nodb=1, backupnow_nofiles=0, backupnow_nocloud=1, onlythisfileentity="plugins", always_keep=1, incremental=0)
-        job = response.get("nonce", "")
+        if existing_job:
+            job = existing_job
+        else:
+            response = command("backupnow", backupnow_nodb=1, backupnow_nofiles=0, backupnow_nocloud=1, onlythisfileentity="plugins", always_keep=1, incremental=0)
+            job = response.get("nonce", "")
         if not re.fullmatch(r"[a-f0-9]{12}", job):
             raise RuntimeError("The backup job was not confirmed; deployment stopped.")
-        print(f"Protected plugin backup started: {job}", flush=True)
+        print(f"{'Checking existing' if existing_job else 'Started protected'} plugin backup: {job}", flush=True)
         deadline = time.monotonic() + timeout
         last_progress = 0
         while time.monotonic() < deadline:
@@ -124,7 +133,11 @@ class Client:
             if result.get("nonce") != job:
                 raise RuntimeError("Unexpected backup job; deployment stopped.")
             if "The backup succeeded and is now complete" in result.get("log", ""):
-                print("Plugin backup completed.", flush=True)
+                history = command("get_existing_backups_data").get("history", {})
+                entries = history.values() if isinstance(history, dict) else history
+                if not any(isinstance(entry, dict) and entry.get("nonce") == job and entry.get("plugins") and entry.get("always_keep") for entry in entries):
+                    raise RuntimeError("A completed, protected plugins archive was not found; deployment stopped.")
+                print("Completed protected plugin backup verified.", flush=True)
                 return job
             if time.monotonic() - last_progress > 30:
                 print("Waiting for the protected plugin backup...", flush=True)
@@ -302,18 +315,23 @@ def main():
     parser.add_argument("--site-dir", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--node", help="Node executable, if not available through PATH.")
     parser.add_argument("--pnpm", help="Use this pnpm executable and import the existing npm lockfile in the temporary build copy.")
-    parser.add_argument("--package", type=Path, help="Deploy an already built ZIP instead of rebuilding.")
+    package_mode = parser.add_mutually_exclusive_group()
+    package_mode.add_argument("--package", type=Path, help="Deploy an already built ZIP instead of rebuilding.")
+    package_mode.add_argument("--reuse-build", action="store_true", help="Reuse the ZIP prepared by the last run, without rebuilding.")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--dry-run", action="store_true", help="Build/validate only; no WordPress login or changes.")
     mode.add_argument("--verify-only", action="store_true", help="Verify a package against the public site; no changes.")
     mode.add_argument("--preflight", action="store_true", help="Authenticate and check access without installing or backing up.")
     parser.add_argument("--backup-timeout", type=int, default=600)
+    parser.add_argument("--resume-backup", help="Check/reuse this protected UpdraftPlus job instead of starting another backup.")
     args = parser.parse_args()
-    if args.verify_only and not args.package:
-        parser.error("--verify-only requires --package")
+    if args.verify_only and not (args.package or args.reuse_build):
+        parser.error("--verify-only requires --package or --reuse-build")
     site = args.site_dir.resolve()
     output = site / ".wordpress-deploy/foglie-bio-preview.zip"
-    if not args.package:
+    if args.reuse_build:
+        package = output
+    elif not args.package:
         output.parent.mkdir(parents=True, exist_ok=True)
         package = build(site, output, args.node, args.pnpm)
     else:
@@ -332,7 +350,7 @@ def main():
     if args.preflight:
         client.preflight()
         return
-    backup = client.backup(args.backup_timeout)
+    backup = client.backup(args.backup_timeout, args.resume_backup)
     print(f"Deploying to {BASE}{PAGE_BASE} (restore snapshot: {backup})", flush=True)
     client.upload(form, package)
     client.clear_cache()
